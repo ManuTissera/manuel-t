@@ -16,7 +16,7 @@ body{
 
 .aside-index{
     display: inline-block;
-    background-color: #f0eaf0;
+    background: linear-gradient(270deg,#1c7aa6,#145d8c,#003264);
     height: 100vh;
     width: 10%;
 }

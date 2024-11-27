@@ -48,14 +48,18 @@
       .p_form_result{
          font-family: sans-serif;
          color: #f40;
+         color: #f40;
+         color: #04f;
          height: 1.2rem;
       }
 
       .btn_log_in{
+         text-decoration: none;
          background-color: var(--second-color);
          border: .1rem solid var(--second-color);
          color: #fff;
          margin-top: 1.3rem;
+         cursor: pointer;
       }
       .btn_sing_up{
          background-color: #fff;
