@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../Files_CSS/normalize.css">
+   <link rel="stylesheet" href="../Files_CSS/base_style.css">
+   <link rel="stylesheet" href="../Files_CSS/add_proveedor.css">
+   <title>Agregar Proveedor</title>
+</head>
+<body>
+
+     <!-------   MODAL CONFIRMACION  ------>
+
+   <div class="container_modal_confirm"></div>
+
+   <!-------     HEADER    -------->
+   
+   <header class="header-form">
+      <div class="container-header-form">
+         <!-- <img class="menu-burger" src="../Assets/icons/menu.svg" alt=""> -->
+         <h2 class="h2-header-form">Nuevo Proveedor</h2>
+      </div>
+   </header>
+
+   <!---------- FORM -------->
+
+   <main class="main_add_proveedor">
+      <section class="section_main_add_proveedor">
+         <a href="./proveedores.html" class="div_back_add_proveedor">
+            <img src="../Assets/icons/chevron_back.svg" alt="">
+            <p class="p_back_add_proveedor">Volver</p>
+         </a>
+      </section>
+
+      <div class="form_add_proveedor">
+         <p class="text_form_input">Nombre</p>
+         <input type="text" class="input_add input_form_prov_name">
+         <p class="text_form_input">Razon Social</p>
+         <input type="text" class="input_add input_form_prov_razon">
+         <p class="text_form_input">CUIT</p>
+         <input type="text" class="input_add input_form_prov_cuit">
+         <p class="text_form_input">Direccion</p>
+         <input type="text" class="input_add input_form_prov_direction">
+         <p class="text_form_input">Nº Telefono</p>
+         <input type="text" class="input_add input_form_prov_phone">
+         <p class="text_form_input">E-mail</p>
+         <input type="text" class="input_add input_form_prov_email">
+         <button class="rounded_button btn_add_proveedor">Agregar</button>
+      </div>
+   </main>
+
+   <script src="../Files_JS/add_proveedor.js"></script>
+</body>
+</html>

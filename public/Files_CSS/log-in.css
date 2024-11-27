@@ -1,0 +1,65 @@
+
+
+:root{
+   --first-color: #0d1f23;
+   --second-color: #132e35;
+   --third-color: #2d4a53;
+   --fourth-color: #69818d;
+   --fifth-color: #afb3b7;
+   --sixth-color: #5a636a;
+   --seventh-color: #0a6375;
+   --background-: #f0f5fb;
+ }
+
+.container_log_in_page{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   padding-top: 3rem;
+}
+   .img_logo_log_in{
+      width: 20rem;
+      margin-bottom: 5rem;
+   }
+   .container_log_in_form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: max-content;
+      height: max-content;
+      padding: 2rem;
+      border-radius: .4rem;
+   }
+      .inp_form{
+         border: none;
+         border-bottom: .1rem solid #333;
+         margin-top: .4rem;
+         margin-bottom: 2.5rem;
+         padding: .5rem;
+         outline-style: none;
+      }
+
+      .inp_form::placeholder{
+         color: #ccc;
+      }
+
+      .p_form_result{
+         font-family: sans-serif;
+         color: #f40;
+         height: 1.2rem;
+      }
+
+      .btn_log_in{
+         background-color: var(--second-color);
+         border: .1rem solid var(--second-color);
+         color: #fff;
+         margin-top: 1.3rem;
+      }
+      .btn_sing_up{
+         background-color: #fff;
+         color: var(--second-color);
+         border: .1rem solid var(--second-color);
+         margin-top: 1.5rem;
+      }

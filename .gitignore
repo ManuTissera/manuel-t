@@ -1,0 +1,4 @@
+node_modules
+.env
+public/other_files
+public/news-data/other_files

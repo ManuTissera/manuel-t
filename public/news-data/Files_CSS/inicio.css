@@ -1,0 +1,229 @@
+
+html{
+    box-sizing: border-box;
+    font-size: 1px;
+}
+
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+}
+
+.aside-index{
+    display: inline-block;
+    background-color: #f0eaf0;
+    height: 100vh;
+    width: 10%;
+}
+
+.main-index{
+    background-color: #003264;
+    color: #fff;
+    font-family: "Baloo Paaji 2", sans-serif;
+    flex-grow: 1;
+    height: 100vh;
+    overflow: hidden;
+
+}
+
+    .div-h1{
+        font-family: "Baloo Paaji 2", sans-serif;
+        font-size: 40rem;
+        float: left;
+        color: #fff;
+        background-color:#145d8c;
+        width: 65%;
+        height: 110vh;
+        margin-right: 225rem;
+        text-align:center;
+        clip-path: ellipse(58% 75% at 27% 25%);
+        shape-outside: ellipse(58% 95% at 17% 10%);
+
+    }
+        .div-div-h1{
+            background-color:#1c7aa6;        
+            width: 82%;
+            height: 115vh;
+            clip-path: ellipse(67% 74% at 30% 34%);
+        }
+            .div-div-div-h1{
+                /* background-color:#1c6dec70; */
+                width: 86%;
+                height: 110vh;
+                clip-path: ellipse(63% 60% at 35% 50%);
+            }
+                .h1-index{
+                    position: fixed;
+                    top: -100rem;
+                    left: 20vw;
+                    font-size: 44rem;
+                    line-height: 100vh;
+                }
+              
+    .div-link{
+        margin: 50rem 0;
+    }
+    .link-index:hover{
+        font-size: 30rem;
+        text-shadow: 0rem 0rem 3rem #555;
+    }
+    .div-link:nth-child(3){
+        margin-top: 250rem;
+    }
+
+        .article-link{
+            display: inline-block;
+            margin-right: 20rem;
+            font-size: 23rem;
+        }
+        
+        .link-index{
+            font-size: 23rem;
+            color: #fff;
+            text-decoration: none;
+        }
+
+@media screen and (max-width: 1024px){
+
+        /*  
+        ipad mini 768 * 1024
+        ipad air 820 * 1180
+        ipad pro 1024 * 1366
+    */
+    
+    .div-h1{
+        position: relative;
+        top: -400rem;
+        left: -100rem;
+        height: 90vh;
+        width: 190%;
+        transform: rotate(20deg);
+        shape-outside: ellipse(38% 95% at 17% 10%);
+        margin-right: 0rem;
+    }
+
+    .div-div-h1{
+        position: relative;
+        height: 95vh;
+        width: 75%;
+        clip-path: ellipse(70% 63% at 25% 34%)
+    }
+    
+    .h1-index{
+        font-size: 55rem;
+        position: fixed;
+        top: -300rem;
+        left: 25vw;
+    }
+
+        .div-link{
+            position: fixed;
+            left: 25vw;
+        }
+        .div-link:nth-child(7){
+            bottom: 2vh;
+        }
+        .div-link:nth-child(6){
+            bottom: 10vh;
+        }
+        .div-link:nth-child(5){
+            bottom: 18vh;
+        }
+        .div-link:nth-child(4){
+            bottom: 26vh;
+        }
+        .div-link:nth-child(3){
+            bottom: 34vh;
+        }
+ 
+        .article-link{
+            display: none;
+        }
+        .link-index{
+            font-size: 35rem;
+        }
+
+    .background-img{
+        height: 900px;
+    }
+
+
+}
+
+@media screen and (max-width: 700px){
+
+    /*  galaxy S8   360 * 740
+        galaxy S20 412 * 915 
+        iphone 14 proMax 430 * 932 
+    */
+    
+    .div-h1{
+        position: relative;
+        top: -400rem;
+        left: -100rem;
+        height: 100vh;
+        width: 190%;
+        transform: rotate(22deg);
+        shape-outside: ellipse(38% 95% at 17% 10%);
+        margin-right: 0rem;
+    }
+
+    .div-div-h1{
+        position: relative;
+        height: 105vh;
+        width: 75%;
+        clip-path: ellipse(70% 63% at 25% 34%)
+    }
+    
+    .h1-index{
+        font-size: 35rem;
+        position: fixed;
+        top: -300rem;
+        left: 25vw;
+    }
+
+        .div-link{
+            position: fixed;
+            left: 25vw;
+            font-size: 25rem;
+        }
+        .div-link:nth-child(7){
+            bottom: 2vh;
+        }
+        .div-link:nth-child(6){
+            bottom: 10vh;
+        }
+        .div-link:nth-child(5){
+            bottom: 18vh;
+        }
+        .div-link:nth-child(4){
+            bottom: 26vh;
+        }
+        .div-link:nth-child(3){
+            bottom: 34vh;
+        }
+ 
+        .article-link{
+            display: none;
+        }
+
+        .link-index{
+            font-size: 25rem;
+        }
+
+    .background-img{
+        height: 900px;
+    }
+
+
+}
+
+
+        
+
+
