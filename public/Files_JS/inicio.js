@@ -36,6 +36,8 @@ close_aside.addEventListener("click",()=>{
 
 })
 
+console.log('Esta tambien funcion')
+
 // const totalVentas = 1175451005;
 
 // const totalFormateado = new Intl.NumberFormat('en-US', {
