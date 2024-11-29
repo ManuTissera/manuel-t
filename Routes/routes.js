@@ -280,6 +280,19 @@ routerRequest.post('/view_data_edit', async (req,res)=>{
    }
 })
 
+routerRequest.post('/view_data_edit_cliente', async (req,res)=>{
+
+
+try{
+   const query = `SELECT * FROM clientes WHERE id_cliente = 30`;
+   const results = await connection.query(query);
+   res.send(results.rows);
+}catch(err){
+   console.error('Error petition /view_data_edit '+ err);
+   res.status(400).send('Error petition "get" /view_data_edit' + err);
+}
+})
+
 routerRequest.patch('/edit_element', async (req,res)=>{
 
    const { table, dataChange , idColumn , id } = req.body;
