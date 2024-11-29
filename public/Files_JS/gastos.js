@@ -25,9 +25,12 @@ const select_method = document.querySelector('.select_method');
 const select_proveedor = document.querySelector('.select_proveedor');
 
 const URLQuery = `http://localhost:3210`;
+
+console.log(URLQuery)
 href_text.style.backgroundColor = '#f0f5fb';
 
 const getDataProveedor = async () =>{
+
 
    let provData = await fetch(`${URLQuery}/view_proveedores`).then(res=>res.json()).then(data=>data);
 
@@ -43,8 +46,6 @@ const getDataProveedor = async () =>{
 
    })
 }
-
-getDataProveedor();
 
 
 const getDataExpenses = async () =>{
@@ -215,6 +216,7 @@ btn_del_expenses.addEventListener("click",()=>{
 
 
 btn_add_gasto.addEventListener("click",()=>{
+   getDataProveedor();
    background_opacity.style.display = "flex";
    form_add_gasto.style.right = "0rem";
 })
