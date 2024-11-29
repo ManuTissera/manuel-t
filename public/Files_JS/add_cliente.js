@@ -12,7 +12,8 @@ const input_form_add_email = document.querySelector('.input_form_add_email');
 const input_form_add_dateIng = document.querySelector('.input_form_add_dateIng');
 const btn_add_proveedor = document.querySelector('.btn_add_proveedor');
 
-const URLQuery = `http://localhost:3210`;
+const URLQuery = window.location.origin;
+console.log(URLQuery)
 
 
 const addClient = async () =>{
