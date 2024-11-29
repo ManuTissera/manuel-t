@@ -16,7 +16,7 @@ const btn_del_client = document.querySelector('.btn_del_client');
 const container_body_table = document.querySelector('.container_body_table');
 
 
-const URLQuery = `http://localhost:3210`;
+const URLQuery = window.location.origin;
 href_text.style.backgroundColor = '#f0f5fb';
 
 const getDataClient = async () =>{
@@ -24,6 +24,8 @@ const getDataClient = async () =>{
    container_body_table.innerHTML = '';
 
    let result = await fetch(`${URLQuery}/view_clientes`).then(res=>res.json()).then(data=>data);
+
+   console.log(result);
 
    result.forEach(client =>{
 

@@ -881,14 +881,6 @@ const getDataToEdit = async (nameTable,idColumn,idValue) =>{
 
    console.log(resultQuery[0])
 
-   let resultQueryC = await fetch(`${URLQuery}/view_data_edit_cliente`,{
-      method: 'POST',
-      headers: {'Content-type':'application/json'}
-   }).then(res=>res.json()).then(data=>data);
-
-   console.log(resultQueryC[0])
-
-
    if(nameTable === 'clientes'){
       console.log('Ejecutor cliente')
 
