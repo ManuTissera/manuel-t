@@ -38,6 +38,33 @@ FROM compras;`;
    }
 })
 
+routerRequest.get('/total_venta_eft', async (req,res)=>{
+
+   try{
+      const query = `SELECT TO_CHAR(SUM(venta_efectivo),'FM$999,999,999,999') 
+      AS total_efectivo FROM ventas;`;
+      const results = await connection.query(query);
+      res.send(results.rows);
+   }catch(err){
+      console.error('Erro en servidor petition "get" /total_venta_eft ' + err)
+      res.status(500).send('Error servidor /total_venta_eft')
+   }
+})
+
+routerRequest.get('/total_venta_tar', async (req,res)=>{
+
+   try{
+      const query = `SELECT TO_CHAR(SUM(venta_tarjeta),'FM$999,999,999,999') 
+      AS total_tarjeta FROM ventas;`;
+      const results = await connection.query(query);
+      res.send(results.rows);
+   }catch(err){
+      console.error('Erro en servidor petition "get" /total_venta_tar' + err)
+      res.status(500).send('Error servidor /total_venta_tar')
+   }
+})
+
+
 // ------- PROVEEDORES -----------
 
 routerRequest.get('/view_proveedores', async (req,res)=>{
@@ -116,12 +143,15 @@ routerRequest.get('/view_caja', async (req,res)=>{
 
 routerRequest.post('/add_caja', async (req,res)=>{
 
+   const { date,turno,titular,comercio,efectivo,tarjeta,ctaCte } = req.body;
+
+
    try{
       const query = `
       INSERT INTO ventas 
       (fecha, personal, comercio, venta_efectivo, venta_tarjeta, venta_cuenta_corriente)
       VALUES
-      ('2025-01-01', 'María Gómez', 'Supermercado Los Vecinos', 7000, 6000, 5000);
+      ('${date}','${titular}','${comercio}',${efectivo},${tarjeta},${ctaCte});
       `;
       const result = await connection.query(query);
       res.send('Caja agregada Exitosamente');
@@ -129,6 +159,36 @@ routerRequest.post('/add_caja', async (req,res)=>{
       res.status(400).send('Error petition "post" /add_caja ' + err);
    }
 
+})
+
+// ------- COMPRAS ------------
+
+routerRequest.get('/view_compras', async (req,res)=>{
+
+   try{
+      const query = `SELECT * FROM compras ORDER BY id_compra DESC;`;
+      const result = await connection.query(query);
+      res.send(result.rows);
+   }catch(err){
+      console.error('Error servidor /vierw_compras' + err);
+      res.status(500).send('Error servidor /view_compras ' + err);
+   }
+})
+routerRequest.post('/add_compra', async (req,res)=>{
+
+   const {fecha, proveedor, categoria, descripcion, monto, forma_pago, tipo_factura, numero_factura} = req.body;
+   
+   try{
+      const query = `INSERT INTO  compras 
+   (fecha, proveedor, categoria, descripcion, monto, forma_pago, tipo_factura, numero_factura)
+   VALUES 
+   ('${fecha}', '${proveedor}', '${categoria}', '${descripcion}', ${monto}, '${forma_pago}', '${tipo_factura}', '${numero_factura}');
+      `
+      const result = await connection.query(query);
+      res.send('Compra agregada Exitosamente');
+   }catch(err){
+      res.status(500).send('Error petitio "post" /add_personal' + err);
+   }
 })
 
 // ------- PERSONAL -----------
@@ -236,14 +296,15 @@ routerRequest.patch('/edit_element', async (req,res)=>{
 
 })
 
-// REVISAR
-routerRequest.delete('/del_cliente/', async (req,res)=>{
+// ------- ELIMINAR ----------- 
+routerRequest.delete('/delete_element', async (req,res)=>{
 
-   const { idDelete } = req.body;
+   const { idDelete,idColumn,tabla } = req.body;
 
    try{
-      const query = `DELETE FROM clientes WHERE id_cliente = ${idDelete};`;
-      const result = connection.query(query);
+      const query = `DELETE FROM ${tabla} WHERE ${idColumn} IN (${idDelete});`;
+      //const query = `DELETE FROM proveedores WHERE id_prov = 40;`;
+      const result = await connection.query(query);
       res.send('Cliente Eliminado con exito id: '+idDelete)
    }catch(err){
       res.send(500).send('Erro petition "delete" /del_cliente' + err);

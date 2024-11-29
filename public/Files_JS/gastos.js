@@ -2,6 +2,7 @@ const aside = document.querySelector('.aside');
 const menu_burger = document.querySelector('.menu_burger');
 const close_aside = document.querySelector('.close_aside');
 const background_opacity = document.querySelector('.background_opacity');
+const href_text = document.querySelector('a[name="gastos"]')
 
 const btn_del_expenses = document.querySelector('.btn_del_expenses');
 const container_modal_confirmacion = document.querySelector('.container_modal_confirmacion');
@@ -24,6 +25,7 @@ const select_method = document.querySelector('.select_method');
 const select_proveedor = document.querySelector('.select_proveedor');
 
 const URLQuery = `http://localhost:3210`;
+href_text.style.backgroundColor = '#f0f5fb';
 
 const getDataProveedor = async () =>{
 
@@ -43,6 +45,51 @@ const getDataProveedor = async () =>{
 }
 
 getDataProveedor();
+
+
+const getDataExpenses = async () =>{
+
+   container_body_table.innerHTML = '';
+
+   let petition = await fetch(`${URLQuery}/view_gastos`).then(res=>res.json()).then(data=>data);
+
+
+   petition.forEach(expens => {
+
+      let id = expens.id_gasto;
+      let categoria = expens.categoria;
+      let descripcion = expens.descripcion;
+      let fecha = expens.fecha;
+      let forma_pago = expens.forma_pago;
+      let monto = expens.monto;
+      let proveedor = expens.proveedor;
+      let subcategoria = expens.subcategoria;
+      let linkEdit = `table:gastos~id_gasto:${id}`;
+
+      const nodeLi = document.createElement("LI");
+      nodeLi.classList.add("row_body_table");
+
+      nodeLi.innerHTML =`
+      
+               <div class="div_row_table"><input value="${id}" name="checkExpenses" type="checkbox"></div>
+               <div class="div_row_table">20-02-2023</div>
+               <div class="div_row_table">${categoria}</div>
+               <div class="div_row_table">${subcategoria}</div>
+               <div class="div_row_table">${descripcion}</div>
+               <div class="div_row_table">${monto}</div>
+               <div class="div_row_table">${forma_pago}</div>
+               <div class="div_row_table">${proveedor}</div>
+               <a href="./edit_files.html?${linkEdit}"  class="div_row_table"><img src="../Assets/icons/edit_caja.svg" alt=""></a>
+
+      `;
+
+      container_body_table.appendChild(nodeLi);
+
+
+   })
+   
+   
+}
 
 const addExpensesFn = async () =>{
 
@@ -85,49 +132,10 @@ const addExpensesFn = async () =>{
    console.log(results);
    console.log(petition);
 
+   getDataExpenses();
+
 }
 
-const getDataExpenses = async () =>{
-
-   let petition = await fetch(`${URLQuery}/view_gastos`).then(res=>res.json()).then(data=>data);
-
-
-   petition.forEach(expens => {
-
-      let id = expens.id_gasto;
-      let categoria = expens.categoria;
-      let descripcion = expens.descripcion;
-      let fecha = expens.fecha;
-      let forma_pago = expens.forma_pago;
-      let monto = expens.monto;
-      let proveedor = expens.proveedor;
-      let subcategoria = expens.subcategoria;
-      let linkEdit = `table:gastos~id_gasto:${id}`;
-
-      const nodeLi = document.createElement("LI");
-      nodeLi.classList.add("row_body_table");
-
-      nodeLi.innerHTML =`
-      
-               <div class="div_row_table"><input value="${id}" name="checkExpenses" type="checkbox"></div>
-               <div class="div_row_table">20-02-2023</div>
-               <div class="div_row_table">${categoria}</div>
-               <div class="div_row_table">${subcategoria}</div>
-               <div class="div_row_table">${descripcion}</div>
-               <div class="div_row_table">${monto}</div>
-               <div class="div_row_table">${forma_pago}</div>
-               <div class="div_row_table">${proveedor}</div>
-               <a href="./edit_files.html?${linkEdit}"  class="div_row_table"><img src="../Assets/icons/edit_caja.svg" alt=""></a>
-
-      `;
-
-      container_body_table.appendChild(nodeLi);
-
-
-   })
-   
-   
-}
 
 const getBoxSelected = () =>{
 
@@ -141,10 +149,24 @@ const getBoxSelected = () =>{
 const btnModalCancel = () =>{
    container_modal_confirmacion.innerHTML = '';
 }
-const btnModalAcept = () =>{
-   container_modal_confirmacion.innerHTML = '';
-}
+const btnModalAcept = async (IDs) =>{
 
+   let petition = await fetch(`${URLQuery}/delete_element`,{
+      method: 'DELETE',
+      body: JSON.stringify({
+         "idDelete":IDs,
+         "idColumn":'id_gasto',
+         "tabla":'gastos',
+      }),
+      headers: {'Content-type':'application/json'}
+   }).then(res=>res.text()).then(data=>data);
+
+   console.log(petition);
+
+   container_modal_confirmacion.innerHTML = '';
+
+   getDataExpenses();
+}
 btn_del_expenses.addEventListener("click",()=>{
 
    let h4Text = '';
@@ -175,13 +197,19 @@ btn_del_expenses.addEventListener("click",()=>{
                  <p class="p-msg-confirm">${pText}</p>
                  <article class="article-btn-modal-confirm">
                      <button class="button-modal-confirm btn_cancel_del" onclick="btnModalCancel()" >Cancelar</button>
-                     <button class="button-modal-confirm btn-modal-del" onclick="btnModalAcept()">Eliminar</button>
+                     <button class="button-modal-confirm btn-modal-del">Eliminar</button>
                  </article>       
                </div>
             </div>
       
       `
       container_modal_confirmacion.innerHTML = modal_conf;
+
+      const btn_modal_del = document.querySelector('.btn-modal-del');      
+      btn_modal_del.addEventListener("click",()=>{
+         btnModalAcept(getBoxSelected().join())
+      })
+
 
 });
 

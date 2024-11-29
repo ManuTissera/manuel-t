@@ -5,6 +5,8 @@ const aside = document.querySelector('.aside');
 const menu_burger = document.querySelector('.menu_burger');
 const close_aside = document.querySelector('.close_aside');
 const container_body_table = document.querySelector('.container_body_table');
+const href_text = document.querySelector('a[name="ventas"]')
+
 
 // ----------- ELEMENTOS FORMULARIO -------------------------
 
@@ -27,7 +29,53 @@ const btn_del_caja = document.querySelector('.btn_del_caja');
 
 const URLQuery = window.location.origin;
 console.log(URLQuery);
+href_text.style.backgroundColor = '#f0f5fb';
 
+
+
+const getDataCaja = async () =>{
+
+   container_body_table.innerHTML = '';
+
+   let petition = await fetch(`${URLQuery}/view_caja`).then(res=>res.json()).then(data=>data);
+
+
+   petition.forEach(caja =>{
+
+         let id = caja.id;
+         let fecha = caja.fecha;
+         let personal = caja.personal;
+         let comercio = caja.comercio;
+         let efectivo = caja.venta_efectivo;
+         let tarjeta = caja.venta_tarjeta;
+         let cta_cte = caja.venta_cuenta_corriente;
+         let linkEdit = `tabla:ventas~id:${id}`;
+         // let linkEdit = `tabla:ventas~id:${id}~fecha:${fecha}~personal:${personal}
+         // ~comercio:${comercio}~venta_efectivo:${efectivo}~venta_tarjeta:${tarjeta}~venta_cuenta_corriente:${cta_cte}`;
+
+
+
+
+         let nodeLi = document.createElement("LI");
+         nodeLi.classList.add("row_body_table");
+
+         nodeLi.innerHTML =`
+         
+                  <div class="div_row_table"><input value=${id} name="checkCaja" type="checkbox"></div>
+                  <div class="div_row_table">2022-04-30</div>
+                  <div class="div_row_table">${personal}</div>
+                  <div class="div_row_table">${comercio}</div>
+                  <div class="div_row_table">${efectivo}</div>
+                  <div class="div_row_table">${tarjeta}</div>
+                  <div class="div_row_table">${cta_cte}</div>
+                  <a href="./edit_files.html?${linkEdit}"  class="div_row_table"><img src="../Assets/icons/edit_caja.svg" alt=""></a>
+               
+         `;
+
+         container_body_table.appendChild(nodeLi);
+   })
+
+}
 
 const addCajaFn = async () =>{
 
@@ -70,53 +118,11 @@ const addCajaFn = async () =>{
    }).then(res=>res.text()).then(data=>data);
 
    console.log(petition);
-
-   console.log(result)
-   console.log(valueTurn)
+   getDataCaja();
 
 }
 
-const getDataCaja = async () =>{
 
-   let petition = await fetch(`${URLQuery}/view_caja`).then(res=>res.json()).then(data=>data);
-
-
-   petition.forEach(caja =>{
-
-         let id = caja.id;
-         let fecha = caja.fecha;
-         let personal = caja.personal;
-         let comercio = caja.comercio;
-         let efectivo = caja.venta_efectivo;
-         let tarjeta = caja.venta_tarjeta;
-         let cta_cte = caja.venta_cuenta_corriente;
-         let linkEdit = `tabla:ventas~id:${id}`;
-         // let linkEdit = `tabla:ventas~id:${id}~fecha:${fecha}~personal:${personal}
-         // ~comercio:${comercio}~venta_efectivo:${efectivo}~venta_tarjeta:${tarjeta}~venta_cuenta_corriente:${cta_cte}`;
-
-
-
-
-         let nodeLi = document.createElement("LI");
-         nodeLi.classList.add("row_body_table");
-
-         nodeLi.innerHTML =`
-         
-                  <div class="div_row_table"><input value=${id} name="checkCaja" type="checkbox"></div>
-                  <div class="div_row_table">2022-04-30</div>
-                  <div class="div_row_table">${personal}</div>
-                  <div class="div_row_table">${comercio}</div>
-                  <div class="div_row_table">${efectivo}</div>
-                  <div class="div_row_table">${tarjeta}</div>
-                  <div class="div_row_table">${cta_cte}</div>
-                  <a href="./edit_files.html?${linkEdit}"  class="div_row_table"><img src="../Assets/icons/edit_caja.svg" alt=""></a>
-               
-         `;
-
-         container_body_table.appendChild(nodeLi);
-   })
-
-}
 const getBoxSelected = () => {
 
    const boxChecked = document.querySelectorAll('input[name="checkCaja"]:checked');
@@ -130,8 +136,23 @@ const getBoxSelected = () => {
 const btnModalCancel = () =>{
    container_modal_confirmacion.innerHTML = '';
 }
-const btnModalAcept = () =>{
+const btnModalAcept = async (IDs) =>{
+
+   let petition = await fetch(`${URLQuery}/delete_element`,{
+      method: 'DELETE',
+      body: JSON.stringify({
+         "idDelete":IDs,
+         "idColumn":'id',
+         "tabla":'ventas',
+      }),
+      headers: {'Content-type':'application/json'}
+   }).then(res=>res.text()).then(data=>data);
+
+   console.log(petition);
+
    container_modal_confirmacion.innerHTML = '';
+
+   getDataCaja();
 }
 
 
@@ -168,13 +189,18 @@ btn_del_caja.addEventListener("click",()=>{
                  <p class="p-msg-confirm">${pText}</p>
                  <article class="article-btn-modal-confirm">
                      <button class="button-modal-confirm btn_cancel_del" onclick="btnModalCancel()" >Cancelar</button>
-                     <button class="button-modal-confirm btn-modal-del" onclick="btnModalAcept()">Eliminar</button>
+                     <button class="button-modal-confirm btn-modal-del" ">Eliminar</button>
                  </article>       
                </div>
             </div>
       
       `
       container_modal_confirmacion.innerHTML = modal_conf;
+
+      const btn_modal_del = document.querySelector('.btn-modal-del');      
+      btn_modal_del.addEventListener("click",()=>{
+         btnModalAcept(getBoxSelected().join())
+      })
 
 });
 

@@ -16,11 +16,13 @@ let dataArray = dataURL.split('~');
 let nameTable = (dataArray[0].split(':'))[1];
 let idColumn = (dataArray[1].split(':'))[0];
 let idValue = (dataArray[1].split(':'))[1]
+let nameTableTitle = nameTable.charAt(0).toUpperCase() + nameTable.slice(1).toLowerCase()
 console.log(nameTable)
 console.log(idColumn)
 console.log(idValue)
 
-h2_header_form.textContent = `Editar ${nameTable}`
+//h2_header_form.textContent = `Editar ${nameTable}`
+h2_header_form.textContent = `Editar ${nameTableTitle}`
 
 const URLQuery = window.location.origin;
 
@@ -67,11 +69,11 @@ const functionConfirmEdit = async (arrDataUpdate) =>{
       "id": idValue,
    }),
    headers: {'Content-type':'application/json'}
-}).then(res=>res.text()).then(data=>data);
+   }).then(res=>res.text()).then(data=>data);
 
-container_modal_confirm.innerHTML = '';
+   container_modal_confirm.innerHTML = '';
 
-console.log(petitionEdit);
+   console.log(petitionEdit);
 }
 
 
@@ -171,7 +173,7 @@ const editGastosFn = async (fecha,categoria,subcategoria,descripcion,monto,forma
 
 
    let structur = ` 
-     <div class="container_name_table">${nameTable}</div>
+     <div class="container_name_table">${nameTableTitle}</div>
       <section class="section_main_add_proveedor">
          <a href="./gastos.html" class="div_back_add_proveedor">
             <img src="../Assets/icons/chevron_back.svg" alt="">
@@ -318,7 +320,7 @@ const editClienteFn = async (nombre_fantacia_cl,razon_social_cl,cuit_cl,direccio
 
 
    let structur = ` 
-      <div class="container_name_table">${nameTable}</div>
+      <div class="container_name_table">${nameTableTitle}</div>
       <section class="section_main_add_proveedor">
          <a href="./clientes_mayor.html" class="div_back_add_proveedor">
             <img src="../Assets/icons/chevron_back.svg" alt="">
@@ -417,6 +419,115 @@ const editClienteFn = async (nombre_fantacia_cl,razon_social_cl,cuit_cl,direccio
 
 }
 
+const editComprasFn = async (fecha,proveedor,descripcion,monto,forma_pago,tipo_factura,numero_factura,categoria) =>{
+
+
+   let structur = `
+   
+         <div class="container_name_table">${nameTableTitle}</div>
+      <section class="section_main_add_proveedor">
+         <a href="./compras.html" class="div_back_add_proveedor">
+            <img src="../Assets/icons/chevron_back.svg" alt="">
+            <p class="p_back_add_proveedor">Volver</p>
+         </a>
+      </section>
+      <div class="form_edit_container">
+
+         <div class="div-form-edit">
+            <p class="text_form_input">Fecha</p>
+            <input type="text" value="${fecha}" class="input_data_edit input_form_edit_date" disabled>
+            <button class="btn_arrow btn_arrow_style" name="1">Editar</button>
+            <div class="container_input_edit" name="cont_1">
+               <input type="text" id="Fecha" name="fecha" class="input_insert_edit input_insert_date">
+            </div>
+         </div>
+
+         <div class="div-form-edit">
+            <p class="text_form_input">Proveedor</p>
+            <input type="text" value="${proveedor}" class="input_data_edit input_form_edit_proveedor" disabled>
+            <button class="btn_arrow btn_arrow_style" name="2">Editar</button>
+            <div class="container_input_edit" name="cont_2">
+               
+               <select name="proveedor" id="proveedor" class="select_edit input_insert_edit select_insert_proveedor">
+                  <option value="" class="option_select_factiacion">Seleccionar Proveedor</option>
+               </select>
+
+            </div>
+         </div>
+
+         <div class="div-form-edit">
+            <p class="text_form_input">Descripcion</p>
+            <input type="text" value="${descripcion}" class="input_data_edit input_form_edit_description" disabled>
+            <button class="btn_arrow btn_arrow_style" name="3">Editar</button>
+            <div class="container_input_edit" name="cont_3">
+               <input type="text" id="Descripcion" name="descripcion" class="input_insert_edit input_insert_descripcion">
+            </div>
+         </div>
+
+         <div class="div-form-edit">
+            <p class="text_form_input">Monto</p>
+            <input type="text" value="${monto}" class="input_data_edit input_form_edit_monto" disabled>
+            <button class="btn_arrow btn_arrow_style" name="4">Editar</button>
+            <div class="container_input_edit" name="cont_4">
+               <input type="text" id="Monto" name="monto" class="input_insert_edit input_insert_monto">
+            </div>
+         </div>
+
+         <div class="div-form-edit">
+            <p class="text_form_input">Metodo de pago</p>
+            <input type="text" value="${forma_pago}" class="input_data_edit input_form_edit_metodo" disabled>
+            <button class="btn_arrow btn_arrow_style" name="5">Editar</button>
+            <div class="container_input_edit" name="cont_5">
+               
+               <select name="forma_pago" id="forma_pago" class="select_edit input_insert_edit select_insert_metodo">
+                  <option value="" class="option_select_add">Selecciona Metodo de Pago</option>
+                  <option value="Efectivo" class="option_select_add">Efectivo</option>
+                  <option value="Tarjeta" class="option_select_add">Tarjeta</option>
+                  <option value="Cheque" class="option_select_add">Cheque</option>
+                  <option value="Transferencia" class="option_select_add">Transferencia</option>
+                  <option value="Cuenta Corriente" class="option_select_add">Cuenta Corriente</option>
+               </select>
+
+            </div>
+         </div>
+
+         <div class="div-form-edit">
+            <p class="text_form_input">Factura</p>
+            <input type="text" value="${tipo_factura}" class="input_data_edit input_form_edit_factura" disabled>
+            <button class="btn_arrow btn_arrow_style" name="6">Editar</button>
+            <div class="container_input_edit" name="cont_6">
+               <input type="text" id="Factura" name="tipo_factura" class="input_insert_edit input_insert_factura">
+            </div>
+         </div>
+
+         <div class="div-form-edit">
+            <p class="text_form_input">Nº Factura</p>
+            <input type="text" value="${numero_factura}" class="input_data_edit input_form_edit_num_factura" disabled>
+            <button class="btn_arrow btn_arrow_style" name="7">Editar</button>
+            <div class="container_input_edit" name="cont_7">
+               <input type="text" id="Nº Factura" name="numero_factura" class="input_insert_edit input_insert_factura">
+            </div>
+         </div>
+
+         <div class="div-form-edit">
+            <p class="text_form_input">Categoria</p>
+            <input type="text" value="${categoria}" class="input_data_edit input_form_edit_categoria" disabled>
+            <button class="btn_arrow btn_arrow_style" name="8">Editar</button>
+            <div class="container_input_edit" name="cont_8">
+               <input type="text" id="categoria" name="categoria" class="input_insert_edit input_insert_categoria">
+            </div>
+         </div>
+
+         <button class="rounded_button btn_edit" onclick="sendEditFn()">Editar</button>
+      </div>
+   
+   `
+
+   main_form_edit.innerHTML = structur;
+
+
+}
+
 const editComerciosFn = async () =>{
 
    let structur = ` 
@@ -477,7 +588,7 @@ const editPersonalFn = async (apellido,cargo,direccion,nombre,telefono) =>{
 
 
    let structur = ` 
-      <div class="container_name_table">${nameTable}</div>
+      <div class="container_name_table">${nameTableTitle}</div>
       <section class="section_main_add_proveedor">
          <a href="./clientes_mayor.html" class="div_back_add_proveedor">
             <img src="../Assets/icons/chevron_back.svg" alt="">
@@ -562,7 +673,7 @@ const editProveedoresFn = async (nombre_fantacia,razon_social,cuit,direccion,tel
 
 
    let structur = ` 
-      <div class="container_name_table">${nameTable}</div>
+      <div class="container_name_table">${nameTableTitle}</div>
       <section class="section_main_add_proveedor">
          <a href="./proveedores.html" class="div_back_add_proveedor">
             <img src="../Assets/icons/chevron_back.svg" alt="">
@@ -638,7 +749,7 @@ const editVentasFn = async (fecha,comercio,personal,venta_cuenta_corriente,venta
 
 
    let structur = ` 
-      <div class="container_name_table">${nameTable}</div>
+      <div class="container_name_table">${nameTableTitle}</div>
       <section class="section_main_add_proveedor">
          <a href="./cajas.html" class="div_back_add_proveedor">
             <img src="../Assets/icons/chevron_back.svg" alt="">
@@ -831,6 +942,20 @@ const getDataToEdit = async (nameTable,idColumn,idValue) =>{
 
       editVentasFn(fecha,comercio,personal,venta_cuenta_corriente,venta_efectivo,venta_tarjeta);
 
+   }else if(nameTable === 'compras'){
+      console.log('Ejecuto compras');
+
+      let fecha = resultQuery[0].fecha;
+      let proveedor = resultQuery[0].proveedor;
+      let descripcion = resultQuery[0].descripcion;
+      let monto = resultQuery[0].monto;
+      let forma_pago = resultQuery[0].forma_pago;
+      let tipo_factura = resultQuery[0].tipo_factura;
+      let numero_factura = resultQuery[0].numero_factura;
+      let categoria = resultQuery[0].categoria;
+
+
+      editComprasFn(fecha,proveedor,descripcion,monto,forma_pago,tipo_factura,numero_factura,categoria)
    }
 
    const btn_arrow = document.querySelectorAll('.btn_arrow');

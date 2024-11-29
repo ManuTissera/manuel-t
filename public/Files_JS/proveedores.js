@@ -1,6 +1,8 @@
 const aside = document.querySelector('.aside');
 const menu_burger = document.querySelector('.menu_burger');
 const close_aside = document.querySelector('.close_aside');
+const href_text = document.querySelector('a[name="proveedores"]')
+href_text.style.backgroundColor = '#f0f5fb';
 
 const btn_del_prov = document.querySelector('.btn_del_prov');
 
@@ -11,6 +13,8 @@ const container_body_table = document.querySelector('.container_body_table');
 const URLQuery = window.location.origin;
 
 const getDataProv = async () =>{
+
+   container_body_table.innerHTML = '';
 
    let result = await fetch(`${URLQuery}/view_proveedores`).then(res=>res.json()).then(data=>data);
 
@@ -62,8 +66,23 @@ const getBoxSelected = () => {
 const btnModalCancel = () =>{
    container_modal_confirmacion.innerHTML = '';
 }
-const btnModalAcept = () =>{
+const btnModalAcept = async (IDs) =>{
+
+   let petition = await fetch(`${URLQuery}/delete_element`,{
+      method: 'DELETE',
+      body: JSON.stringify({
+         "idDelete":IDs,
+         "idColumn":'id_prov',
+         "tabla":'proveedores',
+      }),
+      headers: {'Content-type':'application/json'}
+   }).then(res=>res.text()).then(data=>data);
+
+   console.log(petition);
+
    container_modal_confirmacion.innerHTML = '';
+
+   getDataProv();
 }
 
 btn_del_prov.addEventListener("click",()=>{
@@ -86,7 +105,6 @@ btn_del_prov.addEventListener("click",()=>{
    }
 
       console.log(getBoxSelected())
-      console.log(getBoxSelected().join().replaceAll(",","-"))
 
       const modal_conf = `
       
@@ -98,14 +116,19 @@ btn_del_prov.addEventListener("click",()=>{
                  <h4 class="h4-modal-confirm">${h4Text}</h4>
                  <p class="p-msg-confirm">${pText}</p>
                  <article class="article-btn-modal-confirm">
-                     <button class="button-modal-confirm btn_cancel_del" onclick="btnModalCancel()" >Cancelar</button>
-                     <button class="button-modal-confirm btn-modal-del" onclick="btnModalAcept()">Eliminar</button>
+                     <button class="button-modal-confirm btn_cancel_del" " >Cancelar</button>
+                     <button class="button-modal-confirm btn-modal-del" >Eliminar</button>
                  </article>       
                </div>
             </div>
       
       `
       container_modal_confirmacion.innerHTML = modal_conf;
+
+      const btn_modal_del = document.querySelector('.btn-modal-del');      
+      btn_modal_del.addEventListener("click",()=>{
+         btnModalAcept(getBoxSelected().join())
+      })
 
 });
 

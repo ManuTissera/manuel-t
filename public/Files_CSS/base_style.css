@@ -88,6 +88,10 @@ body{
 }
 .btn_rounded_long{
    background-color: transparent;
+   text-decoration: none;
+   text-align: center;
+   line-height: 1.7rem;
+   color: var(--second-color);
    width: 80%;
    height: 1.8rem;
    margin: 1.2rem 0rem;
@@ -96,6 +100,10 @@ body{
    border-radius: 10rem;
    cursor: pointer;
 
+}
+.btn_rounded_long:active{
+   color: #fff;
+   background-color: var(--seventh-color);
 }
 
 /* ------ MODAL CONFIRM -------- */
@@ -231,15 +239,18 @@ body{
          display: flex;
          flex-direction: column;
          align-items: start;
-         padding: 1rem 3.5rem;
+         padding: 1rem 0rem;
+         padding-left: 3rem;
       }
          .href-text{
             font-size: 1.2rem;
             font-weight: 400;
+            width: 100%;
             color: #555;
             text-decoration: none;
-            margin: 1rem 0rem;
+            padding: 1rem 0rem;
          }
+
 
    /* --------- HEDAER ---------  */
 
@@ -461,6 +472,10 @@ body{
       .logo-cc-aside{
          display: block;
       }
+      .href-text{
+         padding-left: .3rem;
+
+      }
       
       
       .aside-header-container .logo-profile,
@@ -534,6 +549,11 @@ body{
       
          .close-aside{
             display: none;
+         }
+
+         .href-text{
+            padding-left: .3rem;
+
          }
 
       /* --------- HEDAER --------- */

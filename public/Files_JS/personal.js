@@ -2,6 +2,8 @@ const aside = document.querySelector('.aside');
 const menu_burger = document.querySelector('.menu_burger');
 const close_aside = document.querySelector('.close_aside');
 const background_opacity = document.querySelector('.background_opacity');
+const href_text = document.querySelector('a[name="personal"]')
+href_text.style.backgroundColor = '#f0f5fb';
 
 const container_body_table = document.querySelector('.container_body_table');
 
@@ -26,46 +28,9 @@ const input_direction = document.querySelector('.input_direction');
 
 const URLQuery = window.location.origin;
 
-const addMemberFn = async () =>{
-
-   let date = input_date.value;
-   let namePersonal = input_name.value;
-   let surname = input_surname.value;
-   let role = select_role.value;
-   let phone = input_phone.value;
-   let direction = input_direction.value;
-
-   let results = `
-
-      "date" = ${date},
-      "name" = ${namePersonal},
-      "surname" = ${surname},
-      "role" = ${role},
-      "phone" = ${phone},
-      "direction" = ${direction},
-   
-   `
-
-   console.log(results);
-
-   let petition = await fetch(`${URLQuery}/add_personal`,{
-      method: 'POST',
-      body: JSON.stringify({
-
-         "date" : `${date}`,
-         "namePersonal" : `${namePersonal}`,
-         "surname" : `${surname}`,
-         "role" : `${role}`,
-         "phone" : `${phone}`,
-         "direction" : `${direction}`,
-      }),
-      headers: {'Content-type':'application/json'}
-   }).then(res=>res.text()).then(data=>data);
-
-   console.log(petition);
-
-}
 const getDataPersonal = async () =>{
+
+   container_body_table.innerHTML = '';
 
    let petition = await fetch(`${URLQuery}/view_personal`).then(res=>res.json()).then(data=>data);
 
@@ -105,6 +70,49 @@ const getDataPersonal = async () =>{
    })
 }
 
+
+const addMemberFn = async () =>{
+
+   let date = input_date.value;
+   let namePersonal = input_name.value;
+   let surname = input_surname.value;
+   let role = select_role.value;
+   let phone = input_phone.value;
+   let direction = input_direction.value;
+
+   let results = `
+
+      "date" = ${date},
+      "name" = ${namePersonal},
+      "surname" = ${surname},
+      "role" = ${role},
+      "phone" = ${phone},
+      "direction" = ${direction},
+   
+   `
+
+   console.log(results);
+
+   let petition = await fetch(`${URLQuery}/add_personal`,{
+      method: 'POST',
+      body: JSON.stringify({
+
+         "date" : `${date}`,
+         "namePersonal" : `${namePersonal}`,
+         "surname" : `${surname}`,
+         "role" : `${role}`,
+         "phone" : `${phone}`,
+         "direction" : `${direction}`,
+      }),
+      headers: {'Content-type':'application/json'}
+   }).then(res=>res.text()).then(data=>data);
+
+   console.log(petition);
+
+   getDataPersonal();
+
+}
+
 const getBoxSelected = () =>{
    
    const boxChecked = document.querySelectorAll('input[name="checkPersonal"]:checked');
@@ -116,8 +124,23 @@ const getBoxSelected = () =>{
 const btnModalCancel = () =>{
    container_modal_confirmacion.innerHTML = '';
 }
-const btnModalAcept = () =>{
+const btnModalAcept = async (IDs) =>{
+
+   let petition = await fetch(`${URLQuery}/delete_element`,{
+      method: 'DELETE',
+      body: JSON.stringify({
+         "idDelete":IDs,
+         "idColumn":'id_personal',
+         "tabla":'personal',
+      }),
+      headers: {'Content-type':'application/json'}
+   }).then(res=>res.text()).then(data=>data);
+
+   console.log(petition);
+
    container_modal_confirmacion.innerHTML = '';
+
+   getDataPersonal();
 }
 
 
@@ -155,13 +178,18 @@ btn_del_personal.addEventListener("click",()=>{
                  <p class="p-msg-confirm">${pText}</p>
                  <article class="article-btn-modal-confirm">
                      <button class="button-modal-confirm btn_cancel_del" onclick="btnModalCancel()" >Cancelar</button>
-                     <button class="button-modal-confirm btn-modal-del" onclick="btnModalAcept()">Eliminar</button>
+                     <button class="button-modal-confirm btn-modal-del" ">Eliminar</button>
                  </article>       
                </div>
             </div>
       
       `
       container_modal_confirmacion.innerHTML = modal_conf;
+
+      const btn_modal_del = document.querySelector('.btn-modal-del');      
+      btn_modal_del.addEventListener("click",()=>{
+         btnModalAcept(getBoxSelected().join())
+      })
 
 })
 
@@ -178,8 +206,8 @@ btn_form_add_personal.addEventListener("click",()=>{
 
    addMemberFn();
 
-   // background_opacity.style.display = "none";
-   // form_add_personal.style.right = "-100%";
+   background_opacity.style.display = "none";
+   form_add_personal.style.right = "-100%";
 })
 
 menu_burger.addEventListener("click",()=>{

@@ -1,6 +1,7 @@
 const aside = document.querySelector('.aside');
 const menu_burger = document.querySelector('.menu_burger');
 const close_aside = document.querySelector('.close_aside');
+const href_text = document.querySelector('a[name="compras"]')
 
 const btn_del_prov = document.querySelector('.btn_del_prov');
 
@@ -9,34 +10,51 @@ const container_modal_confirmacion = document.querySelector('.container_modal_co
 const container_body_table = document.querySelector('.container_body_table');
 
 const URLQuery = window.location.origin;
+href_text.style.backgroundColor = '#f0f5fb';
 
-const getDataProv = async () =>{
+
+const getDataBuy = async () =>{
+
+   container_body_table.innerHTML = '';
 
    let result = await fetch(`${URLQuery}/view_compras`).then(res=>res.json()).then(data=>data);
 
-      result.forEach(prov =>{
+      result.forEach(buy =>{
          
-         let id = prov.id_prov
-         let name = prov.nombre_fantacia
-         let razon = prov.razon_social
-         let cuit = prov.cuit
-         let direction = prov.direccion
-         let phone = prov.telefono
-         let email = prov.email
-         let linkEdit = `table:proveedores~id_prov:${id}`;
+         let id_compra = buy.id_compra;
+         let fecha = buy.fecha;
+         let proveedor = buy.proveedor;
+         let descripcion = buy.descripcion;
+         let monto = buy.monto;
+         let forma_pago = buy.forma_pago;
+         let tipo_factura = buy.tipo_factura;
+         let numero_factura = buy.numero_factura;
+         let categoria = buy.categoria;
+         let linkEdit = `table:compras~id_compra:${id_compra}`;
+
+         // let id = prov.id_prov
+         // let name = prov.nombre_fantacia
+         // let razon = prov.razon_social
+         // let cuit = prov.cuit
+         // let direction = prov.direccion
+         // let phone = prov.telefono
+         // let email = prov.email
+         // let linkEdit = `table:proveedores~id_prov:${id}`;
          
 
          let nodeLi = document.createElement("LI");
          nodeLi.classList.add("row_body_table");
 
          nodeLi.innerHTML = `
-                  <div class="div_row_table"><input value="${id}" name="provCheck" type="checkbox"></div>
-                  <div class="div_row_table">${name}</div>
-                  <div class="div_row_table">${razon}.</div>
-                  <div class="div_row_table">${cuit}</div>
-                  <div class="div_row_table">${direction}</div>
-                  <div class="div_row_table">${phone}</div>
-                  <div class="div_row_table">${email}</div>
+                  <div class="div_row_table"><input value="${id_compra}" name="provCheck" type="checkbox"></div>
+                  <div class="div_row_table">20-08-2023</div>
+                  <div class="div_row_table">${proveedor}.</div>
+                  <div class="div_row_table">${descripcion}</div>
+                  <div class="div_row_table">${monto}</div>
+                  <div class="div_row_table">${forma_pago}</div>
+                  <div class="div_row_table">${tipo_factura}</div>
+                  <div class="div_row_table">${numero_factura}</div>
+                  <div class="div_row_table">${categoria}</div>
                   <a href="./edit_files.html?${linkEdit}"  class="div_row_table"><img src="../Assets/icons/edit_caja.svg" alt=""></a>
          
          `;
@@ -62,8 +80,23 @@ const getBoxSelected = () => {
 const btnModalCancel = () =>{
    container_modal_confirmacion.innerHTML = '';
 }
-const btnModalAcept = () =>{
+const btnModalAcept = async (IDs) =>{
+
+   let petition = await fetch(`${URLQuery}/delete_element`,{
+      method: 'DELETE',
+      body: JSON.stringify({
+         "idDelete":IDs,
+         "idColumn":'id_compra',
+         "tabla":'compras',
+      }),
+      headers: {'Content-type':'application/json'}
+   }).then(res=>res.text()).then(data=>data);
+
+   console.log(petition);
+
    container_modal_confirmacion.innerHTML = '';
+
+   getDataBuy();
 }
 
 btn_del_prov.addEventListener("click",()=>{
@@ -99,13 +132,18 @@ btn_del_prov.addEventListener("click",()=>{
                  <p class="p-msg-confirm">${pText}</p>
                  <article class="article-btn-modal-confirm">
                      <button class="button-modal-confirm btn_cancel_del" onclick="btnModalCancel()" >Cancelar</button>
-                     <button class="button-modal-confirm btn-modal-del" onclick="btnModalAcept()">Eliminar</button>
+                     <button class="button-modal-confirm btn-modal-del" >Eliminar</button>
                  </article>       
                </div>
             </div>
       
       `
       container_modal_confirmacion.innerHTML = modal_conf;
+
+      const btn_modal_del = document.querySelector('.btn-modal-del');      
+      btn_modal_del.addEventListener("click",()=>{
+         btnModalAcept(getBoxSelected().join())
+      })
 
 });
 
@@ -119,7 +157,7 @@ close_aside.addEventListener("click",()=>{
    aside.style.left = "-100%";   
 })
 
-getDataProv();
+getDataBuy();
 
 
 

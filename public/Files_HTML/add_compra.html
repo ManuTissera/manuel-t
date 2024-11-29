@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../Files_CSS/normalize.css">
+   <link rel="stylesheet" href="../Files_CSS/base_style.css">
+   <link rel="stylesheet" href="../Files_CSS/add_compra.css">
+   <title>Nueva Compra</title>
+</head>
+<body>
+   
+     <!-------   MODAL CONFIRMACION  ------>
+
+     <div class="background_opacity b_o_modal_confirm">
+      <div class="modal-confirm modal_confirm">
+         <div class="circle-container-icon">
+            <img class="img_add_person" src="../Assets/icons/person_add-40px.svg" alt="">
+        </div>
+        <h4 class="h4-modal-confirm">Nuevo Proveedor</h4>
+        <p class="p_msg_confirm_add_prov"><b>Nombre: </b> Alimentos del Campo</p>
+        <p class="p_msg_confirm_add_prov"><b>Razon Social: </b>Alimentos del Campo S.A.</p>
+        <p class="p_msg_confirm_add_prov"><b>CUIT: </b>30-12345678-9</p>
+        <p class="p_msg_confirm_add_prov"><b>Direccion: </b>Av. Siempre Viva 123</p>
+        <p class="p_msg_confirm_add_prov"><b>Telefono: </b>011-4567-8901</p>
+        <p class="p_msg_confirm_add_prov"><b>e-mail: </b>info@alimentoscampo.com</p>
+        <article class="article-btn-modal-confirm">
+            <button class="button-modal-confirm btn_cancel_add">Cancelar</button>
+            <button class="button-modal-confirm btn_acept_add">Agregar</button>
+        </article>       
+      </div>
+   </div>
+
+   <!-------     HEADER    -------->
+   
+   <header class="header-form">
+      <div class="container-header-form">
+         <!-- <img class="menu-burger" src="../Assets/icons/menu.svg" alt=""> -->
+         <h2 class="h2-header-form">Nueva Compra</h2>
+      </div>
+   </header>
+
+   <!---------- FORM -------->
+
+   <main class="main_add_proveedor">
+      <section class="section_main_add_proveedor">
+         <a href="./compras.html" class="div_back_add_proveedor">
+            <img src="../Assets/icons/chevron_back.svg" alt="">
+            <p class="p_back_add_proveedor">Volver</p>
+         </a>
+      </section>
+      <div class="form_add_proveedor">
+         <div class="div-form-add">
+            <p class="text_form_input">Fecha </p>
+            <input type="date" class="input_add input_form_add_date">
+         </div>
+         
+         <div class="div-form-add">
+            <input id="A" class="input_radio" value="A" name="fact" type="radio">
+            <label for="A">Fact. A</label>
+            <input id="B" class="input_radio" value="B" name="fact" type="radio">
+            <label for="B">Fact. B</label>
+            <input id="C" class="input_radio" value="c" name="fact" type="radio">
+            <label for="C">Fact. C</label>
+         </div>
+
+         <div class="div-form-add">
+            <p class="text_form_input">Nº Factura</p>
+            <input type="text" class="input_add input_form_add_num_fact">
+         </div>
+
+         <div class="div-form-add">
+            <p class="text_form_input">Proveedor</p>
+            <select name="" id="" class="select_add select_form_add_proveedor">
+               <option value="" class="option_select_add">Selecciona Proveedor</option>
+            </select>
+         </div>
+
+         <div class="div-form-add">
+            <p class="text_form_input">Categoria</p>
+            <select name="" id="" class="select_add select_form_add_categoria">
+               <option value="" class="option_select_add">Seleccionar Categoria</option>
+               <option value="Bebidas" class="option_select_add">Bebidas</option>
+               <option value="Lacteos" class="option_select_add">Lacteos</option>
+               <option value="Alimentos" class="option_select_add">Alimentos</option>
+               <option value="Productos Frescos" class="option_select_add">Productos Frescos</option>
+               <option value="Limpieza" class="option_select_add">Limpieza</option>
+            </select>
+         </div>
+
+         <div class="div-form-add">
+            <p class="text_form_input">Descripcion</p>
+            <input type="text" class="input_add input_form_add_descripcion">
+         </div>
+
+         <div class="div-form-add">
+            <p class="text_form_input">Monto</p>
+            <input type="text" class="input_add input_form_add_monto">
+         </div>
+
+         <div class="div-form-add">
+            <p class="text_form_input">Metodo de pago</p>
+            <select name="" id="" class="select_add select_form_add_metodo">
+               <option value="" class="option_select_add">Selecciona Metodo de Pago</option>
+               <option value="Efectivo" class="option_select_add">Efectivo</option>
+               <option value="Tarjeta" class="option_select_add">Tarjeta</option>
+               <option value="Cheque" class="option_select_add">Cheque</option>
+               <option value="Transferencia" class="option_select_add">Transferencia</option>
+               <option value="Cuenta Corriente" class="option_select_add">Cuenta Corriente</option>
+            </select>
+         </div>
+
+         
+         <button class="rounded_button btn_add_buy">Agregar</button>
+      </div>
+   </main>
+   <script src="../Files_JS/add_compra.js"></script>
+</body>
+</html>

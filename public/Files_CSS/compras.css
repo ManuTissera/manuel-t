@@ -23,19 +23,21 @@
    .container_table{
       margin-top: 1rem;
       width: 93vw;
-      width: min(64.8rem,93vw);
+      width: min(67.8rem,93vw);
       /* width: min(93vw,61.8rem);
       width: max(93vw,61.8rem); */
    }
-      .btn_add_proveedor{
+      .btn_add_compra{
+         text-decoration: none;
          height: max-content;
          cursor: pointer;
+         padding: .5rem;
       }
          .container_header_table ,
          .row_body_table {
-            width: 63rem;
+            width: 64rem;
             display: grid;
-            grid-template-columns: 3rem repeat(2,10rem) repeat(3,8rem) 13rem 3rem;
+            grid-template-columns: 3rem 6rem 10rem 13rem 5rem 7rem 3rem 8rem 6rem 3rem;
          }
                  
             .div_row_table:nth-child(1){
@@ -46,7 +48,7 @@
 @media screen and (min-width: 880px){ 
 
    .container_table{
-      width: min(64.8rem,calc(93vw - 16rem))
+      width: min(67.8rem,calc(93vw - 16rem))
    }
 
 }
