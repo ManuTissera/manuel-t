@@ -24,7 +24,7 @@ const input_form_amount = document.querySelector('.input_form_amount');
 const select_method = document.querySelector('.select_method');
 const select_proveedor = document.querySelector('.select_proveedor');
 
-const URLQuery = `http://localhost:3210`;
+const URLQuery = window.location.origin;
 
 console.log(URLQuery)
 href_text.style.backgroundColor = '#f0f5fb';
