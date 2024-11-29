@@ -865,6 +865,10 @@ const editVentasFn = async (fecha,comercio,personal,venta_cuenta_corriente,venta
 
 const getDataToEdit = async (nameTable,idColumn,idValue) =>{
 
+   console.log(`${nameTable}
+      ${idColumn}
+      ${idValue}`)
+
    let resultQuery = await fetch(`${URLQuery}/view_data_edit`,{
       method: 'POST',
       body: JSON.stringify({
