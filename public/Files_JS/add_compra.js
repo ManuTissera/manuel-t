@@ -12,7 +12,7 @@ const input_form_add_num_fact = document.querySelector('.input_form_add_num_fact
 const btn_add_buy = document.querySelector('.btn_add_buy');
 
 
-const URLQuery = `http://localhost:3210`;
+const URLQuery = window.location.origin;
 
 const viewProv = async () =>{
 

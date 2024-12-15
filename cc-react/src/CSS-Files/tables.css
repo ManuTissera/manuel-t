@@ -1,0 +1,132 @@
+
+
+
+
+.container_clientes{
+   margin-top: 1rem;
+   width: 93vw;
+   width: min(80.8rem,93vw);
+}
+
+.header_clientes,
+.body_clientes{
+   width: 79rem;
+   display: grid;
+   grid-template-columns: 3rem repeat(2,10rem) repeat(3,8rem) 13rem;
+   grid-template-columns: 3rem repeat(2,10rem) repeat(3,8rem) 13rem 7rem 9rem 3rem;
+}
+
+/* -------------------------------------------------------------------------- */
+
+
+.container_cajas{
+   width: min(57rem,90vw);
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.header_cajas,
+.body_cajas{
+   width: 54rem;
+   display: grid;
+   grid-template-columns: 2rem 6rem 12rem 12rem repeat(3,6rem)3rem;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.container_gastos{
+   width: min(69rem,90vw);
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.header_gastos,
+.body_gastos{
+   width: 66rem;
+   display: grid;
+   grid-template-columns: 2rem 6rem 10rem 10rem 13rem 6rem repeat(2,8rem)3rem;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.container_compras{
+   margin-top: 1rem;
+   width: 93vw;
+   width: min(67.8rem,93vw);
+}
+
+.header_compras,
+.body_compras{
+   width: 64rem;
+   display: grid;
+   grid-template-columns: 3rem 6rem 10rem 13rem 5rem 7rem 3rem 8rem 6rem 3rem;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.container_proveedores{
+   margin-top: 1rem;
+   width: 93vw;
+   width: min(64.8rem,93vw);
+}
+
+.header_proveedores,
+.body_proveedores{
+   width: 63rem;
+   display: grid;
+   grid-template-columns: 3rem repeat(2,10rem) repeat(3,8rem) 13rem 3rem;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.container_personal{
+   width: min(56.9rem,90vw);
+}
+
+.header_personal,
+.body_personal{
+   width: 54rem;
+   display: grid;
+   grid-template-columns: 2rem repeat(7,12rem);
+   grid-template-columns: 2rem repeat(2,6rem) 8rem 7rem  10rem 12rem 3rem;
+}
+
+/* -------------------------------------------------------------------------- */
+
+
+   .div_header_table:nth-child(1){
+      grid-column: 2 / 3;
+   }
+   .row_body_table{
+      justify-items: center;
+   } 
+
+/* ------- FORM ------- */
+
+
+   .btn_form_cancel{
+      background-color: var(--sixth-color);
+   }
+
+
+@media screen and (min-width: 880px){ 
+
+   .container_personal{
+      width: min(56.9rem,calc(90vw - 16rem))
+   }
+   .container_cajas{
+      width: min(57rem,calc(90vw - 16rem))
+   }
+   .container_clientes{
+      width: min(80.8rem,calc(93vw - 16rem))
+   }
+   .container_compras{
+      width: min(67.8rem,calc(93vw - 16rem))
+   }
+   .container_gastos{
+      width: min(69rem,calc(90vw - 16rem))
+   }
+   .container_proveedores{
+      width: min(64.8rem,calc(93vw - 16rem))
+   }
+}

@@ -15,7 +15,7 @@ const input_form_prov_email = document.querySelector('.input_form_prov_email');
 const btn_add_proveedor = document.querySelector('.btn_add_proveedor');
 
 
-const URLQuery = `http://localhost:3210`;
+const URLQuery = window.location.origin;
 
 
 const addProvFn = async () =>{

@@ -1,26 +1,21 @@
 
 
 import express from "express";
-import path from 'path';
-import connection from "./connectionBBDD.js";
+import connection from './connectBBDD.js'
 
 const routerRequest = express.Router();
-const __dirname = path.resolve();
-
-routerRequest.get('/',(req,res)=>{
-   res.sendFile(path.join(__dirname,'public','index.html'))
-})
 
 
-routerRequest.get('/sum_total_ventas', async (req,res)=>{
+
+routerRequest.get('/sum_total_cajas', async (req,res)=>{
 
    try{
-      const query = `SELECT TO_CHAR(SUM(venta_efectivo + venta_tarjeta + venta_cuenta_corriente), 'FM$999,999,999,999') AS total_ventas_formateado
-FROM ventas;`;
+      const query = `SELECT TO_CHAR(SUM(venta_efectivo + venta_tarjeta + venta_cuenta_corriente), 'FM$999,999,999,999') AS total_cajas_formateado
+FROM cajas;`;
       const results = await connection.query(query);
       res.send(results.rows);
    }catch(err){
-      console.error('Erro en servidor petition "get" /sum_total_ventas ' + err)
+      console.error('Erro en servidor petition "get" /sum_total_cajas ' + err)
       res.status(500).send('Error servidor /sum_tota_vetnas')
    }
 })
@@ -33,16 +28,16 @@ FROM compras;`;
       const results = await connection.query(query);
       res.send(results.rows);
    }catch(err){
-      console.error('Erro en servidor petition "get" /sum_total_ventas ' + err)
+      console.error('Erro en servidor petition "get" /sum_total_cajas ' + err)
       res.status(500).send('Error servidor /sum_tota_vetnas')
    }
 })
 
-routerRequest.get('/total_venta_eft', async (req,res)=>{
+routerRequest.get('/total_caja_eft', async (req,res)=>{
 
    try{
       const query = `SELECT TO_CHAR(SUM(venta_efectivo),'FM$999,999,999,999') 
-      AS total_efectivo FROM ventas;`;
+      AS total_efectivo FROM cajas;`;
       const results = await connection.query(query);
       res.send(results.rows);
    }catch(err){
@@ -51,11 +46,11 @@ routerRequest.get('/total_venta_eft', async (req,res)=>{
    }
 })
 
-routerRequest.get('/total_venta_tar', async (req,res)=>{
+routerRequest.get('/total_caja_tar', async (req,res)=>{
 
    try{
       const query = `SELECT TO_CHAR(SUM(venta_tarjeta),'FM$999,999,999,999') 
-      AS total_tarjeta FROM ventas;`;
+      AS total_tarjeta FROM cajas;`;
       const results = await connection.query(query);
       res.send(results.rows);
    }catch(err){
@@ -81,12 +76,14 @@ routerRequest.get('/view_proveedores', async (req,res)=>{
 
 routerRequest.post('/add_proveedor', async (req,res)=>{
 
+   const {nombre_fantacia,razon_social,cuit,direccion,telefono,email} = req.body;
+
    try{
       const query = `INSERT INTO proveedores 
       (nombre_fantacia,razon_social,cuit,direccion,telefono,email)
       VALUES
-      ('Lucas','Datty','2dsf4534','Marconi','0302-39204034','datlo@gmial.com');`
-      const result = connection.query(query);
+      ('${nombre_fantacia}','${razon_social}','${cuit}','${direccion}','${telefono}','${email}');`
+      const result = await connection.query(query);
       res.send('Proveedor cargado con exito')
    }catch(err){
       res.status(400).send('Error petition "post" /add_proveedor' + err);
@@ -129,10 +126,10 @@ routerRequest.post('/add_gasto', async (req,res)=>{
 })
 // ------- CAJAS -----------
 
-routerRequest.get('/view_caja', async (req,res)=>{
+routerRequest.get('/view_cajas', async (req,res)=>{
 
    try{
-      const query = `SELECT * FROM ventas ORDER BY id DESC`;
+      const query = `SELECT * FROM cajas ORDER BY id DESC`;
       const result = await connection.query(query);
       res.send(result.rows);
    }catch(err){
@@ -141,14 +138,14 @@ routerRequest.get('/view_caja', async (req,res)=>{
 
 })
 
-routerRequest.post('/add_caja', async (req,res)=>{
+routerRequest.post('/add_cajas', async (req,res)=>{
 
-   const { date,turno,titular,comercio,efectivo,tarjeta,ctaCte } = req.body;
+   const { date,titular,comercio,efectivo,tarjeta,ctaCte } = req.body;
 
 
    try{
       const query = `
-      INSERT INTO ventas 
+      INSERT INTO cajas 
       (fecha, personal, comercio, venta_efectivo, venta_tarjeta, venta_cuenta_corriente)
       VALUES
       ('${date}','${titular}','${comercio}',${efectivo},${tarjeta},${ctaCte});
@@ -187,7 +184,7 @@ routerRequest.post('/add_compra', async (req,res)=>{
       const result = await connection.query(query);
       res.send('Compra agregada Exitosamente');
    }catch(err){
-      res.status(500).send('Error petitio "post" /add_personal' + err);
+      res.status(500).send('Error petition "post" /add_personal' + err);
    }
 })
 
@@ -268,15 +265,18 @@ routerRequest.post('/add_cliente', async (req,res)=>{
 
 routerRequest.post('/view_data_edit', async (req,res)=>{
 
-      const { table,column,id } = req.body;
+      const { table, column, id } = req.body;
 
    try{
-      const query = `SELECT * FROM ${table} WHERE ${column} = ${id}`;
-      const results = await connection.query(query);
-      res.send(results.rows);
+   const query = `SELECT * FROM ${table} WHERE ${column} = ${id}`;
+   //const query = `SELECT * FROM personal WHERE id_personal = 10`;
+   const results = await connection.query(query);
+   res.send(results.rows);
    }catch(err){
       console.error('Error petition /view_data_edit '+ err);
       res.status(400).send('Error petition "get" /view_data_edit' + err);
+      
+      
    }
 })
 
@@ -284,7 +284,7 @@ routerRequest.post('/view_data_edit_cliente', async (req,res)=>{
 
 
 try{
-   const query = `SELECT * FROM clientes WHERE id_cliente = 30`;
+   const query = `SELECT * FROM personal WHERE id_personal = 10`;
    const results = await connection.query(query);
    res.send(results.rows);
 }catch(err){
@@ -298,14 +298,22 @@ routerRequest.patch('/edit_element', async (req,res)=>{
    const { table, dataChange , idColumn , id } = req.body;
 
    try{
-      const query = `UPDATE ${table} SET ${dataChange} WHERE ${idColumn} = ${id};`
-      const results = await connection.query(query);
+      const keys = Object.keys(dataChange)
+      const values = Object.values(dataChange);
+
+      const setQuery = keys.map((key,index) => `${key} = $${index + 1}`).join(', ');
+
+      const query = `UPDATE ${table} SET ${setQuery} WHERE ${idColumn} = ${id};`
+
+      await connection.query(query,[...values]);
+
       res.send('Elemento editado correctamente');
            
-   }catch(err){
-      console.error('Erros en la peition /edit_element');
-      res.status(500).send('Error petition "patch" /edit_element', err);
+   }catch(err) {
+      console.error('Error en la petición /edit_element', err);
+      res.status(500).json({ error: 'Error petition "patch" /edit_element', details: err.message });
    }
+   
 
 })
 
@@ -315,10 +323,13 @@ routerRequest.delete('/delete_element', async (req,res)=>{
    const { idDelete,idColumn,tabla } = req.body;
 
    try{
-      const query = `DELETE FROM ${tabla} WHERE ${idColumn} IN (${idDelete});`;
-      //const query = `DELETE FROM proveedores WHERE id_prov = 40;`;
-      const result = await connection.query(query);
-      res.send('Cliente Eliminado con exito id: '+idDelete)
+      const placeholders = idDelete.map((_,index) => `$${index + 1 }`).join(', ');
+      const query = `DELETE FROM ${tabla} WHERE ${idColumn} in (${placeholders})`
+
+      await connection.query(query,idDelete)
+
+      res.send('Eliminacion exitosa')
+
    }catch(err){
       res.send(500).send('Erro petition "delete" /del_cliente' + err);
    }
