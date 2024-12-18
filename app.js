@@ -1,30 +1,29 @@
-import express from 'express';
-import cors from 'cors';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import connection from './routes/connectBBDD.js';
-import requestRouter from './routes/routes.js';
+console.clear();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import express from "express";
+import routerRequest from "./Routes/routes.js";
+import requestRouterData from "./Routes/routes-news-data.js"
+import connection from "./Routes/connectionBBDD.js";
+import cors from "cors";
+import path from 'path';
 
 const expressApp = express();
-const PORT = process.env.PORT || 3111;
+const PORT = process.env.PORT || 3210;
+
+const __dirname = path.resolve();
+expressApp.use(express.static(path.join(__dirname, 'public')));
 
 expressApp.use(express.json());
 expressApp.use(express.text());
 expressApp.use(cors());
 
-expressApp.use('/', requestRouter);
+expressApp.use("/",requestRouterData);
+expressApp.use("/",routerRequest);
 
-// Sirviendo archivos estáticos
-expressApp.use(express.static(path.join(__dirname, 'dist')));
+expressApp.listen(PORT,()=>{
+   console.log('Listen in PORT= '+ PORT)
+   console.log('Prueba con path en routes.js')
+})
 
-// Redirigir todas las rutas del frontend a index.html
-expressApp.get('*', (req, res) => {
-   res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
-});
 
-expressApp.listen(PORT, () => {
-   console.log('Servidor levantado en puerto: ', PORT);
-});
+

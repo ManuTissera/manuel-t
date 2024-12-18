@@ -1,0 +1,195 @@
+
+:root{
+   --first-color: #0d1f23;
+   --second-color: #132e35;
+   --third-color: #2d4a53;
+   --fourth-color: #69818d;
+   --fifth-color: #afb3b7;
+   --sixth-color: #5a636a;
+   --seventh-color: #0a6375;
+   --background-: #f0f5fb;
+}
+
+body{
+   background-color: var(--background-);
+   overflow-x:hidden;
+}
+
+/* -------- ASIDE --------- */
+
+
+
+
+/* -------- MAIN --------- */
+
+.main_inicio{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding-top: 2rem;
+}
+   .h2_main_inicio{
+      font-size: 1.9rem;
+      font-weight: 500;
+      color: var(--text-color)
+   }
+   .container_boxs{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 60vh;
+   }
+      .box_exibition{
+         background-color: #fff;
+         box-sizing: border-box;
+         height: 14rem;
+         width: 19rem;
+         padding: .9rem;
+         border-radius: .9rem;
+         /* border: .1rem solid var(--second-color); */
+      }
+         .h4_box_exibition{
+            font-weight: 400;
+            font-size: 1.2rem;
+         }
+         .total_inicio{
+            font-weight: 400;
+            font-size: 2rem;
+            margin: .5rem 0rem;
+         }
+         /* .total_inicio::before{
+            content: '$ ';
+            font-size: 1.5rem;
+         } */
+ 
+            .article_box_exibition_container:nth-child(1){
+               padding: .8rem;
+               border-radius: .7rem;
+               color: #fff;
+               background-color: var(--seventh-color);
+            }
+            .article_box_exibition_container:nth-child(2){
+               margin-top: 1rem;
+            }
+               .article_box_exibition{
+                  display: flex;
+                  justify-content: space-between;
+                  background-color: #fcfcfc;
+                  font-weight: 300;
+                  border: .05rem solid #ddd;
+                  padding: .35rem .7rem;
+               }
+               .article_box_exibition:nth-child(1){
+                  border-radius: 1rem 1rem 0rem 0rem;
+               }
+               .article_box_exibition:nth-child(2){
+                  border-radius: 0rem 0rem 1rem 1rem;
+               }
+                  .article_box_exibition p{
+                     display: inline-block;
+                  }
+                  /* .value_detail_inicio::before{
+                     content: '$ ';
+                  } */
+               .article_box_exibition_container_buy{
+                  display: flex;
+                  justify-content: center;
+               }
+
+
+/* -------- FOOTER -------- */
+
+
+
+@media screen and (min-width: 620px) {
+
+   /* --------   ASIDE -------- */
+   
+   .logo-cc-aside{
+      display: block;
+   }
+   
+   
+   .aside-header-container .logo-profile,
+   .aside-header-container .data-profile{
+      display: none;
+   }
+   .aside-header-container{
+      height: 6rem;
+   }
+   
+   /* --------- HEDAER --------- */
+   
+   .header{
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 8rem;
+      
+      box-shadow: 0rem 0rem .3rem .1rem var(--box-shadow);
+   }
+   
+      .container-header{
+         background-color: #fff;
+         position: relative;
+         display: grid;
+         grid-template-columns: 1fr 3fr 1fr;
+         left: 0rem;
+         width: 100%;
+         height: 8rem;
+         margin: auto;
+         box-shadow: 0rem 0rem .8rem .3rem #555;
+         border-radius: 0rem;
+   
+         /* border-radius: 80% 80% / 0% 0% 30% 30%; */
+      }
+         .menu-burger{
+            align-self: start;
+            padding-left: 0vw;
+            padding-top: 1rem;
+            height: 2.5rem;
+            cursor: pointer;
+         }
+   
+         .h2-header{
+            color: var(--fourth-color);
+            grid-column: 2 / 3;
+            align-self:center;
+            justify-self: center;
+         }
+   
+         .header-profile-container{
+            grid-column: 3 / 4;
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+            align-items: center;
+            height: 5rem;
+            width: 16rem;
+         }
+   
+/* -------- MAIN --------- */
+
+.container_boxs{
+   flex-direction: row;
+   width: max(608px,90vw)
+}
+
+
+      }
+
+
+@media screen and (min-width: 880px){
+
+/* --------   ASIDE -------- */
+
+
+/* -------- MAIN --------- */
+
+
+.container_boxs{
+   width: max(608px,70vw)
+}
+
+
+} 

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="../Files_CSS/normalize.css">
+   <link rel="stylesheet" href="../Files_CSS/base_style.css">
+   <link rel="stylesheet" href="../Files_CSS/personal.css">
+   <title>Personal</title>
+</head>
+<body>
+   
+   <div class="background_opacity"></div>
+
+   <!--------- MODAL CONFIRM --------->
+
+   <div class="container_modal_confirmacion"></div>
+
+   <!--------- ASIDE --------->
+
+   <aside class="aside aside_proveedores">
+
+      <div><img class="close-aside close_aside" src="../Assets/icons/chevron_back.svg" alt=""></div>
+      <section class="aside-header-container">
+         <img class="logo-cc-aside" src="../Assets/Loco Comercee.png" alt="">
+         <div class="logo-profile">
+            <img class="img-logo-profile" src="../Assets/avatar-svgrepo-com.png" alt="">
+         </div>
+         <article class="data-profile">
+            <h4 class="name-profile">Tissera, Jose Manuel</h4>
+            <p class="category-profile">Administrador</p>
+         </article>
+      </section>
+
+      <section class="aside-body-container">
+         <article class="aside-list-links">
+            <!-- <a href="#" class="href-text">Comercios</a> -->
+            <a href="./inicio.html" name="inicio" class="href-text">Inicio</a>
+            <a href="./proveedores.html" name="proveedores" class="href-text">Proveedores</a>
+            <a href="./compras.html" name="compras" class="href-text">Compras</a>
+            <a href="./gastos.html" name="gastos" class="href-text">Gastos</a>
+            <a href="./cajas.html" name="ventas" class="href-text">Cajas</a>
+            <a href="./clientes_mayor.html" name="clientes" class="href-text">Clientes</a>
+            <a href="./personal.html" name="personal" class="href-text">Personal</a>
+            <a href="#" name="" class="href-text">Tablas</a>
+         </article>
+      
+   </aside>
+
+   <!-------     HEADER    -------->
+   
+   <header class="header">
+      <div class="container-header">
+         <img class="menu-burger menu_burger" src="../Assets/icons/menu.svg" alt="">
+         <h2 class="h2-header">Personal</h2>
+         
+         <section class="header-profile-container">
+            <!-- <img class="logo-cc-aside" src="../Assets/Loco Comercee.png" alt=""> -->
+
+            <article class="data-profile">
+               <h4 class="name-profile">Tissera, Jose Manuel</h4>
+               <p class="category-profile">Administrador</p>
+            </article>
+            <div class="logo-profile">
+               <img class="img-logo-profile" src="../Assets/avatar-svgrepo-com.png" alt="">
+            </div>
+         </section>
+      </div>
+   </header>
+
+   <!------------- FORM ------------->
+
+   <div class="form-add form_add_personal">
+      <section class="header-form-add header_from_add_personal">
+         <h4>Nuevo Intregrante</h4>
+      </section>
+      <section class="body-form-add body_form_add_personal">
+         <p class="p-form-add p_form_add_personal">Fecha Ingreso</p>
+         <input class="input-add-text input_date" type="date">
+         <p class="p-form-add p_form_add_personal">Nombre</p>
+         <input class="input-add-text input_name" type="text">
+         <p class="p-form-add p_form_add_personal">Apellido</p>
+         <input class="input-add-text input_surname" type="text">
+         <p class="p-form-add p_form_add_personal">Cargo</p>
+         <select class="select_form_add select_role" name="role" id="role">
+            <option value="Director" class="option_form_role">Director</option>
+            <option value="Gerente" class="option_form_role">Gerente</option>
+            <option value="Administrador" class="option_form_role">Administrador</option>
+            <option value="Cajero" class="option_form_role">Cajero</option>
+            <option value="Operario" class="option_form_role">Operario</option>
+         </select>
+         <p class="p-form-add p_form_add_personal">Telefono</p>
+         <input class="input-add-text input_phone" type="text">
+         <p class="p-form-add p_form_add_personal">Direccion</p>
+         <input class="input-add-text input_direction" type="text">
+      </section>
+      <section class="footer-form-add footer_add_personal">
+         <button class="btn-all-rounded btn_form_cancel">Cancelar</button>
+         <button class="btn-all-rounded btn_form_add_personal">Agregar</button>
+      </section>
+   </div>
+
+   <!------------ MAIN ---------------->
+
+   <main class="main main_personal">
+      <div class="container_table ">
+         <section class="header_table_container">
+            <button class="btn-all-rounded btn_add_personal">Agregar</button>
+            <article class="article_header_table">
+               <img class="img_header_table btn_del_personal" src="../Assets/icons/delete_caja.svg" alt="">
+               <img class="img_header_table" src="../Assets/icons/print.svg" alt="">
+               <img class="img_header_table" src="../Assets/icons/download.svg" alt="">
+               <img class="img_header_table" src="../Assets/icons/filter_2.svg" alt="">
+            </article>
+         </section>
+         <div class="container_content_table">
+            <section class="container_header_table ">
+               <div class="div_header_table div_table_caja"></div>
+               <div class="div_header_table div_table_caja">Nombre</div>
+               <div class="div_header_table div_table_caja">Apellido</div>
+               <div class="div_header_table div_table_caja">Cargo</div>
+               <div class="div_header_table div_table_caja">Fecha Ingreso</div>
+               <div class="div_header_table div_table_caja">Telefono</div>
+               <div class="div_header_table div_table_caja">Direccion</div>
+               <div class="div_header_table div_table_caja"></div>
+            </section>
+            <section class="container_body_table">
+               <!-- <li class="row_body_table ">
+                  <div class="div_row_table"><input value="1" name="checkPersonal" type="checkbox"></div>
+                  <div class="div_row_table">Juan</div>
+                  <div class="div_row_table">Pérez</div>
+                  <div class="div_row_table">Director</div>
+                  <div class="div_row_table">2020-01-15</div>
+                  <div class="div_row_table">011-2345-6789</div>
+                  <div class="div_row_table">Calle Central 123</div>
+                  <a href="./edit_files.html" class="div_row_table"><img src="../Assets/icons/edit_caja.svg" alt=""></a>
+               </li> -->
+            </section>
+         </div>
+
+      </div>
+
+      <!-------- MODAL RES-REF ------->
+      <div class="modal-res-rej"> </div>
+      
+   </main>
+
+   <script src="../Files_JS/header.js"></script>
+   <script src="../Files_JS/personal.js"></script>
+
+</body>
+</html>

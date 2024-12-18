@@ -1,0 +1,75 @@
+
+
+:root{
+   --first-color: #0d1f23;
+   --second-color: #132e35;
+   --third-color: #2d4a53;
+   --fourth-color: #69818d;
+   --fifth-color: #afb3b7;
+   --sixth-color: #5a636a;
+   --seventh-color: #0a6375;
+   --eighth-color: #1d7d91;
+   --ninth-color: #51abbd;
+   --text-color: #565d63;
+   --background-: #f0f5fb;
+   --background-odd: #f3f3f3;
+}
+
+
+/* ----- MODAL CONFIRM ----- */ 
+
+
+
+/* ------- FORM -------- */
+
+   .form_add_caja{
+      margin: 0;
+   }
+
+         .div_form_turn{
+            display: inline-block;
+            margin: auto;
+         }
+
+         .btn_form_cancel{
+            background-color: var(--sixth-color);
+            color: #fff;
+         }
+
+         .btn_form_add_caja{
+            background-color: var(--eighth-color);
+            color: #fff;
+         }
+
+/* ------- TABLE --------- */
+.container_table{
+   width: min(57rem,90vw);
+   margin-left: auto;
+   margin-right: auto;
+}
+   /* .container_content_table{
+      overflow-y: scroll;
+      overflow-x: auto;
+   } */
+
+      .container_header_table,
+      .row_body_table{
+         width: 54rem;
+         display: grid;
+         grid-template-columns: 2rem repeat(7,12rem);
+         grid-template-columns: 2rem 6rem 12rem 12rem repeat(3,6rem)3rem;
+      }
+
+         .btn_add_caja{
+            height: 2.3rem;
+            width: 7rem;
+            margin-right: 1rem;
+         }
+
+
+@media screen and (min-width: 880px){
+
+   .container_table{
+      width: min(57rem,calc(90vw - 16rem))
+   }
+}

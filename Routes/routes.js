@@ -1,10 +1,15 @@
 
 
 import express from "express";
-import connection from './connectBBDD.js'
+import path from 'path';
+import connection from "./connectionBBDD.js";
 
 const routerRequest = express.Router();
+const __dirname = path.resolve();
 
+routerRequest.get('/',(req,res)=>{
+   res.sendFile(path.join(__dirname,'public','index.html'))
+})
 
 
 routerRequest.get('/sum_total_cajas', async (req,res)=>{
@@ -60,6 +65,7 @@ routerRequest.get('/total_caja_tar', async (req,res)=>{
 })
 
 
+
 // ------- PROVEEDORES -----------
 
 routerRequest.get('/view_proveedores', async (req,res)=>{
@@ -76,18 +82,27 @@ routerRequest.get('/view_proveedores', async (req,res)=>{
 
 routerRequest.post('/add_proveedor', async (req,res)=>{
 
-   const {nombre_fantacia,razon_social,cuit,direccion,telefono,email} = req.body;
+   //const { objectData } = req.body;
+   const { nombre_fantacia,razon_social,cuit,direccion,telefono,email } = req.body;
 
    try{
-      const query = `INSERT INTO proveedores 
-      (nombre_fantacia,razon_social,cuit,direccion,telefono,email)
-      VALUES
-      ('${nombre_fantacia}','${razon_social}','${cuit}','${direccion}','${telefono}','${email}');`
+      let query = `INSERT INTO proveedores (nombre_fantacia,razon_social,cuit,direccion,telefono,email)
+                  VALUES 
+                  ('${nombre_fantacia}','${razon_social}','${cuit}','${direccion}','${telefono}','${email}');`
       const result = await connection.query(query);
-      res.send('Proveedor cargado con exito')
+      res.send(`Successfully loaded`)
    }catch(err){
       res.status(400).send('Error petition "post" /add_proveedor' + err);
    }
+      // let keys = Object.keys(objectData)
+      // let values = Object.values(objectData)
+      // let setQuery = keys.map((_,index) => `'$${index + 1}'`).join(',')
+      // let query = `INSERT INTO proveedores (nombre_fantacia,razon_social,cuit,direccion,telefono,email)
+      //             VALUES (${setQuery});`
+      // const result = connection.query(query,[...values]);
+      //res.send(`Proveedor cargado con exito ${nombre_fantacia},${razon_social},${cuit},${direccion},${telefono},${email}`)
+      
+
 
 })
 
@@ -117,7 +132,7 @@ routerRequest.post('/add_gasto', async (req,res)=>{
             ('${date}','${category}','${subCategory}','${description}',${amount},'${method}','${proveedor}');
             `
       const result = await connection.query(query);
-      res.send('Gasto Cargado con exito')
+      res.send(`Successfully loaded`)
    }catch(err){
       console.error('Error petition /add_gasto '+err);
       res.status(500).send('Error petition "post" /add_gasato' + err);
@@ -126,7 +141,7 @@ routerRequest.post('/add_gasto', async (req,res)=>{
 })
 // ------- CAJAS -----------
 
-routerRequest.get('/view_cajas', async (req,res)=>{
+routerRequest.get('/view_caja', async (req,res)=>{
 
    try{
       const query = `SELECT * FROM cajas ORDER BY id DESC`;
@@ -138,9 +153,9 @@ routerRequest.get('/view_cajas', async (req,res)=>{
 
 })
 
-routerRequest.post('/add_cajas', async (req,res)=>{
+routerRequest.post('/add_caja', async (req,res)=>{
 
-   const { date,titular,comercio,efectivo,tarjeta,ctaCte } = req.body;
+   const { date,turno,titular,comercio,efectivo,tarjeta,ctaCte } = req.body;
 
 
    try{
@@ -151,7 +166,7 @@ routerRequest.post('/add_cajas', async (req,res)=>{
       ('${date}','${titular}','${comercio}',${efectivo},${tarjeta},${ctaCte});
       `;
       const result = await connection.query(query);
-      res.send('Caja agregada Exitosamente');
+      res.send('Successfully loaded');
    }catch(err){
       res.status(400).send('Error petition "post" /add_caja ' + err);
    }
@@ -182,9 +197,9 @@ routerRequest.post('/add_compra', async (req,res)=>{
    ('${fecha}', '${proveedor}', '${categoria}', '${descripcion}', ${monto}, '${forma_pago}', '${tipo_factura}', '${numero_factura}');
       `
       const result = await connection.query(query);
-      res.send('Compra agregada Exitosamente');
+      res.send(`Successfully loaded`)
    }catch(err){
-      res.status(500).send('Error petition "post" /add_personal' + err);
+      res.status(500).send('Error petitio "post" /add_personal' + err);
    }
 })
 
@@ -212,7 +227,8 @@ routerRequest.post('/add_personal', async (req,res)=>{
       ('${namePersonal}','${surname}','${role}','${date}','${phone}','${direction}');
       `
       const result = await connection.query(query);
-      res.send('Integrante agregado Exitosamente');
+      res.send(`Successfully loaded`)
+
    }catch(err){
       res.status(500).send('Error petitio "post" /add_personal' + err);
    }
@@ -254,8 +270,8 @@ routerRequest.post('/add_cliente', async (req,res)=>{
             (nombre_fantacia_cl,razon_social_cl,cuit_cl,direccion_cl,telefono_cl,email_cl,fecha_ingreso_cl,facturacion)
             VALUES 
             ('${name}','${razon}','${cuit}','${direction}','${phone}','${email}','${dateIng}','${regimen}');`
-      const result = connection.query(query);
-      res.send('Cliente Creado con exito');
+      const result = await connection.query(query);
+      res.send(`Successfully loaded`)
    }catch(err){
       res.status(500).send('Error petition "post" /add_cliente' + err);
    }
@@ -265,18 +281,15 @@ routerRequest.post('/add_cliente', async (req,res)=>{
 
 routerRequest.post('/view_data_edit', async (req,res)=>{
 
-      const { table, column, id } = req.body;
+      const { table,column,id } = req.body;
 
    try{
-   const query = `SELECT * FROM ${table} WHERE ${column} = ${id}`;
-   //const query = `SELECT * FROM personal WHERE id_personal = 10`;
-   const results = await connection.query(query);
-   res.send(results.rows);
+      const query = `SELECT * FROM ${table} WHERE ${column} = ${id}`;
+      const results = await connection.query(query);
+      res.send(results.rows);
    }catch(err){
       console.error('Error petition /view_data_edit '+ err);
       res.status(400).send('Error petition "get" /view_data_edit' + err);
-      
-      
    }
 })
 
@@ -284,7 +297,7 @@ routerRequest.post('/view_data_edit_cliente', async (req,res)=>{
 
 
 try{
-   const query = `SELECT * FROM personal WHERE id_personal = 10`;
+   const query = `SELECT * FROM clientes WHERE id_cliente = 30`;
    const results = await connection.query(query);
    res.send(results.rows);
 }catch(err){
@@ -298,22 +311,14 @@ routerRequest.patch('/edit_element', async (req,res)=>{
    const { table, dataChange , idColumn , id } = req.body;
 
    try{
-      const keys = Object.keys(dataChange)
-      const values = Object.values(dataChange);
-
-      const setQuery = keys.map((key,index) => `${key} = $${index + 1}`).join(', ');
-
-      const query = `UPDATE ${table} SET ${setQuery} WHERE ${idColumn} = ${id};`
-
-      await connection.query(query,[...values]);
-
+      const query = `UPDATE ${table} SET ${dataChange} WHERE ${idColumn} = ${id};`
+      const results = await connection.query(query);
       res.send('Elemento editado correctamente');
            
-   }catch(err) {
-      console.error('Error en la petición /edit_element', err);
-      res.status(500).json({ error: 'Error petition "patch" /edit_element', details: err.message });
+   }catch(err){
+      console.error('Erros en la peition /edit_element');
+      res.status(500).send('Error petition "patch" /edit_element', err);
    }
-   
 
 })
 
@@ -323,13 +328,10 @@ routerRequest.delete('/delete_element', async (req,res)=>{
    const { idDelete,idColumn,tabla } = req.body;
 
    try{
-      const placeholders = idDelete.map((_,index) => `$${index + 1 }`).join(', ');
-      const query = `DELETE FROM ${tabla} WHERE ${idColumn} in (${placeholders})`
-
-      await connection.query(query,idDelete)
-
-      res.send('Eliminacion exitosa')
-
+      const query = `DELETE FROM ${tabla} WHERE ${idColumn} IN (${idDelete});`;
+      //const query = `DELETE FROM proveedores WHERE id_prov = 40;`;
+      const result = await connection.query(query);
+      res.send('Cliente Eliminado con exito id: '+idDelete)
    }catch(err){
       res.send(500).send('Erro petition "delete" /del_cliente' + err);
    }
