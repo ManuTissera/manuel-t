@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worksheet</title>
+  <link rel="stylesheet" href="../CSS/main.css">
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/records.css">
+  <link rel="stylesheet" href="../CSS/report.css">
+</head>
+
+<header class="main-header">
+  <div class="header-logo">
+    <!-- <img src="../assets/logo.svg" alt="Logo" /> -->
+    <h1>Anthropometry Calculator - Report</h1>
+  </div>
+
+  <nav class="header-nav">
+    <a href="./home.html" class="nav-item">Home</a> 
+    <a href="./patient.html" class="nav-item">Pacientes</a>
+  </nav>
+
+  <div class="header-user">
+    <img src="../assets/avatar-bad-breaking.svg" alt="User" class="header-avatar" />
+    <span class="header-username">Admin</span>
+  </div>
+</header>
+
+<div id="section-information-patient"></div>
+
+
+<body>
+<body>
+  <div class="container-body">
+
+    <!-- LAYOUT PRINCIPAL DEL REPORT -->
+    <section class="report-layout">
+
+      <!-- COLUMNA IZQUIERDA (60%) -->
+      <div class="report-column-left">
+
+        <!-- BLOQUE 1: SOMATOCARTA -->
+        <article class="report-card somatotype-chart-card">
+          <h3 class="report-card-title">Somatotype Chart</h3>
+        
+          <div class="somatotype-chart-container">
+            <div class="somatotype-chart-wrapper">
+              <!-- ajustá los src a la ruta real de tus SVG -->
+              <img
+                src="../assets/somatotype-endo.svg"
+                alt="Endomorph"
+                class="somato-icon somato-icon-endo"
+              />
+              <img
+                src="../assets/somatotype-meso.svg"
+                alt="Mesomorph"
+                class="somato-icon somato-icon-meso"
+              />
+              <img
+                src="../assets/somatotype-ecto.svg"
+                alt="Ectomorph"
+                class="somato-icon somato-icon-ecto"
+              />
+
+              <canvas id="somatotype-canvas" width="360" height="360"></canvas>
+            </div>
+          </div>
+        </article>
+
+        <!-- BLOQUE 4: RATING SOMATOTIPO -->
+        <article class="report-card somatotype-rating-card">
+          <h3 class="report-card-title">Somatotype Rating</h3>
+
+          <div class="somatotype-rating-header">
+            <div class="rating-pill endo">
+              <span class="label">ENDO</span>
+              <span class="value">1.5</span>
+            </div>
+            <div class="rating-pill meso">
+              <span class="label">MESO</span>
+              <span class="value">3.5</span>
+            </div>
+            <div class="rating-pill ecto">
+              <span class="label">ECTO</span>
+              <span class="value">3.7</span>
+            </div>
+            <div class="rating-position">
+              <span class="label">Current position</span>
+              <span class="dot"></span>
+            </div>
+          </div>
+
+          <div class="somatotype-scale">
+            <div class="scale-row">
+              <div class="scale-step">1</div>
+              <div class="scale-text">
+                Baja adiposidad relativa; poca grasa subcutánea; contornos musculares
+                y óseos visibles.
+              </div>
+            </div>
+            <div class="scale-row">
+              <div class="scale-step">3½</div>
+              <div class="scale-text">
+                Moderada adiposidad; la grasa subcutánea cubre los contornos musculares
+                y óseos; apariencia más “llena”.
+              </div>
+            </div>
+            <div class="scale-row">
+              <div class="scale-step">5½</div>
+              <div class="scale-text">
+                Alta adiposidad relativa; mayor acumulación de grasa en tronco y extremidades.
+              </div>
+            </div>
+            <div class="scale-row">
+              <div class="scale-step">7½</div>
+              <div class="scale-text">
+                Extremadamente alta adiposidad relativa; gran volumen por unidad de altura.
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- COLUMNA DERECHA (40%) -->
+      <div class="report-column-right">
+
+        <!-- BLOQUE 2: MEDIDAS DEL PACIENTE -->
+        <article class="report-card measures-card">
+          <h3 class="report-card-title">Anthropometric Measures</h3>
+
+          <div class="measures-grid">
+            <div class="measure-item">
+              <span class="measure-label">Weight</span>
+              <span class="measure-unit">(kg)</span>
+              <span class="measure-value" data-column="peso_kg">65.6</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Height</span>
+              <span class="measure-unit">(cm)</span>
+              <span class="measure-value" data-column="talla">178.0</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Humerus width</span>
+              <span class="measure-unit">(cm)</span>
+              <span class="measure-value" data-column="humeral">6.0</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Femur width</span>
+              <span class="measure-unit">(cm)</span>
+              <span class="measure-value" data-column="femoral">10.3</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Relaxed arm</span>
+              <span class="measure-unit">(cm)</span>
+              <span class="measure-value" data-column="br_rel">28.0</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Flexed arm</span>
+              <span class="measure-unit">(cm)</span>
+              <span class="measure-value" data-column="br_fle">30.0</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Waist (min)</span>
+              <span class="measure-unit">(cm)</span>
+              <span class="measure-value" data-column="cintura">72.5</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Hips (max)</span>
+              <span class="measure-unit">(cm)</span>
+              <span class="measure-value" data-column="cadera">93.3</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Calf (max)</span>
+              <span class="measure-unit">(cm)</span>
+              <span class="measure-value" data-column="pant_per">34.5</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Triceps</span>
+              <span class="measure-unit">(mm)</span>
+              <span class="measure-value" data-column="triceps">7.8</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Subscapular</span>
+              <span class="measure-unit">(mm)</span>
+              <span class="measure-value" data-column="sub_esc">5.3</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Biceps</span>
+              <span class="measure-unit">(mm)</span>
+              <span class="measure-value" data-column="biceps">1.5</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Iliac crest</span>
+              <span class="measure-unit">(mm)</span>
+              <span class="measure-value" data-column="cre_ili">7.1</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Supraespinal</span>
+              <span class="measure-unit">(mm)</span>
+              <span class="measure-value" data-column="sup_esp">4.5</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Abdominal</span>
+              <span class="measure-unit">(mm)</span>
+              <span class="measure-value" data-column="abdominal">13.0</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Mid-thigh</span>
+              <span class="measure-unit">(mm)</span>
+              <span class="measure-value" data-column="mus_med">14.0</span>
+            </div>
+            <div class="measure-item">
+              <span class="measure-label">Calf (skin fold)</span>
+              <span class="measure-unit">(mm)</span>
+              <span class="measure-value" data-column="pant_plie">6.0</span>
+            </div>
+          </div>
+
+        </article>
+
+        <!-- BLOQUE 3: ÍNDICES Y COMPOSICIÓN CORPORAL -->
+        <article class="report-card composition-card">
+          <h3 class="report-card-title">Body Composition Indexes</h3>
+        
+          <div class="composition-table">
+            <div class="composition-row">
+              <div class="comp-label">BMI</div>
+              <div class="comp-unit">kg/m²</div>
+              <div class="comp-value" data-key="bmi">20.7</div>
+            </div>
+          
+            <div class="composition-row">
+              <div class="comp-label">Waist/Hip ratio</div>
+              <div class="comp-unit">ratio</div>
+              <div class="comp-value" data-key="waist_hip_ratio">0.80</div>
+            </div>
+          
+            <div class="composition-row">
+              <div class="comp-label">Sum 6 skinfolds</div>
+              <div class="comp-unit">mm</div>
+              <div class="comp-value" data-key="sum6">50.5</div>
+            </div>
+          
+            <div class="composition-section-title">Durnin &amp; Womersley</div>
+          
+            <div class="composition-row">
+              <div class="comp-label">% Fat</div>
+              <div class="comp-unit">%</div>
+              <div class="comp-value" data-key="dw_fat_percent">16.9</div>
+            </div>
+          
+            <div class="composition-row">
+              <div class="comp-label">Fat mass</div>
+              <div class="comp-unit">kg</div>
+              <div class="comp-value" data-key="dw_fat_mass">11.1</div>
+            </div>
+          
+            <div class="composition-row">
+              <div class="comp-label">Lean mass</div>
+              <div class="comp-unit">kg</div>
+              <div class="comp-value" data-key="dw_lean_mass">54.5</div>
+            </div>
+          
+            <div class="composition-section-title">Yuhasz (athletes)</div>
+          
+            <div class="composition-row">
+              <div class="comp-label">% Fat</div>
+              <div class="comp-unit">%</div>
+              <div class="comp-value" data-key="yuhasz_fat_percent">11.5</div>
+            </div>
+          
+            <div class="composition-row">
+              <div class="comp-label">Fat mass</div>
+              <div class="comp-unit">kg</div>
+              <div class="comp-value" data-key="yuhasz_fat_mass">7.5</div>
+            </div>
+          
+            <div class="composition-row">
+              <div class="comp-label">Lean mass</div>
+              <div class="comp-unit">kg</div>
+              <div class="comp-value" data-key="yuhasz_lean_mass">58.1</div>
+            </div>
+          
+            <div class="composition-row">
+              <div class="comp-label">Arm muscle area</div>
+              <div class="comp-unit">mm²</div>
+              <div class="comp-value" data-key="arm_muscle_area">5172</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+</body>
+
+<script src="../js/report.js"></script>
+</body>
+</html>

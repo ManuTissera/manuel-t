@@ -1,0 +1,262 @@
+/* LAYOUT GENERAL REPORT */
+.report-layout {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: 3fr 2fr; /* ~60 / 40 */
+  gap: 1.5rem;
+}
+
+/* COLUMNAS */
+.report-column-left,
+.report-column-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* CARDS GENERALES */
+.report-card {
+  background-color: #ffffff;
+  border-radius: 0.8rem;
+  padding: 1.2rem 1.4rem;
+  box-shadow: 0 0 0.1rem 0.07rem #ddd;
+}
+
+.report-card-title {
+  font-family: "Afacad Flux", serif;
+  font-size: 1.1rem;
+  color: #444;
+  margin: 0 0 0.9rem;
+}
+
+/* BLOQUE 1: SOMATOCARTA */
+
+.somatotype-chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.somatotype-chart-wrapper {
+  position: relative;
+  width: 360px;
+  height: 360px;
+}
+
+#somatotype-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* siluetas */
+.somato-icon {
+  position: absolute;
+  width: 26px;       /* ajustá según tamaño real del SVG */
+  height: auto;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* abajo-izquierda (ENDOMORFO) */
+.somato-icon-endo {
+  left: 10px;
+  bottom: 30px;
+}
+
+/* arriba-centro (MESOMORFO) */
+.somato-icon-meso {
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* abajo-derecha (ECTOMORFO) */
+.somato-icon-ecto {
+  right: 13px;
+  bottom: 32px;
+}
+
+/* BLOQUE 4: RATING SOMATOTIPO */
+.somatotype-rating-header {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-bottom: 0.9rem;
+}
+
+.rating-pill {
+  border-radius: 999px;
+  padding: 0.4rem 0.7rem;
+  background-color: #f3f4f7;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: "Poppins", sans-serif;
+}
+
+.rating-pill .label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.rating-pill .value {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.rating-pill.endo .value {
+  color: #e96c25;
+}
+
+.rating-pill.meso .value {
+  color: #255bdb;
+}
+
+.rating-pill.ecto .value {
+  color: #0a9e67;
+}
+
+.rating-position {
+  border-radius: 0.7rem;
+  padding: 0.4rem 0.7rem;
+  background-color: #e7f0ff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Poppins", sans-serif;
+}
+
+.rating-position .label {
+  font-size: 0.8rem;
+  color: #2f5ba8;
+}
+
+.rating-position .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #2f5ba8;
+}
+
+/* ESCALA DESCRIPTIVA */
+.somatotype-scale {
+  margin-top: 0.4rem;
+  border-top: 1px solid #edf0f5;
+  padding-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.scale-row {
+  display: grid;
+  grid-template-columns: 0.6fr 3.4fr;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+.scale-step {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.2rem 0.3rem;
+  border-radius: 999px;
+  background-color: #f3f4f7;
+  color: #444;
+}
+
+.scale-text {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78rem;
+  color: #666;
+}
+
+/* BLOQUE 2: MEDIDAS (ESTILO TOP LIST) */
+.measures-card .measures-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem;
+}
+
+.measure-item {
+  display: grid;
+  grid-template-columns: 2fr 0.8fr 1fr;
+  align-items: baseline;
+  font-family: "Poppins", sans-serif;
+}
+
+.measure-label {
+  font-size: 0.82rem;
+  color: #555;
+}
+
+.measure-unit {
+  font-size: 0.72rem;
+  color: #999;
+  text-align: left;
+}
+
+.measure-value {
+  font-size: 0.86rem;
+  color: #1b4b34;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* BLOQUE 3: ÍNDICES Y COMPOSICIÓN */
+.composition-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.composition-section-title {
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2f5ba8;
+}
+
+.composition-row {
+  display: grid;
+  grid-template-columns: 2.2fr 0.8fr 1fr;
+  align-items: baseline;
+}
+
+.comp-label {
+  font-size: 0.82rem;
+  color: #555;
+}
+
+.comp-unit {
+  font-size: 0.72rem;
+  color: #999;
+}
+
+.comp-value {
+  font-size: 0.86rem;
+  color: #0a9e67;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .report-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .report-card {
+    padding: 1rem;
+  }
+
+  .somatotype-rating-header {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

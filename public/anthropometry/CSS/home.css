@@ -1,0 +1,341 @@
+:root {
+  --bg-body: #f4f5fb;
+  --bg-surface: #ffffff;
+  --bg-soft: #eef0f8;
+
+  --primary: #2f4f60;
+  --primary-soft: #d5e0e8;
+  --accent: #4b8bb6;
+
+  --text-main: #1f2933;
+  --text-muted: #6b7280;
+
+  --border-soft: #e2e4f0;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --shadow-soft: 0 14px 30px rgba(15, 23, 42, 0.12);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top left, #e5ecf6, #f4f5fb 45%, #fdfdfd);
+  color: var(--text-main);
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(14px);
+  background: linear-gradient(
+    to bottom,
+    rgba(244, 245, 251, 0.9),
+    rgba(244, 245, 251, 0.75),
+    transparent
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.brand-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 1.4rem;
+  background: radial-gradient(circle at 20% 20%, #79b3da, #2f4f60);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  box-shadow: 0 10px 25px rgba(47, 79, 96, 0.35);
+}
+
+.brand-text h1 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.brand-text span {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--primary);
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: all 0.18s ease-out;
+}
+
+.nav-link:hover {
+  border-color: rgba(47, 79, 96, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.nav-link-secondary {
+  color: var(--text-muted);
+}
+
+/* MAIN */
+
+.app-main {
+  flex: 1;
+  padding: 2rem 3.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* HERO */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.hero-text h2 {
+  font-size: 1.9rem;
+  margin: 0 0 0.9rem;
+  max-width: 25rem;
+}
+
+.hero-text p {
+  margin: 0;
+  max-width: 35rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.hero-actions {
+  margin-top: 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.3rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out,
+    background-color 0.15s ease-out, border-color 0.15s ease-out;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4b8bb6, #2f4f60);
+  color: #ffffff;
+  box-shadow: 0 12px 25px rgba(47, 79, 96, 0.45);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px rgba(47, 79, 96, 0.55);
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--primary);
+  border-color: var(--primary-soft);
+}
+
+.btn-outline:hover {
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(148, 163, 184, 0.3);
+}
+
+/* HERO PANEL */
+
+.hero-panel {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.hero-card {
+  width: 100%;
+  max-width: 360px;
+  background: radial-gradient(circle at top left, #f7fafc, #eef0f8);
+  border-radius: 24px;
+  padding: 1.4rem 1.4rem 1.6rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(226, 228, 240, 0.9);
+}
+
+.hero-card h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1rem;
+}
+
+.hero-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.55rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-right: 0.4rem;
+}
+
+.dot-patients {
+  background: #4b8bb6;
+}
+.dot-measurements {
+  background: #34a36e;
+}
+.dot-reports {
+  background: #f28b3f;
+}
+
+/* MODULES */
+
+.modules {
+  margin-top: 0.3rem;
+}
+
+.section-title {
+  margin: 0 0 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.1rem;
+}
+
+.module-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.module-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--primary);
+}
+
+.module-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.link-inline {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.link-inline:hover {
+  text-decoration: underline;
+}
+
+/* FOOTER */
+
+.app-footer {
+  padding: 1rem 3.5rem 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border-top: 1px solid rgba(226, 228, 240, 0.8);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .app-header {
+    padding: 0.9rem 1.4rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+
+  .app-main {
+    padding: 1.4rem 1.4rem 2rem;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-panel {
+    justify-content: flex-start;
+  }
+
+  .hero-card {
+    max-width: 100%;
+  }
+
+  .app-footer {
+    padding: 0.9rem 1.4rem 1.4rem;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}

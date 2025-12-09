@@ -1,0 +1,99 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anthropometry Calculator | Home</title>
+  <link rel="stylesheet" href="../CSS/home.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-logo">CA</div>
+        <div class="brand-text">
+          <h1>CalcuAntro</h1>
+          <span>Gestión de antropometría y datos clínicos</span>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <a href="./patient.html" class="nav-link">Pacientes</a>
+        <a href="settings.html" class="nav-link nav-link-secondary">Configuración</a>
+      </nav>
+    </header>
+
+    <main class="app-main">
+      <section class="hero">
+        <div class="hero-text">
+          <h2>Centralizá todos tus datos antropométricos en un solo lugar</h2>
+          <p>
+            Crea fichas de pacientes, carga mediciones en series y genera reportes claros y reproducibles,
+            replicando la lógica de tu planilla de Excel pero con la estabilidad de una aplicación web.
+          </p>
+
+          <div class="hero-actions">
+            <a href="./add_profile.html" class="btn btn-primary">Crear nuevo paciente</a>
+            <a href="./patient.html" class="btn btn-outline">Ver listado de pacientes</a>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <div class="hero-card">
+            <h3>Resumen rápido</h3>
+            <ul>
+              <li><span class="dot dot-patients"></span> Gestión de fichas de pacientes</li>
+              <li><span class="dot dot-measurements"></span> Series de mediciones por fecha</li>
+              <li><span class="dot dot-reports"></span> Reportes listos para imprimir</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="modules">
+        <h2 class="section-title">Módulos principales</h2>
+
+        <div class="modules-grid">
+          <article class="module-card">
+            <h3>Pacientes</h3>
+            <p>
+              Alta, edición y consulta de datos personales y clínicos. Cada paciente se vincula con sus
+              diferentes series de mediciones antropométricas.
+            </p>
+            <a href="patient.html" class="link-inline">Ir a Pacientes →</a>
+          </article>
+
+          <article class="module-card">
+            <h3>Hoja de cálculo</h3>
+            <p>
+              Carga de datos por series, similar a la planilla original. Calcula medianas, promedios y
+              resultados derivados según tus fórmulas.
+            </p>
+            <a href="worksheet.html" class="link-inline">Abrir Hoja de cálculo →</a>
+          </article>
+
+          <article class="module-card">
+            <h3>Reportes</h3>
+            <p>
+              Resumen estructurado de los datos del paciente listo para imprimir o exportar, con los
+              indicadores clave de cada evaluación.
+            </p>
+            <a href="report.html" class="link-inline">Ver Reportes →</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>CalcuAntro · v1.0</span>
+      <span>Proyecto de migración desde Excel a aplicación web</span>
+    </footer>
+  </div>
+</body>
+</html>
+
+
+
+

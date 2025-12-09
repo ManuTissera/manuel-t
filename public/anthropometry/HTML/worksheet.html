@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worksheet</title>
+  <link rel="stylesheet" href="../CSS/main.css">
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/records.css">
+</head>
+
+<header class="main-header">
+  <div class="header-logo">
+    <!-- <img src="../assets/logo.svg" alt="Logo" /> -->
+    <h1>Anthropometry Calculator</h1>
+  </div>
+
+  <nav class="header-nav">
+    <a href="./patient.html" class="nav-item">Pacientes</a> 
+    <a href="./worksheet.html" class="nav-item">WorkSheet</a>
+    <!-- <a href="#" class="nav-item">Turnos</a> -->
+    <a href="./ideal-weight.html" class="nav-item">Ideal Weight</a>
+    <a href="./report.html" class="nav-item">Report</a>
+  </nav>
+
+  <div class="header-user">
+    <img src="../assets/avatar-bad-breaking.svg" alt="User" class="header-avatar" />
+    <span class="header-username">Admin</span>
+  </div>
+</header>
+
+<div id="section-information-patient"></div>
+
+
+<body>
+  <!-- Tabla antropometr??a lista para trabajar con JavaScript -->
+<div class="anthro-table-wrapper">
+  <table class="anthro-table">
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>serie 1</th>
+        <th>serie 2</th>
+        <th>serie 3</th>
+        <th>serie 4</th>
+        <th>serie 5</th>
+        <th style="color:rgba(28, 88, 171, 0.986)">mediana</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- DATOS B??SICOS -->
+      <tr class="section">
+        <th colspan="7">DATOS BASICOS</th>
+      </tr>
+      <tr>
+        <td data-variable="pes_bru" data-serie="label">Peso Bruto (Kg)</td>
+        <td data-variable="pes_bru" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="pes_bru" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="pes_bru" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="pes_bru" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="pes_bru" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="pes_bru" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+      <tr>
+        <td data-variable="ta_cor" data-serie="label">Talla Corporal (cm)</td>
+        <td data-variable="ta_cor" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="ta_cor" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="ta_cor" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="ta_cor" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="ta_cor" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="ta_cor" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+
+      <!-- DI??METROS -->
+      <tr class="section">
+        <th colspan="7">DIAMETROS (cm)</th>
+      </tr>
+      <tr>
+        <td data-variable="humeral" data-serie="label">Humeral (biepicondilar)</td>
+        <td data-variable="humeral" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="humeral" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="humeral" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="humeral" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="humeral" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="humeral" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+      <tr>
+        <td data-variable="femoral" data-serie="label">Femoral (biepicondilar)</td>
+        <td data-variable="femoral" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="femoral" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="femoral" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="femoral" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="femoral" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="femoral" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+
+      <!-- PER??METROS -->
+      <tr class="section">
+        <th colspan="7">PERAMETROS (cm)</th>
+      </tr>
+      <tr>
+        <td data-variable="br_rel" data-serie="label">Brazo Relajado</td>
+        <td data-variable="br_rel" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="br_rel" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="br_rel" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="br_rel" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="br_rel" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="br_rel" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+      <tr>
+        <td data-variable="br_fle" data-serie="label">Brazo Flexionado en Tensi??n</td>
+        <td data-variable="br_fle" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="br_fle" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="br_fle" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="br_fle" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="br_fle" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="br_fle" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+      <tr>
+        <td data-variable="cintura" data-serie="label">Cintura (manima)</td>
+        <td data-variable="cintura" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="cintura" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="cintura" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="cintura" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="cintura" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="cintura" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+      <tr>
+        <td data-variable="cadera" data-serie="label">Cadera (maximo)</td>
+        <td data-variable="cadera" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="cadera" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="cadera" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="cadera" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="cadera" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="cadera" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+      <tr>
+        <td data-variable="pant_per" data-serie="label">Pantorrilla (maxima)</td>
+        <td data-variable="pant_per" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="pant_per" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="pant_per" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="pant_per" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="pant_per" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="pant_per" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+
+      <!-- PLIEGUES CUT??NEOS -->
+      <tr class="section">
+        <th colspan="7">PLIEGUES CUTANEOS (mm)</th>
+      </tr>
+      <tr>
+        <td data-variable="triceps" data-serie="label">Triceps</td>
+        <td data-variable="triceps" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="triceps" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="triceps" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="triceps" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="triceps" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="triceps" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+      <tr>
+        <td data-variable="sub_esc" data-serie="label">Subescapular</td>
+        <td data-variable="sub_esc" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="sub_esc" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="sub_esc" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="sub_esc" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="sub_esc" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="sub_esc" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+      <tr>
+        <td data-variable="biceps" data-serie="label">B??ceps</td>
+        <td data-variable="biceps" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="biceps" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="biceps" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="biceps" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="biceps" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="biceps" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+      <tr>
+        <td data-variable="cre_ili" data-serie="label">Cresta Iliaca</td>
+        <td data-variable="cre_ili" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="cre_ili" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="cre_ili" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="cre_ili" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="cre_ili" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="cre_ili" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+      <tr>
+        <td data-variable="sup_esp" data-serie="label">Supraespinal</td>
+        <td data-variable="sup_esp" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="sup_esp" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="sup_esp" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="sup_esp" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="sup_esp" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="sup_esp" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+      <tr>
+        <td data-variable="abdominal" data-serie="label">Abdominal</td>
+        <td data-variable="abdominal" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="abdominal" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="abdominal" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="abdominal" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="abdominal" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="abdominal" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+      <tr>
+        <td data-variable="mus_med" data-serie="label">Muslo Medial</td>
+        <td data-variable="mus_med" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="mus_med" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="mus_med" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="mus_med" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="mus_med" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="mus_med" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+      <tr>
+        <td data-variable="pant_plie" data-serie="label">Pantorrilla (maxima)</td>
+        <td data-variable="pant_plie" data-serie="1"><input type="number" class="cell-input"></td>
+        <td data-variable="pant_plie" data-serie="2"><input type="number" class="cell-input"></td>
+        <td data-variable="pant_plie" data-serie="3"><input type="number" class="cell-input"></td>
+        <td data-variable="pant_plie" data-serie="4"><input type="number" class="cell-input"></td>
+        <td data-variable="pant_plie" data-serie="5"><input type="number" class="cell-input"></td>
+        <td data-variable="pant_plie" data-serie="6"><input type="number" class="cell-input"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/worksheet.js"></script>
+</body>
+</html>

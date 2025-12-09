@@ -1,0 +1,157 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient</title>
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/patients.css">
+</head>
+
+<header class="main-header">
+  <div class="header-logo">
+    <!-- <img src="../assets/logo.svg" alt="Logo" /> -->
+    <h1>Sistema Clínico</h1>
+  </div>
+
+  <nav class="header-nav">
+    <a href="./index.html" class="nav-item">Home</a> 
+  </nav>
+
+  <div class="header-user">
+    <img src="../assets/avatar-bad-breaking.svg" alt="User" class="header-avatar" />
+    <span class="header-username">Admin</span>
+  </div>
+</header>
+
+<body>
+  <div class="container-body">
+    <!-- Header -->
+    <div class="first-container">
+      <h2>Pacientes</h2>
+      <div class="container-button-first-cont">
+        <button class="a-btn-patient">Download PDF</button>
+        <button class="a-btn-patient">Download CSV</button>
+      </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filter-container">
+      <article class="article-filter">
+        <p class="p-filter">Search for order</p>
+        <input class="input-filter" type="text" placeholder="Insertar" />
+      </article>
+      <article class="article-filter">
+        <p class="p-filter">Status</p>
+        <input class="input-filter" type="text" placeholder="Insertar" />
+      </article>
+      <article class="article-filter">
+        <p class="p-filter">Category</p>
+        <input class="input-filter" type="text" placeholder="Insertar" />
+      </article>
+      <article class="article-filter">
+        <p class="p-filter">Customer</p>
+        <input class="input-filter" type="text" placeholder="Insertar" />
+      </article>
+    </div>
+
+    <!-- Options Bar -->
+    <div class="first-container options-bar-patients">
+      <h2></h2>
+      <div class="container-button-first-cont">
+        <!-- <button class="a-btn-patient">Download PDF</button> -->
+        <a class="a-btn-patient" href="./add_profile.html">Add Profile</a>
+      </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="container-table">
+      <div class="container-thead">
+        <div class="div-thead"></div>
+        <div class="div-thead">Paciente</div>
+        <div class="div-thead">Última Visita</div>
+        <div class="div-thead">Status</div>
+        <div class="div-thead">Plan</div>
+        <div class="div-thead">Categoría</div>
+        <div class="div-thead"></div>
+      </div>
+
+      <div class="container-tbody tbody-patient">
+        <!-- Fila 1 -->
+        <!-- <div class="row-table">
+          <label class="custom-checkbox">
+            <input type="checkbox" />
+            <span class="checkmark"></span>
+          </label>
+          <div class="div-row-table cont-name">
+            <img src="../assets/avatar-bad-breaking.svg" alt="Avatar paciente" />
+            <article>
+              <div>Walter White</div>
+              <span>walter.white@example.com</span>
+            </article>
+          </div>
+          <div class="div-row-table">2024-11-10</div>
+          <div class="div-row-table">Paid</div>
+          <div class="div-row-table">Premium</div>
+          <div class="div-row-table">Drogon</div>
+          <a href="#" class="div-row-table row-link">
+            <p>Archivo</p>
+            <img src="../assets/icons/link-external.svg" alt="Ver archivo" />
+          </a>
+        </div> -->
+
+        <!-- Fila 2 -->
+        <!-- <div class="row-table">
+          <label class="custom-checkbox">
+            <input type="checkbox" />
+            <span class="checkmark"></span>
+          </label>
+          <div class="div-row-table cont-name">
+            <img src="../assets/avatar-bad-breaking.svg" alt="Avatar paciente" />
+            <article>
+              <div>Jesse Pinkman</div>
+              <span>jesse.pinkman@example.com</span>
+            </article>
+          </div>
+          <div class="div-row-table">2024-10-03</div>
+          <div class="div-row-table">Pending</div>
+          <div class="div-row-table">Standard</div>
+          <div class="div-row-table">Addiction</div>
+          <a href="#" class="div-row-table row-link">
+            <p>Archivo</p>
+            <img src="../assets/icons/link-external.svg" alt="Ver archivo" />
+          </a>
+        </div> -->
+
+        <!-- Fila 3 -->
+        <!-- <div class="row-table">
+          <label class="custom-checkbox">
+            <input type="checkbox" />
+            <span class="checkmark"></span>
+          </label>
+          <div class="div-row-table cont-name">
+            <img src="../assets/avatar-bad-breaking.svg" alt="Avatar paciente" />
+            <article>
+              <div>Saul Goodman</div>
+              <span>saul.goodman@example.com</span>
+            </article>
+          </div>
+          <div class="div-row-table">2024-09-20</div>
+          <div class="div-row-table">Paid</div>
+          <div class="div-row-table">Basic</div>
+          <div class="div-row-table">Legal</div>
+          <a href="#" class="div-row-table row-link">
+            <p>Archivo</p>
+            <img src="../assets/icons/link-external.svg" alt="Ver archivo" />
+          </a>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/patients.js"></script>
+</body>
+</html>
+

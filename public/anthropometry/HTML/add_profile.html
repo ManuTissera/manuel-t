@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worksheet</title>
+  <link rel="stylesheet" href="../CSS/main.css">
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="stylesheet" href="../CSS/records.css">
+  <link rel="stylesheet" href="../CSS/report.css">
+  <link rel="stylesheet" href="../CSS/add-profile.css">
+</head>
+
+<header class="main-header">
+  <div class="header-logo">
+    <!-- <img src="../assets/logo.svg" alt="Logo" /> -->
+    <h1>Anthropometry Calculator - Report</h1>
+  </div>
+
+  <nav class="header-nav">
+    <a href="./index.html" class="nav-item">Home</a>
+    <a href="./patient.html" class="nav-item">Pacientes</a>
+  </nav>
+
+  <div class="header-user">
+    <img src="../assets/avatar-bad-breaking.svg" alt="User" class="header-avatar" />
+    <span class="header-username">Admin</span>
+  </div>
+</header>
+
+<body>
+  <!-- Dejá tu header/nav existente arriba de esto -->
+
+  <main class="page add-profile-page">
+    <div class="page-header">
+      <h1 class="page-title">Add Profile</h1>
+    </div>
+
+    <section class="add-profile-card">
+      <div class="profile-form">
+
+        <!-- Basic Info -->
+        <h2 class="section-title">Basic Info</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="firstName">First Name *</label>
+            <input id="add-profile-firstName" type="text" placeholder="Enter first name" />
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last Name *</label>
+            <input id="add-profile-lastName" type="text" placeholder="Enter last name" />
+          </div>
+
+          <div class="form-group">
+            <label for="gender">Gender *</label>
+            <select id="add-profile-gender">
+              <option value="">Select gender</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="O">Other</option>
+            </select>
+          </div>
+
+
+          <div class="form-group">
+            <label for="birthDate">Birth Date *</label>
+            <input id="add-profile-birthDate" type="date" />
+          </div>
+
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input id="add-profile-age" type="number" min="0" placeholder="Enter age" />
+          </div>
+
+          <div class="form-group" data-field="national_id">
+            <label for="nationalId">National ID Number *</label>
+            <input id="add-profile-nationalId" type="text" placeholder="Enter national ID" />
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <h2 class="section-title">Contact Info</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="add-profile-email" type="email" placeholder="name@example.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input id="add-profile-phone" type="tel" placeholder="+39 000 000 0000" />
+          </div>
+
+          <div class="form-group form-group-full">
+            <label for="address">Address</label>
+            <input id="add-profile-address" type="text" placeholder="Street, number, city" />
+          </div>
+        </div>
+
+        <!-- Clinical Info -->
+        <h2 class="section-title">Clinical Info</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="add-profile-category">
+              <option value="">Select category</option>
+              <option>Hypertension</option>
+              <option>Diabetes</option>
+              <option>Sport</option>
+              <option>Civil</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="plan">Plan</label>
+            <select id="add-profile-plan">
+              <option value="">Select plan</option>
+              <option>Basic</option>
+              <option>Premium</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="admissionDate">Admission Date</label>
+            <input id="add-profile-admissionDate" type="date" />
+          </div>
+
+          <div class="form-group">
+            <label for="height">Height (cm) *</label>
+            <input id="add-profile-height" type="number" min="0" step="0.1" placeholder="170" />
+          </div>
+
+          <div class="form-group">
+            <label for="weight">Weight (kg) *</label>
+            <input id="add-profile-weight" type="number" min="0" step="0.1" placeholder="70" />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary">Cancel</button>
+          <button id="btn_add_profile" type="" class="btn btn-primary">Save Profile</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="../js/add-prfile.js"></script>
+</body>
+
+
+</html>
