@@ -51,6 +51,7 @@ html{
       justify-content: center;
       align-items: center;
       margin-bottom: 1.3rem;
+      height: 8.5rem;
    }
 
    .container-foto img{
@@ -133,7 +134,7 @@ main{
 
 .h1-name{
    font-size: 2.4rem;
-   margin-top: 1rem;
+   margin-top: .7rem;
 
 }
 
@@ -154,7 +155,7 @@ main{
 }
 
    .h2-section{
-      margin-top: 1.7rem;
+      margin-top: 1.2rem;
       border-bottom: .15rem solid #555;
    }
 
@@ -164,6 +165,10 @@ main{
       width: 100%;
       display: grid;
       grid-template-columns: 1.3fr 3fr;
+      grid-template-rows: 5.2rem;
+   }
+   .table-contact{
+      grid-template-rows: 4rem;
    }
       .cell-table{
          margin: 1rem .4rem;
@@ -203,6 +208,17 @@ main{
             border-radius: 50%;
             margin-right: .5rem;
          }
+         .span-so{
+            padding-left: 1rem;
+            padding-top: 1rem;
+            font-weight: 700;
+            text-decoration: underline;
+         }
+         .span-p{
+            margin-left: .5rem;
+            font-weight: 500;
+            font-size: 1rem;
+         }
 
 
          @media print {
@@ -229,8 +245,11 @@ main{
                 width: auto; /* Asegura ajuste para impresión */
                 height: auto;
             }
-            img {
-               max-width: 300px; /* Ajusta el tamaño según tus necesidades */
-               max-height: auto;
-            }
          }
+
+
+
+
+
+
+
