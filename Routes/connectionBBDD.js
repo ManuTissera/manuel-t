@@ -1,27 +1,38 @@
+
+
 import pkg from "pg";
-
 const { Client } = pkg;
+import dotenv from 'dotenv';
 
-// Si Heroku define DATABASE_URL, usamos eso.
-// Si no, usamos tu config local.
-const connectionString =
-  process.env.DATABASE_URL ||
-  "postgres://postgres:3752Post@localhost:5432/nutri-pro";
+dotenv.config();
 
-// En Heroku necesitamos SSL, en local no.
-const ssl = process.env.DATABASE_URL ? { rejectUnauthorized: false } : false;
+const isProduction = process.env.NODE_ENV === 'production';
 
-const connection = new Client({
-  connectionString,
-  ssl,
-});
+const connectionStructure = isProduction
+   ?{
+      connectionString: process.env.DATABASE_URL, 
+      ssl: {
+  
+          rejectUnauthorized: false 
+      }
+   }
+   :{
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      port: process.env.POSTGRES_PORT,
+   }
 
-connection.connect((err) => {
-  if (err) {
-    console.error("Fail connection PostgreSQL", err);
-  } else {
-    console.log("Connection BBDD PostgreSQL");
-  }
-});
+const connection = new Client(connectionStructure);
+
+connection.connect((err)=>{
+   if(err){
+      console.error('Connection error',err.stack);
+   }else{
+      console.log(`Enviorment detected = ${process.env.NODE_ENV}`)
+      console.log('Connected to PostgreSQL');
+   }
+})
 
 export default connection;
