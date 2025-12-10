@@ -17,6 +17,8 @@ const addProfileHeight       = document.getElementById('add-profile-height');
 const addProfileWeight       = document.getElementById('add-profile-weight');
 
 
+const URL_query = window.location.origin;
+
 
 btn_add_profile.addEventListener("click",(e) => {
 
@@ -33,10 +35,11 @@ btn_add_profile.addEventListener("click",(e) => {
       console.log("Missed data")
    }else{
 
+
    
 
    const addNewProfileFn = async () => {
-   const respo = await fetch(`http://localhost:3111/patient_data/add_profile`, {
+   const respo = await fetch(`${URL_query}/patient_data/add_profile`, {
      method: 'POST',
      headers: { "Content-Type": "application/json" },
      body: JSON.stringify({

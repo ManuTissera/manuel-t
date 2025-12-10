@@ -1,4 +1,6 @@
 
+const URL_query = window.location.origin;
+
 const params = new URLSearchParams(window.location.search);
 const idPatient = params.get("id");
 console.log("idPatient:", idPatient);
@@ -6,7 +8,7 @@ console.log("idPatient:", idPatient);
 
 
 const dataPatient = async () => {
-   const response = await fetch(`http://localhost:3111/record/${idPatient}`);
+   const response = await fetch(`${URL_query}/record/${idPatient}`);
    const data = await response.json();
    return data;
 }

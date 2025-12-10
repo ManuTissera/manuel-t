@@ -1,10 +1,12 @@
 
 
+const URL_query = window.location.origin;
+
 const tbodyPatient = document.querySelector('.tbody-patient');
 
 
 const result = async () => {
-   const response = await fetch('http://localhost:3111/patient_data')
+   const response = await fetch(`${URL_query}/patient_data`)
    const data = await response.json();
    return data
  

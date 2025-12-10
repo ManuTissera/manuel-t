@@ -3,19 +3,24 @@
 // input.addEventListener("blur", () => {
 //     // el usuario dejó la celda, el valor queda insertado automáticamente
 // });
+
+
+const URL_query = window.location.origin;
+
+
 const params = new URLSearchParams(window.location.search);
 const idPatient = params.get("id");
 console.log("idPatient:", idPatient);
 
 // Traer datos de la BBDD
 const dataFetch = async () => {
-  const response = await fetch(`http://localhost:3111/worksheet/${idPatient}`);
+  const response = await fetch(`${URL_query}/worksheet/${idPatient}`);
   const data = await response.json();
   return data;
 };
 
 const insertMeasure = (idPatient, serie, variable, value) => {
-  return fetch("http://localhost:3111/measurement", {
+  return fetch(`${URL_query}/measurement`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -28,7 +33,7 @@ const insertMeasure = (idPatient, serie, variable, value) => {
 };
 
 const deleteMeasure = (idPatient, serie, variable) => {
-  return fetch(`http://localhost:3111/measurement/delete-cell`, {
+  return fetch(`${URL_query}/measurement/delete-cell`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -41,7 +46,7 @@ const deleteMeasure = (idPatient, serie, variable) => {
 };
 
 const recalcMedian = (idPatient) => {
-  return fetch(`http://localhost:3111/measurement/recalc-median`, {
+  return fetch(`${URL_query}/measurement/recalc-median`, {
     method: 'POST',
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ patient_id: idPatient })   // ← agregado
@@ -49,7 +54,7 @@ const recalcMedian = (idPatient) => {
 };
 
 const dataPatient = async () => {
-   const response = await fetch(`http://localhost:3111/record/${idPatient}`);
+   const response = await fetch(`${URL_query}/record/${idPatient}`);
    const data = await response.json();
    return data;
 }
