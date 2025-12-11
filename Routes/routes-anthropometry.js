@@ -1,24 +1,21 @@
-
-
 import express from "express";
-import connection from "./connectionBBDD.js"
+import connection from "./connectionBBDD.js";
 
 const routerApp = express.Router();
 
-
 const allowedColumns = [
-  "pes_bru","ta_cor","humeral","femoral","br_rel","br_fle",
-  "cintura","cadera","pant_per","triceps","sub_esc","cre_ili","biceps",
-  "sup_esp","abdominal","mus_med","pant_plie",
-  "peso_kg","talla","mediana"
+  "pes_bru", "ta_cor", "humeral", "femoral", "br_rel", "br_fle",
+  "cintura", "cadera", "pant_per", "triceps", "sub_esc", "cre_ili", "biceps",
+  "sup_esp", "abdominal", "mus_med", "pant_plie",
+  "peso_kg", "talla", "mediana"
 ];
 
 const measurementColumns = [
-  "pes_bru","ta_cor","humeral","femoral","br_rel","br_fle",
-  "cintura","cadera","pant_per","triceps","sub_esc","cre_ili","biceps",
-  "sup_esp","abdominal","mus_med","pant_plie","peso_kg","talla"
+  "pes_bru", "ta_cor", "humeral", "femoral", "br_rel", "br_fle",
+  "cintura", "cadera", "pant_per", "triceps", "sub_esc", "cre_ili", "biceps",
+  "sup_esp", "abdominal", "mus_med", "pant_plie",
+  "peso_kg", "talla"
 ];
-
 
 // helper para calcular mediana de un array numérico
 function calcMedian(values) {
@@ -39,117 +36,154 @@ function calcMedian(values) {
   }
 }
 
+// ====================== WORKSHEET ======================
 
-
-routerApp.get('/worksheet/:guid', async (req, res) => {
+routerApp.get("/worksheet/:guid", async (req, res) => {
   const { guid } = req.params;
 
   try {
     const query = `
       SELECT *
       FROM measurements_ant
-      WHERE patient_id_ant = $1
+      WHERE patient_id = $1
       ORDER BY series;
     `;
     const result = await connection.query(query, [guid]);
     res.json(result.rows);
   } catch (err) {
     console.error(err);
-    res.status(500).send('Error fetching measurements_ant');
+    res.status(500).send("Error fetching measurements_ant");
   }
 });
 
-// VIEW DATA patient_data
-routerApp.get('/patient_data', async (req,res) => {
+// ====================== PATIENT DATA (LIST) ======================
 
-   try{
-      const query = `SELECT * FROM patient_data ORDER BY id DESC;`;
-      const result = await connection.query(query);
-      res.send(result.rows)
-   }catch(err){
-      console.error(err);
-   }
+routerApp.get("/patient_data", async (req, res) => {
+  try {
+    const query = `SELECT * FROM patient_data_ant ORDER BY id DESC;`;
+    const result = await connection.query(query);
+    res.send(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching patient_data_ant");
+  }
+});
 
-})
+// ====================== ADD PROFILE ======================
 
-// ADD - PROFILE patient_data
-routerApp.post('/patient_data/add_profile', async (req,res) => {
+routerApp.post("/patient_data/add_profile", async (req, res) => {
+  const {
+    first_name,
+    last_name,
+    age,
+    height,
+    weight,
+    birth_date,
+    gender,
+    category,
+    plan,
+    email,
+    phone,
+    address,
+    nationalId
+  } = req.body;
 
-    const { first_name,last_name,age,height,weight,birth_date,gender
-      ,category,plan,email,phone,address,nationalId } = req.body;
-
-  try{
-
+  try {
     const required = [
-      first_name, last_name, gender, birth_date,
-      nationalId, height, weight
+      first_name,
+      last_name,
+      gender,
+      birth_date,
+      nationalId,
+      height,
+      weight
     ];
 
-    if(required.some(v => !v || v === "")){
-      return res.status(400).json({ ok: false, error : "Missing required fields" })
+    if (required.some(v => !v || v === "")) {
+      return res
+        .status(400)
+        .json({ ok: false, error: "Missing required fields" });
     }
 
-    const checkQuery = `SELECT * FROM patient_data WHERE nationalId = '${nationalId}';`;
-    const checkResult = await connection.query(checkQuery);
-    //res.send(checkResult.rowCount);
+    const checkQuery = `
+      SELECT 1
+      FROM patient_data_ant
+      WHERE nationalId = $1;
+    `;
+    const checkResult = await connection.query(checkQuery, [nationalId]);
 
-    if(checkResult.rowCount > 0){
-      return res.status(409).json( { ok: false, error: 'Profile already exists'} )
+    if (checkResult.rowCount > 0) {
+      return res
+        .status(409)
+        .json({ ok: false, error: "Profile already exists" });
     }
 
     const query = `
-    
-    WITH new_patient AS (
-      INSERT INTO patient_data (
-        first_name, last_name, age, height, weight,
-        birth_date, admission_date, gender, category,
-        plan, email, phone, address, nationalId
+      WITH new_patient AS (
+        INSERT INTO patient_data_ant (
+          first_name, last_name, age, height, weight,
+          birth_date, admission_date, gender, category,
+          plan, email, phone, address, nationalId
+        )
+        VALUES (
+          $1, $2, $3, $4, $5,
+          $6, CURRENT_DATE, $7,
+          $8, $9, $10, $11, $12, $13
+        )
+        RETURNING id
       )
-      VALUES (
-        $1, $2, $3, $4, $5,
-        $6, CURRENT_DATE, $7,
-        $8, $9, $10, $11, $12, $13
-      )
-      RETURNING id
-    )
-
-    INSERT INTO measurements_ant (patient_id, series, measurement_date)
-    SELECT id, series_num, CURRENT_DATE
-    FROM new_patient,
-    LATERAL (VALUES (1), (2), (3), (4), (5), (6)) AS s(series_num);
+      INSERT INTO measurements_ant (patient_id, series, measurement_date)
+      SELECT id, series_num, CURRENT_DATE
+      FROM new_patient,
+      LATERAL (VALUES (1), (2), (3), (4), (5), (6)) AS s(series_num);
     `;
 
-    const values = [first_name,last_name,age,height,weight,birth_date,gender
-      ,category,plan,email,phone,address,nationalId]
-    await connection.query(query,values)
-    return res.send({ ok:true })
+    const values = [
+      first_name,
+      last_name,
+      age,
+      height,
+      weight,
+      birth_date,
+      gender,
+      category,
+      plan,
+      email,
+      phone,
+      address,
+      nationalId
+    ];
 
-  }catch(err){
+    await connection.query(query, values);
+    return res.send({ ok: true });
+  } catch (err) {
     console.error(err);
-    return res.status(500).send('Error saving patient_data')
+    return res.status(500).send("Error saving patient_data_ant");
   }
-})
+});
 
-// data PATIENT in RECORD PAGE
-routerApp.get(`/record/:guid`, async (req,res) => {
-   const { guid } = req.params;
+// ====================== RECORD PAGE (ONE PATIENT) ======================
 
-   try{
-      const query = `SELECT * FROM patient_data WHERE id = ${guid};`;
-      const result = await connection.query(query);
-      res.send(result.rows[0])
-   }catch(err){
-      console.error(err);
-   }
-})
+routerApp.get("/record/:guid", async (req, res) => {
+  const { guid } = req.params;
 
-// "INSERT AND UPDATE measurement"
-routerApp.post('/measurement', async (req, res) => {
+  try {
+    const query = `SELECT * FROM patient_data_ant WHERE id = $1;`;
+    const result = await connection.query(query, [guid]);
+    res.send(result.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching patient_data_ant");
+  }
+});
+
+// ====================== INSERT / UPDATE MEASUREMENT ======================
+
+routerApp.post("/measurement", async (req, res) => {
   const { patient_id, series, variable, value } = req.body;
 
   try {
-    // Lista de columnas permitidas (muy importante)
-
+    // columnas permitidas
     if (!allowedColumns.includes(variable)) {
       return res.status(400).json({ error: "Invalid column name" });
     }
@@ -167,21 +201,18 @@ routerApp.post('/measurement', async (req, res) => {
     await connection.query(query, values);
 
     res.json({ ok: true });
-
   } catch (err) {
     console.error(err);
-    res.status(500).send('Error saving measurement');
+    res.status(500).send("Error saving measurement");
   }
 });
 
-// "DELETE FROM measurement"
-routerApp.post('/measurement/delete-cell', async (req, res) => {
+// ====================== DELETE CELL (SET NULL) ======================
+
+routerApp.post("/measurement/delete-cell", async (req, res) => {
   const { patient_id, series, variable } = req.body;
 
   try {
-    // columnas permitidas
-
-
     if (!allowedColumns.includes(variable)) {
       return res.status(400).json({ error: "Invalid column name" });
     }
@@ -189,7 +220,7 @@ routerApp.post('/measurement/delete-cell', async (req, res) => {
     const query = `
       UPDATE measurements_ant
       SET ${variable} = NULL
-      WHERE patient_id_ant = $1
+      WHERE patient_id = $1
         AND series = $2;
     `;
 
@@ -199,25 +230,25 @@ routerApp.post('/measurement/delete-cell', async (req, res) => {
     res.json({ ok: true });
   } catch (err) {
     console.error(err);
-    res.status(500).send('Error deleting cell');
+    res.status(500).send("Error deleting cell");
   }
 });
 
+// ====================== RECALC MEDIAN (series = 6) ======================
 
-// RECALC MEDIANA (fila series = 6)
-routerApp.post('/measurement/recalc-median', async (req, res) => {
+routerApp.post("/measurement/recalc-median", async (req, res) => {
   const { patient_id } = req.body;
 
   if (!patient_id) {
-    return res.status(400).json({ error: 'patient_id required' });
+    return res.status(400).json({ error: "patient_id required" });
   }
 
   try {
     // 1) obtener TODAS las series del paciente excepto serie 6 (mediana)
     const selectQuery = `
-      SELECT series, ${measurementColumns.join(', ')}
+      SELECT series, ${measurementColumns.join(", ")}
       FROM measurements_ant
-      WHERE patient_id_ant = $1 AND series <> 6
+      WHERE patient_id = $1 AND series <> 6
       ORDER BY series;
     `;
 
@@ -241,9 +272,9 @@ routerApp.post('/measurement/recalc-median', async (req, res) => {
 
     const values = [
       patient_id,
-      6,                        // serie mediana
+      6, // serie mediana
       ...measurementColumns.map(col => medians[col]),
-      new Date()               // measurement_date
+      new Date() // measurement_date
     ];
 
     const updateSet = [
@@ -252,7 +283,7 @@ routerApp.post('/measurement/recalc-median', async (req, res) => {
     ].join(", ");
 
     const upsertQuery = `
-      INSERT INTO measurements_ant (${insertColumns.join(', ')})
+      INSERT INTO measurements_ant (${insertColumns.join(", ")})
       VALUES (${placeholders})
       ON CONFLICT (patient_id, series)
       DO UPDATE SET ${updateSet};
@@ -261,22 +292,10 @@ routerApp.post('/measurement/recalc-median', async (req, res) => {
     await connection.query(upsertQuery, values);
 
     res.json({ ok: true, medians });
-
   } catch (err) {
     console.error(err);
-    res.status(500).send('Error recalculating medians');
+    res.status(500).send("Error recalculating medians");
   }
 });
 
-
-
-
-
 export default routerApp;
-
-
-
-
-
-
-
