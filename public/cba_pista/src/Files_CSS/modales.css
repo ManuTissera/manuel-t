@@ -1,0 +1,284 @@
+
+
+
+
+/* Overlay */
+.modal-overlay {
+
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal */
+.container-modal {
+  font-optical-sizing: auto;
+  font-family: "Inter", sans-serif;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-style: normal;
+  background: #fff;
+  width: min-content;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  position: relative;
+}
+
+.container-modal h2{
+  text-align: center;
+  margin-top: 10px;
+}
+
+.container-modal-load{
+  padding: 16px 25px;
+}
+
+/* Header Modal */
+
+.modal-header{
+   height:70px;
+   display: flex;
+   justify-content: center;
+}
+
+.modal-header img{
+   width: 50px;
+   height: 50px;
+}
+
+
+/* Text */
+.container-modal-delete h4 {
+  margin: 0 0 8px;
+  text-align: center;
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+  font-size: 20px;
+
+}
+
+.container-modal-delete p {
+  margin: 0 0 16px;
+  margin: 0px;
+  color: #555;
+}
+
+.container-modal-download input {
+  width: 100%;
+  background-color: inherit;
+  color: #333;
+  border: none;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #333;
+}
+
+.container-modal-download input:focus{
+  outline: none;
+}
+
+.list-elements-delete p{
+   margin: 0px;
+   margin-left: 20px;
+   font-size: 12px;
+}
+
+/* Buttons */
+.conteiner-modal-delete-btn,
+.conteiner-modal-download-btn {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.conteiner-modal-delete-btn button,
+.conteiner-modal-download-btn button {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  color: #333;
+  cursor: pointer;
+}
+
+.conteiner-modal-delete-btn button:first-child {
+  background: #e55353;
+  border-color: #e55353;
+  color: #fff;
+}
+
+.conteiner-modal-download-btn button:first-child {
+  color: #fff;
+  background-color: var(--btn-two);
+}
+
+
+
+/* Modal Nuevo */
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #777;
+}
+
+.modal-text {
+  margin: 0 0 18px;
+  color: #555;
+  line-height: 1.4;
+}
+
+.modal-warning {
+  display: flex;
+  gap: 12px;
+  background: #fde8dc;
+  border-radius: 2px;
+  padding: 14px;
+  min-width: 440px;
+  margin-bottom: 20px;
+  border-left: 5px solid #fe603d;
+  color: #a64000;
+}
+
+.warning-icon {
+  width: 32px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ff8c42;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-warning p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* .btn {
+  padding: 10px 18px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+} */
+
+.btn-cancel {
+  background: #6b7f93;
+  color: #fff;
+}
+
+.btn-delete {
+  background: #e53935;
+  color: #fff;
+}
+
+
+/* ---------------------------------------------------------------*/
+/* MODAL SUCCESS
+/* ---------------------------------------------------------------*/
+
+
+/* CONTENEDOR MODAL */
+.modal-success {
+  width: 420px;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* BOTÓN CERRAR ARRIBA */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #ffffffcc;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* BLOQUE SUPERIOR VERDE */
+.modal-success-top {
+  background: var(--succes-green);
+  padding: 42px 0 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-success-icon {
+  width: 72px;
+  height: 72px;
+}
+
+/* CUERPO */
+.modal-success-body {
+  padding: 26px 22px 30px;
+  text-align: center;
+}
+
+.modal-success-title {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #3b4754;
+}
+
+.modal-success-text {
+  margin: 0 0 20px;
+  font-size: 14px;
+  color: #6b7785;
+}
+
+/* BOTÓN CLOSE */
+.modal-success-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 20px;
+  border: none;
+  background: #e36b6b;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.modal-success-btn:hover {
+  background: #d85c5c;
+}
+
+.modal-success-btn-x {
+  font-size: 16px;
+  line-height: 1;
+}
+
+
+
+
+
+
+
+
+
+

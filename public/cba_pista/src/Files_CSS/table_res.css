@@ -1,0 +1,74 @@
+
+/* ===== TABLE BASE ===== */
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+/* ===== SCROLL (wrapper, NO tbody) ===== */
+.table-scroll {
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+/* ===== COLUMN VISIBILITY ===== */
+.ms-none {
+  display: none;
+}
+
+/* ===== CHECK COLUMN ===== */
+th.ms-td-check,
+td.ms-td-check {
+  width: 30px;
+  min-width: 30px;
+  text-align: center;
+}
+
+.ms-td-check input {
+  margin: 0;
+}
+
+/* ===== FECHA COLUMN ===== */
+th.col-fecha,
+td.col-fecha {
+  width: 10%;
+  min-width: 20px;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+td.col-fecha * {
+  min-width: 0;
+}
+
+/* ===== TIRES ===== */
+td.td-tire {
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ===== GENERAL CELLS ===== */
+th,
+td {
+  padding: 8px 10px;
+  overflow: hidden;
+}
+
+td:nth-child(2),
+th:nth-child(2) {
+   width: 50px;
+   white-space: nowrap;
+
+}
+
+.th-tire,
+.td-tire {
+  width: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+

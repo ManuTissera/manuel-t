@@ -1,0 +1,236 @@
+/* styles.css */
+:root{
+  --bg: #dddd;
+  --bg-grey: #f4f5f9;
+  --bg-negro: #3d3d3d;
+  --bg-ligth-blck: #3d3d3d;
+  --card: #121a27;
+  --text-light: #fff;
+  --text: #333;
+  --text-input: #fff;
+  --muted: #a7b4cc;
+  --border: rgba(255,255,255,.10);
+  --focus: rgba(93, 164, 255, .45);
+  --btn: #2f7dff;
+  --btn-hover: #2566d4;
+  --btn-two: #2e6bc4;
+  --succes-green: #42c59a;
+  --color-red-1: #7f1d1d;
+  --error-red: #460809;
+}
+
+*{
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: "Inter", sans-serif;
+}
+
+
+body{
+  margin: 0;
+  font-family: 'Baloo 2', cursive;
+  background: radial-gradient(1200px 600px at 20% 10%, rgba(47,125,255,.18), transparent 60%),
+              var(--bg);
+  background-color: #ddd;
+  color: var(--text);
+}
+
+h1{
+  margin: 20px 0px;
+}
+
+
+
+.page{
+  min-height: 50vh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.header-card-form-records{  
+  background-color: var(--bg-1);
+  display: flex;
+  /* flex-direction: */
+  align-items: center;  
+  width: min(900px, 100%);
+  padding: 5px 20px;
+  padding: 0px 20px;
+  margin-top: 7px;
+}
+
+.title{
+  width: min(900px, 100%);
+  margin: 0 0 16px 0;
+  margin: 0px;
+  font-size: 45px;
+  text-align: left;
+  color: #fff;
+  letter-spacing: .2px;
+}
+
+.layout{
+  padding-right: 280px; /* igual a --sidebar-w */
+}
+
+
+
+.card{
+  width: min(900px, 100%);
+  background: rgba(18, 26, 39, .88);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 12px;
+}
+
+.nav-filter{
+  display: flex;
+  gap: 12px;
+  border: 5px solid #333;
+  border-radius: 6px;
+  margin: 10px;
+  padding: 5px;
+}
+
+.field{
+  display: grid;
+  gap: 6px;
+}
+
+.field--full{
+  grid-column: 1 / -1;
+}
+
+.label,
+.span-records_form{
+  font-size: 12px;
+  color: var(--muted);
+}
+
+
+
+.label-NS{
+  color: var(--text);
+  font-size: 16px;
+}
+
+.label-select{
+  display: flex;
+  gap: 10px;
+  margin: 0px 0px;
+  align-items: center;
+  padding: 0px 12px;
+  cursor: pointer;
+}
+
+/* .label-select select{
+  border-radius: 3px;
+  padding: 5px;
+  cursor: pointer;
+} */
+
+.input,
+.select-records_form{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #0003;
+  color: var(--text-input);
+  outline: none;
+}
+
+.input::placeholder{
+  color: rgba(167, 180, 204, .6);
+}
+
+.input:focus{
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px rgba(93, 164, 255, .15);
+}
+
+.input[readonly] {
+  background-color: #63555533;
+  color: #ddd;
+  cursor: not-allowed;
+}
+
+.input-N{
+  background-color: #262b34;
+
+}
+
+.input-N::placeholder{
+  color: #fff6;
+}
+
+
+.container-number-wheels{
+  display: grid;
+  gap: 10px;
+  grid-column: 1 / -1;
+}
+
+
+
+
+.field-N{
+  width: 100%;      /* clave: que el item ocupe su celda */
+  margin: 0;        /* el espacio ya lo maneja gap */
+}
+
+
+.input-N{
+  width: 100%;      /* para que el input se estire */
+  box-sizing: border-box;
+}
+
+.actions{
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+
+@media (max-width: 600px){
+  .grid{ grid-template-columns: 1fr; }
+  .title{ font-size: 24px; }
+  .page{padding: 0px}
+}
+
+/* Pantallas chicas → 2 columnas */
+@media (max-width: 899px){
+  .container-number-wheels{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .actions{
+    justify-content: center;
+  }
+}
+
+/* Pantallas medianas y grandes → 3 columnas */
+@media (min-width: 900px){
+  .container-number-wheels{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+@media (max-width: 640px){
+  .layout{
+    padding-right: 0; /* en mobile normalmente cubre encima */
+  }
+}
+
+
+

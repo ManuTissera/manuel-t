@@ -1,0 +1,80 @@
+
+
+
+
+
+
+table {
+  width: 100%;
+  /* margin-top: 12px; */
+  border-collapse: collapse;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  border-top: 25px solid #0099d8;
+}
+
+/* .contaienr-table-records{
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.contaienr-table-records table{
+  min-width: 1100px;
+} */
+
+thead th {
+  background-color: #f7f7f7;
+  color: #333;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 10px 8px;
+  border: 1px solid #cfcfcf;
+  text-align: center;
+}
+
+tbody td {
+  color: #333;
+  padding: 8px 10px;
+  border: 1px solid #cfcfcf;
+  text-align: center;
+  cursor: pointer;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+tbody tr:hover {
+  background-color: #f0f6fb;
+}
+
+/* Header azul tipo “PLAY OFF TC4000” */
+.table-title {
+  background-color: #0099d8;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  padding: 14px;
+  margin-bottom: 0;
+}
+
+/* Ajustes de columnas comunes */
+td:nth-child(3) {
+  text-align: left; /* Piloto */
+}
+
+td:nth-child(4),
+td:nth-child(5) {
+  text-align: center;
+}
+/* 
+td:last-child {
+  font-weight: 600;
+} */
+
+.table-body-scroll{
+   max-height: 400px;
+   overflow-y: auto;
+  max-height: calc(100vh - 260px); /* ajustá según tu toolbar */
+  overflow-y: auto;
+}

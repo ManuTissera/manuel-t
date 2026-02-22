@@ -52,7 +52,7 @@ dataFetch().then(res => {
       </section>
 
       <nav class="patient-subnav">
-        <a href="./worksheet.html?id=${id}" class="subnav-item subnav-active">WorkSheet#</a>
+        <a href="./worksheet.html?id=${id}" class="subnav-item subnav-active">WorkSheet</a>
         <a href="./ideal-weight.html?id=${id}" class="subnav-item">Ideal Weight</a>
         <a href="./report.html?id=${id}" class="subnav-item">Report</a>
       </nav>
