@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html len="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <link rel="stylesheet" type="text/css" href="../Files_CSS/economic_calendar.css">
+    <link rel="stylesheet" href="../Files_CSS/normalize.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400..800&display=swap" rel="stylesheet">
+    
+    <title>Economic Calendar</title>
+</head>
+<body>
+
+    <div class="spinner-background">
+        <div class="spinner-one"></div>
+    </div>
+    <div class="bakground_opacity"></div>
+    <header class="container_header header_economic_calendar">
+        <h1 class="h1_economic_calendar">ND</h1>
+        <h2 class="h2_economic_calendar">Calendario Económico</h2>
+        <section class="section_header">
+            <section class="section_header_menu">
+                <a class="link_header" href="../inicio.html">Inicio</a>
+                <a class="link_header" href="./names_news.html">Títulos</a>
+            </section>
+            <div class="asset_user">MT</div>
+        </section>
+    </header>
+
+    <form class="container_form_ec" onsubmit="return false">
+        <div class="div_header_form">
+            <p class="header_form_p">Agregar Noticia</p>
+        </div>
+        <div class="div_body_form">
+            <p class="body_form_p">Fecha</p>
+            <input type="date" class="inp_form_date">
+            <p class="body_form_p">Hora</p>
+            <select name="select_form_hour" class="select_form_hour">
+                <option value="14:30" class="option_form_hour">14:30</option>
+                <option value="15:30" class="option_form_hour">15:30</option>
+            </select>
+            <p class="body_form_p">Titulo</p>
+            <select name="" id="" class="select_form_title">
+                <option value="" class="option_form_name">Seleccionar Titulo</option>
+            
+            </select>
+            <p class="body_form_p">Actual</p>
+            <input type="text" class="inp_form_actual">
+            <p class="body_form_p">Esperado</p>
+            <input type="text" class="inp_form_expected">
+            <p class="body_form_p">Anterior</p>
+            <input type="text" class="inp_form_previous">
+        </div>
+        <button class="btn_form_add_cancel">Cancelar</button>
+        <button class="btn_form_add">Agregar</button>
+    </form>
+
+    <div class="container_table_economic_calendar">
+        <section class="section_table_ec">
+            <p class="section_ec_p">Calendario Economico </p>
+            <button class="btn_add_new_ec">
+                <p class="p_btn_add_new_ec">Agregar Noticia</p>
+                <img class="img_btn_add_new_ec" src="../Assets/playlist_add.svg" alt="">
+            </button>
+            <article class="section_ec_article">
+                <!-- <img src="../Assets/download_0.svg" alt=""></img> -->
+                <img class="btn_filter" src="../Assets/filter_0.svg" alt=""></img>
+                <!-- <img src="../Assets/list_0.svg" alt=""></img> -->
+            </article>
+        </section>
+
+        <artcile class="article_filter_table">
+            <section class="cont_select_filter_date">
+                <p class="btn_filter_close">X</p>
+                <p class="section_filter_p">Fecha</p>
+                <p><small class="select_filter_small">Desde</small></p>
+                <select name="" id="" class="select_filter filter_day_from">
+                    <option value="--">--</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                </select>
+                <select name="" id="" class="select_filter filter_month_from">
+                    <option value="--">--</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                <select name="" id="" class="select_filter filter_year_from">
+                    <option value="----">----</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
+                </select>
+                <p><small class="select_filter_small">Hasta</small></p>
+                <select name="" id="" class="select_filter filter_day_to">
+                    <option value="--">--</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                </select>
+                <select name="" id="" class="select_filter filter_month_to">
+                    <option value="--">--</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+                <select name="" id="" class="select_filter filter_year_to">
+                    <option value="----">----</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                    <option value="2014">2014</option>
+                    <option value="2013">2013</option>
+                    <option value="2012">2012</option>
+                    <option value="2011">2011</option>
+                    <option value="2010">2010</option>
+                </select>
+                <p class="filter_error_p">Busqueda Incorrecta</p>
+            </section>
+            </section>
+            <section class="cont_button_filter_value">
+                <p class="section_filter_p">Valor</p>
+                <div tabindex="0" class="button_filter" > * </div>
+                <div tabindex="0" class="button_filter" > **</div>
+                <div tabindex="0" class="button_filter" >***</div>
+            </section>
+            <section class="tfoot_article_filter">
+                <button class="btn_apply_filter">Aplicar</button>
+            </section>
+        </artcile>
+
+        <section class="container_table_economic_calendar_header">
+            <div class="header_ec_date">Fecha</div>
+            <div class="header_ec_name">Titulo</div>
+            <div class="header_ec_import">Valor</div>
+            <div class="header_ec_actual">Actual</div>
+            <div class="header_ec_expected">Esperado</div>
+            <div class="header_ec_previous">Previo</div>
+            <div class="header_ec_site">Tabla</div>
+            <div class="header_ec_site">Web</div>
+        </section>
+        
+        <ul class="container_content_table_economic_calenda">
+            
+        </ul>
+        <section class="section_foot_table">
+            <p class="section_foot_p">Rows per page</p>
+            <select name="foot_select" id="" class="section_foot_select">
+                <option value="25" class="option_select_foot">25</option>
+                <option value="50" class="option_select_foot">50</option>
+                <option value="100" class="option_select_foot">100</option>
+            </select>
+            <article class="section_foot_article_data">
+                <p class="section_foot_p">1-10 of 10</p>
+            </article>
+            <article class="section_foot_article">
+                <input class="check-foot" type="radio" name="choise_page" id="first_page" value="first_page">
+                <img class="arrow_foot" src="../Assets/first_last_page.svg" alt="first_page">
+                <input class="check-foot" type="radio" name="choise_page" id="previous_page" value="previous_page">
+                <img class="arrow_foot" src="../Assets/chevron.svg" alt="previous_page">
+                <input class="check-foot" type="radio" name="choise_page" id="next_page" value="next_page">
+                <img class="arrow_foot" src="../Assets/chevron.svg" alt="next_page">
+                <input class="check-foot" type="radio" name="choise_page" id="last_page" value="last_page">
+                <img class="arrow_foot" src="../Assets/first_last_page.svg" alt="last_page">
+            </article>
+        </section>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <script src="../Files_JS/economic_data.js"></script>
+</body>
+</html>
