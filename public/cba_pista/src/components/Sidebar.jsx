@@ -27,7 +27,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         </div>
 
         <nav className="sidebar-nav">
-          <Link to="/" onClick={onClose}>Inicio</Link>
+          <Link to="/home" onClick={onClose}>Inicio</Link>
           <Link to="/pilots" onClick={onClose}>Pilotos</Link>
           <Link to="/new_record" onClick={onClose}>Asignaciones</Link>
           <Link to="/records_tires" onClick={onClose}>Registros</Link>

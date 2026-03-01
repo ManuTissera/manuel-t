@@ -73,15 +73,13 @@ export default function App() {
 
 
       {/* CON Header */}      
-      <Route path="/" element={<HomePage />} />
+      <Route path="/home" element={<HomePage />} />
       <Route path="/pilots" element={<PilotsTable />} />
       <Route path="/new_admin" element={<CreateNewAdmin/>} />
       <Route path="/records_table" element={<RecordTabel />} />
       <Route path="/add_pilot" element={<AddPilotsElement />} />
       <Route path="/records_tires" element={<MobileTable />} />
       <Route path="/new_record" element={<NewRecordForm />} />
-      {/* si querés usar RecordsTires en alguna ruta, agregala acá */}
-      {/* <Route path="/records" element={<RecordsTires />} /> */}
     
     </Routes>
 
