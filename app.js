@@ -4,6 +4,7 @@ import express from "express";
 import routerRequest from "./Routes/routes.js";
 import routerApp from "./Routes/routes-anthropometry.js";
 import requestRouterData from "./Routes/routes-news-data.js";
+import requestRouterCbaPista from "./Routes/routes-cba_pista.js";
 import connection from "./Routes/connectionBBDD.js";
 import cors from "cors";
 import path from "path";
@@ -26,6 +27,7 @@ expressApp.use(cors());
    API ROUTES
 ========================= */
 
+expressApp.use("/", requestRouterCbaPista);
 expressApp.use("/", requestRouterData);
 expressApp.use("/", routerRequest);
 expressApp.use("/", routerApp);
