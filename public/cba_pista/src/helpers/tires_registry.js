@@ -16,7 +16,7 @@ export const getRecordsTires = async (idPilot, idEvent, numTire) => {
     String(idEvent).trim() !== "";
 
   // OJO: poné el endpoint correcto
-  const url = new URL("http://localhost:8181/tires_registry");
+  const url = new URL("/tires_registry", window.location.origin);
 
   // 1) Si hay tire_param, no mandamos nada más
   if (hasNumTire) {
@@ -38,7 +38,7 @@ export const getRecordsTires = async (idPilot, idEvent, numTire) => {
   export const deleteRecordTires = async (arrIds) => {
   console.log(arrIds,'<- Front')
   const response = await fetch(
-    'http://localhost:8181/delete_register_tire',
+    '/delete_register_tire',
     {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },

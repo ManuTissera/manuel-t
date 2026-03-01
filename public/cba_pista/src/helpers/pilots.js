@@ -1,7 +1,6 @@
 
-
 export const getPilotsNum = async (category = "") => {
-  const url = new URL("http://localhost:8181/view_num_pilots");
+  const url = new URL("/view_num_pilots", window.location.origin);
   if (category) url.searchParams.set("category", category);
 
   const response = await fetch(url);
@@ -23,7 +22,7 @@ export const getPilots = async ({
   // });
   
 
-  const url = new URL("http://localhost:8181/view_pilots");
+  const url = new URL("/view_pilots", window.location.origin);
 
   if (category && category.trim() !== "") {
     url.searchParams.set("category", category.trim());
@@ -38,7 +37,7 @@ export const getPilots = async ({
   }
 
   if (surname && surname.trim() !== "") {
-    url.searchParams.set("surname", surname.trim());
+   url.searchParams.set("surname", surname.trim());
   }
 
   //  console.log('getPilots params:', { category, id_pilot, name_pilot, surname });
@@ -51,25 +50,25 @@ export const getPilots = async ({
 
 export const getCategories = async () => {
 
-   const url = new URL(`http://localhost:8181/category`)
-   const response = await fetch(url)
-   return  response.json()
+   const url = new URL("/category", window.location.origin);
+   const response = await fetch(url);
+   return  response.json();
 }
 
 export const getEvent = async () => {
-     const response = await fetch(`http://localhost:8181/circuits_calendar`)
-      return response.json() 
+     const response = await fetch(`/circuits_calendar`);
+      return response.json(); 
 
 }
 
 export const getUsersPilots = async () => {
-  const response = await fetch(`http://localhost:8181/users_pista`)
-  return response.json()
+  const response = await fetch(`/users_pista`);
+  return response.json();
 }
 
 export const infoPilot = async (category, numPilot) => {
 
-  const url = new URL(`http://localhost:8181/info_pilot`)
+  const url = new URL("/info_pilot", window.location.origin);
 
   url.searchParams.set("category",category);
   url.searchParams.set("num_pilot",Number(numPilot));
@@ -82,7 +81,7 @@ export const infoPilot = async (category, numPilot) => {
 export const deletePilot = async (id) => {
 
   const response = await fetch(
-    "http://localhost:8181/delete_pilot",
+    "/delete_pilot",
     {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },

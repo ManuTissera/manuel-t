@@ -1,7 +1,8 @@
 export const addNewRecord = async (payload) => {
 
    console.log('Ejecutado el POST')
-   const url = new URL('http://localhost:8181/add_register_tire')
+
+   const url = new URL('/add_register_tire', window.location.origin)
 
    const res = await fetch(url, {
      method: 'POST',
@@ -16,7 +17,7 @@ export const addNewRecord = async (payload) => {
 // add_info.js
 export const addNewPilot = async (payload) => {
 
-  const url = new URL("http://localhost:8181/add_new_pilot");
+  const url = new URL('/add_new_pilot', window.location.origin)
 
   const res = await fetch(url, {
     method: "POST",
@@ -38,8 +39,3 @@ export const addNewPilot = async (payload) => {
     data
   };
 };
-
-
-
-
-
