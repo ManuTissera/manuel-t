@@ -23,7 +23,7 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/cba_pista">
       <App />
     </BrowserRouter>
   </StrictMode>
