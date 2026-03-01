@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { getPilots, deletePilot } from "../helpers/pilots.js";
 
-import SelectSarchCategory from "../components/searchCategoryPilot.jsx";
+import SelectSarchCategory from "../components/SearchCategoryPilot.jsx";
 import SelectPilots from "../components/SelectPilots.jsx";
 import ModalDeleteRecord from "../components/ModalDeleteRecord.jsx";
 
