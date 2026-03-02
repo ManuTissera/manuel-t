@@ -150,12 +150,13 @@ main{
    }
 
 .section-main{
-   margin-top: 2rem;
+   margin-top: 1.5rem;
    font-size: .8rem;
 }
 
    .h2-section{
       margin-top: 1.2rem;
+      margin-top: 1rem;
       border-bottom: .15rem solid #555;
    }
 
@@ -171,7 +172,7 @@ main{
       grid-template-rows: 4rem;
    }
       .cell-table{
-         margin: 1rem .4rem;
+         margin: .6rem .2rem;
       }  
          .p-cell-table:nth-child(3){
             font-weight: 700;

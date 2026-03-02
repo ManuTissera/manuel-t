@@ -12,6 +12,7 @@
 
 
 body {
+   position: relative;
    box-sizing: border-box;
    margin: 0;
    padding: 0;
@@ -141,7 +142,8 @@ body {
    /* border: .1rem solid #fff; */
 }
    .page-1,
-   .page-2{
+   .page-2,
+   .btn-s{
       text-decoration: none;
       color: #fff;
       font-family: "Ysabeau", sans-serif;
@@ -167,6 +169,62 @@ body {
 
       font-size: 1.5rem;
    }
+   
+   .btn-s{
+      display: none;
+   }
+
+.modal_cvs{
+   display: flex;
+   flex-direction: column;
+   gap: .6rem;
+   position: fixed;
+   position: absolute;
+   right: 10px;
+   z-index: 1001;
+   padding: 1rem;
+
+   background: rgba(255, 255, 255, 0.35);
+   backdrop-filter: blur(6px);
+
+   border: 1px solid rgba(0,0,0,0.15);
+   border-radius: .6rem;
+   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.btn-modal-cv{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   height: 2.6rem;
+   padding: 0.3rem 1.5rem;
+
+   text-decoration: none;
+   white-space: nowrap;
+
+   background-color: #0f4c5cdf;   /* azul mar */
+   background-color: #51abbd;   /* azul mar 2*/
+   background-color: #396b8adf;   /* azul mar 2*/
+   color: #ffffff;
+
+   border-radius: .4rem;
+   font-weight: 500;
+   transition: background-color .2s ease, transform .15s ease;
+}
+
+.btn-modal-cv:hover{
+   background-color: #136f82;
+   transform: translateY(-1px);
+}
+
+.overly-modal-cvs{
+   position: fixed;
+   inset: 0;
+   background: rgba(0,0,0,.4);
+   z-index: 1000;
+}
+
 
 @media screen and (max-width:500px){
 
@@ -179,7 +237,10 @@ body {
    ;
    } */
 
+
+   
    .page-1{
       margin-bottom: 0rem; 
    }
+
 }

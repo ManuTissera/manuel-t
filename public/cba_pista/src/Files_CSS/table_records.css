@@ -25,9 +25,11 @@
 }
 
 .table-wrap{
+  border: 2px solid red;
   border: 2px solid var(--bg-grey-1);
   position: relative;
   width: 95vw;           /* para probar */
+  width: 100vw;           /* para probar */
   height: calc(100% - 770px);
   height: calc(100vh - 278px);
   /* border: 2px solid red; */
@@ -42,7 +44,9 @@
     width: 95vw;
     width: 100%;       /* se estira con el wrapper */
     width: min-content;       /* se estira con el wrapper */
-  min-width: 900px;  /* límite: antes de esto aparece scroll */
+  min-width: 400px;  /* límite: antes de esto aparece scroll */
+  min-width: 100%;  /* límite: antes de esto aparece scroll */
+  
 }
 
 /* TOOLBAR */
@@ -362,6 +366,10 @@
 
 @media (max-width: 600px){
 
+  .table-rec{
+    padding: 0px;
+  }
+
   .contaienr-table-records{
     height: calc(100vh - 86px);
   }
@@ -422,15 +430,15 @@
 
 /* si ocultás columnas, ajustá el grid para que no queden “huecos” */
 @media (max-width: 900px){
-  .ms-none{ display: none; }
+  /* .ms-none{ display: none; } */
 
-  .grt-records{
+  /* .grt-records{
     grid-template-columns:
       30px
       150px
       1fr
       60px 60px 60px 60px 60px 60px;
-  }
+  } */
 
 }
 
