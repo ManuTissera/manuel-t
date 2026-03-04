@@ -128,13 +128,13 @@ html{
 main{
    width: 70%;
    height: 100%;
-   padding: 1.2rem;
+   padding: 1.1rem;
    font-family: "Quicksand", sans-serif;
 }
 
 .h1-name{
    font-size: 2.4rem;
-   margin-top: .7rem;
+   margin-top: .1rem;
 
 }
 
@@ -166,10 +166,12 @@ main{
       width: 100%;
       display: grid;
       grid-template-columns: 1.3fr 3fr;
+      grid-template-columns: 1fr 3fr;
       grid-template-rows: 5.2rem;
+      grid-template-rows: auto;
    }
    .table-contact{
-      grid-template-rows: 4rem;
+      grid-template-rows: 2.5rem;
    }
       .cell-table{
          margin: .6rem .2rem;
@@ -185,12 +187,17 @@ main{
             margin-top: .2rem;
          }
 
+         .p-cell-ref{
+            margin-right: 1rem;
+         }
+
    /*--------------- TECNOLOGIAS --------------------*/         
 
       .table-technology{
          display: grid;
          grid-template-columns: repeat(4,1fr);
-         padding: 1rem;
+         padding: .7rem;
+         padding-bottom: 0rem;
       }
          .h5-tach{
             grid-column: 1 / 5;

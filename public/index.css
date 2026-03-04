@@ -141,9 +141,42 @@ body {
    height: max-content;
    /* border: .1rem solid #fff; */
 }
+
+   .container-btn-page p{
+      display: none;
+      flex: 0 0 100%;
+      text-align: center; /* opcional */
+      margin: 1rem 0;
+   }
+
+   .x-close-btns{
+      display: none;
+   }
+   
+   .btn-show-apps{
+      
+      background-color: transparent;
+      background-color: #6583a0ad;
+      border-radius: .4rem;
+      flex: 0 0 100%;
+      text-align: center;
+
+      font-family: "Ysabeau", sans-serif;
+      font-size: 1.9rem;
+      font-weight: 500;
+      letter-spacing: .08rem;
+
+      color: #ffffff;
+      text-transform: uppercase;
+
+      width: 40px;
+      margin: 2rem 0rem;
+      padding: .5rem;
+      /* margin: 1.5rem 0 0.5rem 0;
+       */
+}
    .page-1,
-   .page-2,
-   .btn-s{
+   .page-2{
       text-decoration: none;
       color: #fff;
       font-family: "Ysabeau", sans-serif;
@@ -165,14 +198,20 @@ body {
    .page-2{
       font-family: "Noto Sans", sans-serif;
       font-family: "Kavivanar", cursive;
-
-
       font-size: 1.5rem;
    }
-   
-   .btn-s{
-      display: none;
-   }
+
+.cont-view-app{
+   display: none;
+}
+
+.modal-btn-apps{
+   display: flex;
+}
+
+
+
+
 
 .modal_cvs{
    display: flex;
@@ -226,17 +265,72 @@ body {
 }
 
 
-@media screen and (max-width:500px){
+@media screen and (max-width:600px){
+
+   body{
+      height: 100vh;
+   }
+
+   .cont-view-app{
+      display: flex;
+   }
+
+   .container-btn-page{
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      
+   }
+
+   .x-close-btns{
+      display: inline-block;
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      font-size: 20px;
+      border-radius: 50%;
+      border: .1rem solid #fff;
+      padding: .3rem .55rem;
+      padding-bottom: .4rem;
+   }
+
+   .container-btn-page p{
+      display: inline-block;
+      flex: 0 0 100%;
+      text-align: center;
+
+      border-bottom: .2rem solid #fff;
+      padding-bottom: 1rem;
+
+      font-family: "Ysabeau", sans-serif;
+      font-size: 1.9rem;
+      font-weight: 500;
+      letter-spacing: .08rem;
+
+      color: #ffffff;
+      text-transform: uppercase;
+   }
 
 
-   /* .content-cv{
-      width: 100%;
-   } */
 
-   /* .text-2{
-   ;
-   } */
+   .modal-btn-apps{
+      display: none;
+      background-color: #224267f0;
+      position: absolute;
+      top: 1rem;
+      height: 90vh;
+   }
 
+   .hidden{
+      display: none;
+   }
+
+   .view-modal{
+      display: flex;
+   }
+
+   .container_log_in_page{
+      padding-top: 2.4rem;
+   }
 
    
    .page-1{
