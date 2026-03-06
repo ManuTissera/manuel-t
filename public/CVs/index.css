@@ -132,6 +132,10 @@ main{
    font-family: "Quicksand", sans-serif;
 }
 
+.main-es{
+   padding: 0.85rem;
+}
+
 .h1-name{
    font-size: 2.4rem;
    margin-top: .1rem;
@@ -215,6 +219,9 @@ main{
             background-color: #222;
             border-radius: 50%;
             margin-right: .5rem;
+         }
+         .p-tech-es{
+            padding: 0.18rem 0rem;
          }
          .span-so{
             padding-left: 1rem;
