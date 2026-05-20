@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: #0b1724;
+  font-family: "Inter", sans-serif;
+  color: #ffffff;
+}
+
+.hero {
+  position: relative;
+  width: min(98%, 1400px);
+  width: 100%;
+  min-height: 760px;
+  margin: 10px auto;
+  margin: 0;
+  /* border-radius: 34px; */
+  overflow: hidden;
+
+  /* CAMBIA ESTA LINEA POR LA IMAGEN QUE QUIERAS PROBAR */
+  background-image: url("./asstes/build-1.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  isolation: isolate;
+}
+
+/* filtro azul fijo para cualquier imagen */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 16, 28, 0.82) 0%,
+      rgba(10, 27, 47, 0.58) 45%,
+      rgba(25, 48, 78, 0.30) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(17, 42, 74, 0.28) 0%,
+      rgba(8, 20, 35, 0.42) 100%
+    );
+
+  backdrop-filter: saturate(0.9);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: rgba(15, 44, 78, 0.20);
+  mix-blend-mode: color;
+}
+
+.topbar {
+  width: 100%;
+  padding: 30px 46px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.topbar {
+  width: 100%;
+  height: max-content;
+  padding: 30px 46px 0;
+  padding: 20px 46px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+
+}
+
+/* Logo escrito */
+
+.logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: #f3f5f8;
+}
+
+/* Logo con imagen importada  */
+
+.logo-MA{
+     /* ajustá según tu logo */
+  height: 300px;
+
+  background-image: url("./asstes/logos/Logo-Complete.png");
+  background-size: contain;
+  background-position: left center;
+  background-repeat: no-repeat;
+
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.nav {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-content: center;
+  height: 60px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.78rem;
+  font-weight: 300;
+  transition: opacity 0.25s ease;
+}
+
+.nav a:hover {
+  opacity: 0.7;
+}
+
+.hero-content {
+  padding: 0 46px 70px;
+  max-width: 980px;
+}
+
+.hero-content h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(3.8rem, 6vw, 6.5rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -1px;
+  margin-bottom: 85px;
+  color: #f4f5f7;
+}
+
+.specializations p {
+  font-size: 0.92rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 22px;
+}
+
+.specializations-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.specializations-list span {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.learn-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 60px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.learn-more span {
+  font-size: 1.1rem;
+}
+
+.hero-footer {
+  width: 100%;
+  padding: 0 46px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.hero-footer > span {
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.footer-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.footer-links a {
+  text-decoration: none;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+@media (max-width: 980px) {
+  .topbar,
+  .hero-content,
+  .hero-footer {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav {
+    justify-content: flex-start;
+    gap: 16px;
+  }
+
+  .specializations-list {
+    gap: 18px;
+  }
+
+  .specializations-list span {
+    white-space: normal;
+  }
+
+  .hero-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: 680px;
+    border-radius: 22px;
+  }
+
+  .hero-content h1 {
+    margin-bottom: 50px;
+  }
+
+  .learn-more {
+    margin-top: 42px;
+  }
+}
