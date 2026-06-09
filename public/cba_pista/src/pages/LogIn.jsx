@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import Logo_cba_pista from '../assets/Logo_cba_pista.png';
+import Logo_cba_pista from '../assets/Logo_cba_pista_rend.png';
 
 const LogIn = () => {
 
@@ -27,9 +27,9 @@ const LogIn = () => {
                </div>
             </div>
             {/* <button className="btn-log-in">Continuar</button> */}
-            <Link to="/" className="btn-log-in">Continuar</Link>
+            <Link to="/home" className="btn-log-in">Continuar</Link>
             <Link to="/login" className="link-new-admin">Olvidaste la contrasena</Link>
-            <Link to="/login" className="link-new-admin">Crear Cuenta</Link>
+            <Link to="/signup" className="link-new-admin">Crear Cuenta</Link>
          </div>
       </>
    )

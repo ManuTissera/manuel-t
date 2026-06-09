@@ -13,6 +13,10 @@ const HomePage = () => {
       <div className="home-card">
          <h2 className="home-title">Home</h2>
 
+         <span className="heper-text-login">
+            No existen credenciales habilitadas aun. Dando click en "Continue" se puede ingresar
+         </span>
+
          <div className="home-goals">
 
 {/*             Boton de Numero (1) */                                }
@@ -66,9 +70,9 @@ const HomePage = () => {
          </div>
          <div className="container-options-home">
             
-            <button className="btn-home-next" type="button">
+            {/* <button className="btn-home-next" type="button">
                Ver Perfil
-            </button>
+            </button> */}
          </div>
       
       </div>

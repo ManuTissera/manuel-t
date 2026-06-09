@@ -131,10 +131,18 @@ export default function NewRecordForm() {
 
   return (
     <>
-      <div className="header-card-form-nr">
+      {/* <div className="header-card-form-nr">
         <h3 className="title-nr">Agregar Registro</h3>
         <Link to="/records_tires" className="btn-head-form-records">Ver Registros</Link>
-      </div>
+      </div> */}
+
+      <div className="back-ground-ui"></div>
+
+      <div className="container-form-all">
+                    <div className="header-card-form-second">
+              <h2 className="header-h2-form">Nuevo Admin</h2>
+              <Link to="/" className="header-form-btn">Ver Admin</Link>
+            </div>
 
       {showModalUnload && (
         <ModalLoadRecord
@@ -251,7 +259,8 @@ export default function NewRecordForm() {
         open={scanOpen}
         onClose={() => setScanOpen(false)}
         onResult={handleScanResult}
-      />
+      /> 
+      </div>
     </>
   );
 }

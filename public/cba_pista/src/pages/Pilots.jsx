@@ -39,15 +39,17 @@ const PilotsTable = () => {
 
    useEffect(() => {
      const load = async () => {
+      console.log('Load Cargado')
        const data = await getPilots({
         category: categorySelcted,
         id_pilot: idPilot,
         name_pilot: namePilot,
         surname: surnamePilot
        });
+       console.log('Arr Cargado tambien')
        const arr = Array.isArray(data) ? data : [];
        setPilotsArr(arr);
-       //console.log('Mostrar pilotos - cantidad', arr.length);
+       console.log('Mostrar pilotos - cantidad', arr.length);
      };
    
      load();

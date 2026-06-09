@@ -75,13 +75,20 @@ const AddPilotsElement = () => {
 
    return(
       <>
-
-            <div className="header-card-form-nr">
+          {/* <div className="back-ground-ui"></div> */}
+          <div className="container-form-all">
+          
+            {/* <div className="header-card-form-nr">
               <h3 className="title-nr">Agregar Nuevo Piloto</h3>
               <Link to="/pilots" className="btn-head-form-records">Ver Pilotos</Link>
+            </div> */}
+
+            <div className="header-card-form-second">
+              <h2 className="header-h2-form">Agergar Piloto</h2>
+              <Link to="/pilots" className="header-form-btn">Ver Pilotos</Link>
+              {/* <button className="header-form-btn">Ver Pilotos</button> */}
             </div>
-
-
+            
             <div className="form-pilot">
 
               {showToastErrors && (
@@ -179,7 +186,7 @@ const AddPilotsElement = () => {
                </label>
                
             </div>
-
+          </div>
       </>
    )
 }

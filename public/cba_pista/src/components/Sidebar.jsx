@@ -33,7 +33,7 @@ const Sidebar = ({ isOpen, onClose }) => {
           <Link to="/records_tires" onClick={onClose}>Registros</Link>
           {/* <Link to="/records_table" onClick={onClose}>Table</Link> */}
           <Link to="/add_pilot" onClick={onClose}>Nuevo Piloto</Link>
-          <Link to="/" onClick={onClose}>Configuración</Link>
+          <Link to="/new_admin" onClick={onClose}>Agregar Administrador</Link>
         </nav>
       </aside>
     </>

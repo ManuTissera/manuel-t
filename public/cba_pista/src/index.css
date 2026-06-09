@@ -48,3 +48,22 @@ h1 {
     color: #747bff;
   }
 }
+
+/* Para desktop, sin barra */
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* El contenido principal ocupa todo el espacio */
+.app-content {
+  flex: 1;
+}
+
+/* Cuando hay barra mobile, se ajusta */
+@media (max-width: 999px) {
+  .app-content {
+    padding-bottom: 65px; /* Espacio para la barra fija */
+  }
+}

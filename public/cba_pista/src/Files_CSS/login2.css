@@ -1,0 +1,89 @@
+
+
+.container-log-in{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   width: 100%;
+   border: 3px solid var(--bg-negro);
+   background-color: var(--bg-negro);
+}
+
+.content-logo-log-in{
+   display: flex;
+   justify-content: center;
+   margin-top: 40px;
+   margin-bottom: 80px;
+}
+
+.log-in-logo{
+   height: 70px;
+   width: auto;
+}
+
+.container-header-login{
+   /* border: 3px solid blue; */
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.container-header-login h4{
+   text-align: center;
+   font-weight: 400;
+   font-size: 30px;
+   margin: 10px 0;
+   color: var(--bg-grey);
+}
+
+.heper-text-login{
+   font-weight: 200;
+   color: #fff;
+   margin: 0px 30px;
+   margin-bottom: 50px;
+   text-align: center;
+}
+
+.card-log-in {
+   padding: 0 20px;
+   width: 100%;
+   max-width: 500px;
+}
+
+.field-login{
+   display: flex;
+   flex-direction: column;
+   margin: 10px 0px;
+}
+
+.span-card-login{
+   color: var(--text-input)
+}
+
+.input-card-login {
+   font-size: 15px;
+   padding: 20px;
+   border: none;
+   border-bottom: 2px solid #929292;
+   background-color: rgba(255, 255, 255, 0.1); /* ejemplo */
+   background-color: rgba(255, 255, 255, 0.1); /* ejemplo */
+   background-color: #454545; /* ejemplo */
+}
+
+.btn-log-in{
+   background-color: var(--btn-two);
+   padding: 15px 30px;
+   width: 300px;
+   margin-top: 30px;
+   border-radius: 10px;
+   font-size: 17px;
+   border: none;
+}
+
+
+
+
+
+

@@ -1,0 +1,245 @@
+/* Container principal */
+.profile-container {
+   background-color: var(--bg-01);
+   max-width: 700px;
+   margin: 0 auto;
+   padding: 1rem;
+   padding-top: 2rem;
+   padding-bottom: 5rem;
+   animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.profile-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #3c3c3c;
+}
+
+.profile-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.profile-date {
+  font-size: 0.8rem;
+  color: #888888;
+  margin: 0;
+}
+
+/* Sección de información */
+.info-section {
+  background-color: var(--bg-01);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #3c3c3c;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #2e2e2e;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 0.8rem;
+  color: #888888;
+  color: var(--text-info);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.info-value {
+  font-size: 0.9rem;
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+/* Acciones */
+.profile-actions {
+  margin-bottom: 2rem;
+}
+
+.action-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #1e1e1e;
+  border: 1px solid #3c3c3c;
+  border-radius: 6px;
+  color: #3a9fd1;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background-color: #2a2a2a;
+  border-color: #3a9fd1;
+}
+
+/* Sección de edición */
+.edit-section,
+.password-section {
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #3c3c3c;
+}
+
+.edit-title,
+.password-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #a0a0a0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #3c3c3c;
+}
+
+/* Formulario */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #888888;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  background-color: #2e2e2e;
+  border: 1px solid #4a4a4a;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: #3a9fd1;
+  background-color: #3c3c3c;
+}
+
+.form-input::placeholder {
+  color: #666666;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #3a9fd1;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.submit-btn:hover {
+  background-color: #2e8ab8;
+}
+
+/* Responsive Desktop */
+@media (min-width: 768px) {
+  .profile-container {
+    padding: 1.5rem;
+  }
+
+  .profile-title {
+    font-size: 1.8rem;
+  }
+
+  .info-section {
+    padding: 1.5rem;
+  }
+
+  .info-label {
+    font-size: 0.85rem;
+  }
+
+  .info-value {
+    font-size: 1rem;
+  }
+
+  .edit-section,
+  .password-section {
+    padding: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-input {
+    padding: 0.8rem 1rem;
+  }
+
+  .action-btn,
+  .submit-btn {
+    padding: 0.85rem;
+  }
+}
+
+/* Mobile pequeño */
+@media (max-width: 480px) {
+  .profile-container {
+    padding: 0.75rem;
+  }
+
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .info-label {
+    font-size: 0.7rem;
+  }
+
+  .info-value {
+    font-size: 0.85rem;
+  }
+
+  .edit-section,
+  .password-section {
+    padding: 1rem;
+  }
+}

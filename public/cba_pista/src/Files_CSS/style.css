@@ -1,13 +1,33 @@
 /* styles.css */
 :root{
-  --bg: #dddd;
+  --bg-blue-2: #c6d7e3;
+  --cl-grey-02: #3d3d3d;
+  --bg-black-1: #27272a; /* bg btn */
+  --bg-black-2: #222224; /* bg card */
+  --bg-black-3: #2e2e2e; /* bg login */
+  --cl-black-3: #313134; /* bg inp */
+  --cl-black-4: #76767c; /* bg btn sub */
+  --cl-grey-01: #5b5b5e;
+  
+  --bg-01: #1e1e1e;
+  --bg-02: #282727;
+  --bg-01: #1e1e1e;
+  --bg-01: #1e1e1e;
+
+  --text-info: #a0a0a0;
+  --text-value: #E0E0E0;
+
+  --btn-blue: #3A9FD1;
+  --text1: #777;
+  --text-light: #ccc;
   --bg-grey: #f4f5f9;
-  --bg-negro: #3d3d3d;
-  --bg-ligth-blck: #3d3d3d;
+  --bg-black-1: #27272a;
+  --bg-black-black: #151517;
   --card: #121a27;
   --text-light: #fff;
   --text: #333;
   --text-input: #fff;
+
   --muted: #a7b4cc;
   --border: rgba(255,255,255,.10);
   --focus: rgba(93, 164, 255, .45);
@@ -24,16 +44,21 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 
 body{
   margin: 0;
-  font-family: 'Baloo 2', cursive;
-  background: radial-gradient(1200px 600px at 20% 10%, rgba(47,125,255,.18), transparent 60%),
-              var(--bg);
-  background-color: #ddd;
+  /* background: radial-gradient(1200px 600px at 20% 10%, rgba(47,125,255,.18), transparent 60%),
+  var(--bg);
+  background-color: #ddd; */
   color: var(--text);
+  /* background-color: #2e2e2e; */
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+
+  font-family: 'Baloo 2', cursive;
 }
 
 h1{
@@ -47,6 +72,14 @@ h1{
   display: grid;
   place-items: center;
   padding: 16px;
+}
+
+.back-ground-ui{
+  background-color: var(--bg-black-black);
+  position: absolute;
+  z-index: -1000;
+  height: calc(100vh - 70px);
+  width: 100%;
 }
 
 .header-card-form-records{  

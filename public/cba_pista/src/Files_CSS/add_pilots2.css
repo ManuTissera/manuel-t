@@ -1,0 +1,271 @@
+/* Container principal */
+.container-add-pilot {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  height: 150%;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header del formulario */
+.header-add-pilot {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #3c3c3c;
+}
+
+.title-add-pilot {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.btn-view-pilots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #3a9fd1;
+  color: #ffffff;
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  width: fit-content;
+}
+
+.btn-view-pilots:hover {
+  background-color: #2e8ab8;
+  transform: translateY(-2px);
+}
+
+.btn-view-pilots:active {
+  transform: translateY(0);
+}
+
+.icon-table {
+  font-size: 1.1rem;
+}
+
+/* Formulario */
+.form-add-pilot {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #e0e0e0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.required {
+  color: #ff6b6b;
+  font-size: 1rem;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #2e2e2e;
+  border: 1px solid #4a4a4a;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: #3a9fd1;
+  background-color: #3c3c3c;
+  box-shadow: 0 0 0 3px rgba(58, 159, 209, 0.1);
+}
+
+.form-input::placeholder {
+  color: #888888;
+}
+
+.form-select option {
+  background-color: #2e2e2e;
+  color: #ffffff;
+}
+
+/* Botones de acción */
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #3c3c3c;
+}
+
+.btn-submit,
+.btn-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-submit {
+  background-color: #3a9fd1;
+  color: #ffffff;
+}
+
+.btn-submit:hover {
+  background-color: #2e8ab8;
+  transform: translateY(-2px);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+.btn-clear {
+  background-color: #4a4a4a;
+  color: #e0e0e0;
+}
+
+.btn-clear:hover {
+  background-color: #5a5a5a;
+  transform: translateY(-2px);
+}
+
+.btn-clear:active {
+  transform: translateY(0);
+}
+
+.btn-icon {
+  font-size: 1.1rem;
+}
+
+/* Responsive Desktop */
+@media (min-width: 768px) {
+  .container-add-pilot {
+    padding: 1.5rem;
+    height: 1000px;
+  }
+
+  .header-add-pilot {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .title-add-pilot {
+    font-size: 1.8rem;
+  }
+
+  .form-row {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .form-add-pilot {
+    padding: 2rem;
+  }
+
+  .form-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  .btn-submit,
+  .btn-clear {
+    min-width: 180px;
+  }
+}
+
+/* Mobile pequeño */
+@media (max-width: 480px) {
+  .container-add-pilot {
+    padding: 0.75rem;
+  }
+
+  .title-add-pilot {
+    font-size: 1.3rem;
+  }
+
+  .btn-view-pilots {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form-add-pilot {
+    padding: 1rem;
+  }
+
+  .form-input,
+  .form-select {
+    padding: 0.65rem 0.85rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Animación de carga y feedback */
+.btn-submit:disabled,
+.btn-clear:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Estilos para inputs number */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

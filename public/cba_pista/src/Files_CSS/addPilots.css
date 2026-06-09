@@ -3,17 +3,66 @@
 
 
 
+.container-form-all{
+  background-color: #2f2f2f;
+  background-color: var(--bg-black-black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid #151517;
+  padding-bottom: 90px;
+}
+
+.header-card-form-nr{
+
+  border-bottom: 1px solid white;
+
+}
+
+.header-card-form-second{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  color: white;
+  padding: 5px 20px;
+}
 
 
+.header-h2-form{
+
+  font-family:  sans-serif;
+  font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  font-size:    27px;
+
+}
+
+
+.header-form-btn{
+  background-color: #27272a;
+  color: #fff;
+  text-decoration: none;
+  height: max-content;
+  margin-right: 30px;
+  padding: 15px 14px;
+  border-radius: 12px;
+  border: none;
+}
 
 .form-pilot {
    background-color: var(--bg-1);
-   width: min(900px, 100%);
+   background-color: var(--bg-black-2);
+   width: min(900px, 90%);
    display: grid;
    grid-template-columns: repeat(2, 1fr);
    gap: 20px 24px;
    padding: 20px;
    position: relative;
+   border-radius: 25px;
+   
+   /* border: 1px solid red; */
 }
 
 /* Cada grupo ocupa 1 columna */
@@ -47,8 +96,10 @@
 }
 
 .form-input {
+  background-color: var(--cl-black-3);
   padding: 10px 12px;
   border: 1px solid #ccc;
+  border: 1px solid var(--cl-grey-01);
   border-radius: 6px;
   font-size: 14px;
   outline: none;

@@ -1,4 +1,17 @@
 
+
+
+const getBaseUrl = () => {
+  // Si estamos en localhost con Vite (puerto 5173), usar backend local
+  if (window.location.origin.includes('localhost:5173')) {
+    return 'http://localhost:3210';
+  }
+  // En producción (Heroku), usar el mismo origen
+  return window.location.origin;
+};
+
+
+
 export const getRecordsTires = async (idPilot, idEvent, numTire) => {
   const hasNumTire =
     numTire !== undefined &&
@@ -16,7 +29,7 @@ export const getRecordsTires = async (idPilot, idEvent, numTire) => {
     String(idEvent).trim() !== "";
 
   // OJO: poné el endpoint correcto
-  const url = new URL("/tires_registry", window.location.origin);
+  const url = new URL("/tires_registry", getBaseUrl());
 
   // 1) Si hay tire_param, no mandamos nada más
   if (hasNumTire) {
