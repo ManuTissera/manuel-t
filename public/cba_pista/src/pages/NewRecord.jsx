@@ -139,9 +139,8 @@ export default function NewRecordForm() {
       <div className="back-ground-ui"></div>
 
       <div className="container-form-all">
-                    <div className="header-card-form-second">
+            <div className="header-card-form-second">
               <h2 className="header-h2-form">Nuevo Admin</h2>
-              <Link to="/" className="header-form-btn">Ver Admin</Link>
             </div>
 
       {showModalUnload && (

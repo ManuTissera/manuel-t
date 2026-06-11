@@ -5,12 +5,12 @@
 
 .container-form-all{
   background-color: #2f2f2f;
-  background-color: var(--bg-black-black);
+  background-color: var(--bg-01);
   display: flex;
   flex-direction: column;
   align-items: center;
   border-bottom: 1px solid #151517;
-  padding-bottom: 90px;
+  padding-bottom: 30px;
 }
 
 .header-card-form-nr{
@@ -39,28 +39,16 @@
 
 }
 
-
-.header-form-btn{
-  background-color: #27272a;
-  color: #fff;
-  text-decoration: none;
-  height: max-content;
-  margin-right: 30px;
-  padding: 15px 14px;
-  border-radius: 12px;
-  border: none;
-}
-
 .form-pilot {
-   background-color: var(--bg-1);
-   background-color: var(--bg-black-2);
+   background-color: var(--bg-01);
    width: min(900px, 90%);
    display: grid;
    grid-template-columns: repeat(2, 1fr);
-   gap: 20px 24px;
+   gap: 0px 24px;
    padding: 20px;
    position: relative;
-   border-radius: 25px;
+   border: 1px solid var(--border-color);
+   border-radius: var(--radius-small-card);
    
    /* border: 1px solid red; */
 }

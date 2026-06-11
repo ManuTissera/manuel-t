@@ -6,6 +6,7 @@ import addRecordIcon from '../assets/add-record.svg';
 import registerIcon from '../assets/registry.svg';
 
 
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -28,27 +29,31 @@ const BottomNavBar = () => {
   };
 
   const tabs = [
-    // { id: 'buscar', label: 'Buscar', path: '/home', icon: '🔍' },
     { id: 'home', label: 'Home', path: '/home', icon: <img className="bar-home-icon" src={homeIcon} alt="Buscar" /> },
-    { id: 'add', label: 'Nuevo Reg.', path: '/add', icon: <img className="bar-home-icon" src={addRecordIcon} /> },
-    { id: 'register', label: 'Registro', path: '/register', icon: <img className="bar-home-icon" src={registerIcon} /> },
-    // { id: 'postulaciones', label: 'Postulaciones', path: '/postulaciones', icon: '📋' },
-    // { id: 'Registros', label: 'Registros', path: '/avisos', icon: '🔔' },
-    // { id: 'favoritos', label: 'Favoritos', path: '/favoritos', icon: '❤️' },
-    { id: 'perfil', label: 'Perfil', path: '/perfil', icon: <img className="bar-home-icon" src={profileIcon} /> }
+    { id: 'add', label: 'Nuevo Reg.', path: '/new_record', icon: <img className="bar-home-icon" src={addRecordIcon} /> },
+    { id: 'register', label: 'Registro', path: '/records_tires', icon: <img className="bar-home-icon" src={registerIcon} /> },
+    { id: 'perfil', label: 'Perfil', path: '/profile', icon: <img className="bar-home-icon" src={profileIcon} /> }
   ];
 
   return (
     <nav className="bottom-navbar">
       {tabs.map((tab) => (
-        <button
+        // <button
+        //   key={tab.id}
+        //   className={`bottom-nav-item ${activeTab === tab.id ? 'active' : ''}`}
+        //   onClick={() => handleTabClick(tab.id, tab.path)}
+        // >
+        //   <span className="bottom-nav-icon">{tab.icon}</span>
+        //   <span className="bottom-nav-label">{tab.label}</span>
+        // </button>
+        <Link to={tab.path}
           key={tab.id}
           className={`bottom-nav-item ${activeTab === tab.id ? 'active' : ''}`}
           onClick={() => handleTabClick(tab.id, tab.path)}
         >
           <span className="bottom-nav-icon">{tab.icon}</span>
           <span className="bottom-nav-label">{tab.label}</span>
-        </button>
+        </Link>
       ))}
     </nav>
   );

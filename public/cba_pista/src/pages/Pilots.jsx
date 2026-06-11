@@ -152,28 +152,9 @@ const toggleRow = (id) => {
 
       <div className="container-table">
 
+    <h3 className="h3-title" >Pilotos</h3>
       <div className="toolbar-container-rec">
-              <div className="toolbar-first">
-                <h3>Pilotos</h3>
 
-                <button
-                  className="btn-icon btn-delete-rec"
-                  onClick={() => setShowDeleteModal(true)}
-                  disabled={!selectCheck.length}
-                >
-                  <img src={deleteIcon} alt="Delete" />
-                </button>
-
-                {/* <button
-                  className="btn-icon btn-download-rec"
-                  // onClick={() => setShowDownloadModal(true)}
-                  // onClick={() => downloadCsv(pageRecords, "records.csv")}
-                >
-                  <img src={downloadIcon} alt="Download" />
-                </button> */}
-
-
-              </div>
 
               <div className="icon-group">
 
@@ -196,14 +177,12 @@ const toggleRow = (id) => {
 
 
         <div className="toolbar-second">
-          <Link to="/add_pilot" className="btn-add-rec-toolbar">
-            Agregar Piloto
-          </Link>
-          <input type="text" className="toolbar-search-tires input-tires"
+
+          <input type="text" className="form-input"
             placeholder="Ingresar Nombre"
             onChange={(e) => setNamePilot(e.target.value)}
           />
-          <button className="btn-search-rec" onClick={() =>{ 
+          <button className="submit-btn" onClick={() =>{ 
             console.log(namePilot)
             setCategorySelected("");
             setIdPilot("");
@@ -213,11 +192,32 @@ const toggleRow = (id) => {
         </div>
       </div>
 
+      <Link to="/add_pilot" className="action-btn">
+        Agregar Piloto
+      </Link>
+
 {/* ---------------- aca comienza la tabla ---------------------------- */}
 
      
-      <div className="table-wrap">
+      <div className="toolbar-first">
+        <button
+          className="btn-icon btn-delete-rec"
+          onClick={() => setShowDeleteModal(true)}
+          disabled={!selectCheck.length}
+        >
+          <img src={deleteIcon} alt="Delete" />
+        </button>
+        {/* <button
+          className="btn-icon btn-download-rec"
+          // onClick={() => setShowDownloadModal(true)}
+          // onClick={() => downloadCsv(pageRecords, "records.csv")}
+        >
+          <img src={downloadIcon} alt="Download" />
+        </button> */}
+      </div>
 
+
+      <div className="table-wrap">
 
             <div className="table-rec">
               <div className="thead-rec">

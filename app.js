@@ -2,6 +2,7 @@ console.clear();
 
 import express from "express";
 import routerRequest from "./Routes/routes.js";
+import authRoutes from './Routes/auth.js';  // ✅ AGREGAR ESTA LÍNEA
 import routerApp from "./Routes/routes-anthropometry.js";
 import requestRouterData from "./Routes/routes-news-data.js";
 import requestRouterCbaPista from "./Routes/routes-cba_pista.js";
@@ -14,6 +15,9 @@ const expressApp = express();
 const PORT = process.env.PORT || 3210;
 
 const __dirname = path.resolve();
+
+// Rutas de autenticación
+expressApp.use('/api/auth', authRoutes);
 
 /* =========================
    MIDDLEWARE

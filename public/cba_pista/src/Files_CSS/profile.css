@@ -43,7 +43,7 @@
 
 /* Sección de información */
 .info-section {
-  background-color: var(--bg-01);
+  background-color: var(--bg-03);
   border-radius: 8px;
   padding: 1.25rem;
   margin-bottom: 1.5rem;
@@ -82,23 +82,7 @@
   margin-bottom: 2rem;
 }
 
-.action-btn {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #1e1e1e;
-  border: 1px solid #3c3c3c;
-  border-radius: 6px;
-  color: #3a9fd1;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
 
-.action-btn:hover {
-  background-color: #2a2a2a;
-  border-color: #3a9fd1;
-}
 
 /* Sección de edición */
 .edit-section,
@@ -157,25 +141,7 @@
   color: #666666;
 }
 
-.submit-btn {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #3a9fd1;
-  border: none;
-  border-radius: 6px;
-  color: #ffffff;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin-top: 0.5rem;
-}
 
-.submit-btn:hover {
-  background-color: #2e8ab8;
-}
 
 /* Responsive Desktop */
 @media (min-width: 768px) {
@@ -219,7 +185,7 @@
 }
 
 /* Mobile pequeño */
-@media (max-width: 480px) {
+@media (max-width: 390px) {
   .profile-container {
     padding: 0.75rem;
   }

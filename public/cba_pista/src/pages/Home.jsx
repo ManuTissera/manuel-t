@@ -1,84 +1,76 @@
-
-
-
-import { Link } from "react-router-dom";
-
-
-// Home.jsx
-
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const HomePage = () => {
+  const [stats, setStats] = useState({
+    totalPilots: 0,
+    totalRecords: 0
+  });
+
+  useEffect(() => {
+    // Datos de ejemplo - luego conectar con API
+    setStats({
+      totalPilots: 24,
+      totalRecords: 156
+    });
+  }, []);
+
   return (
-    <div className="home">
-      <div className="home-card">
-         <h2 className="home-title">Home</h2>
+    <div className="home-container">
+      {/* Header simple */}
+      <div className="home-header">
+        <div>
+          <h1 className="home-title">Bienvenido</h1>
+          <p className="home-date">
+            {new Date().toLocaleDateString('es-ES', { 
+              weekday: 'long', 
+              day: 'numeric', 
+              month: 'long', 
+              year: 'numeric' 
+            })}
+          </p>
+        </div>
+      </div>
 
-         <span className="heper-text-login">
-            No existen credenciales habilitadas aun. Dando click en "Continue" se puede ingresar
-         </span>
+      {/* Stats cards - solo 2 */}
+      <div className="stats-row">
+        <div className="stat-item">
+          <span className="stat-label">Fecha Numero</span>
+          <span className="stat-number">{stats.totalPilots}</span>
+          
+        </div>
+        <div className="stat-item">
+          <span className="stat-number">{stats.totalRecords}</span>
+          <span className="stat-label">Registros Totales</span>
+        </div>
+      </div>
 
-         <div className="home-goals">
+      {/* Acciones principales - solo 3 botones */}
+      <div className="actions-section">
+        <Link to="/pilots" className="action-link">
+          <span className="action-link-icon">→</span>
+          Ver Pilotos
+        </Link>
+        <Link to="/add_pilot" className="action-link">
+          <span className="action-link-icon">→</span>
+          Agregar Piloto
+        </Link>
+        <Link to="/new_record" className="action-link">
+          <span className="action-link-icon">→</span>
+          Nuevo Registro
+        </Link>
+      </div>
 
-{/*             Boton de Numero (1) */                                }
-
-            {/* <button className="goal-home goal--active" type="button"> */}
-            <Link to="/records_tires" className="goal-home goal--active" type="button">
-              <div className="goal-text">
-                <div className="goal-title">Registros</div>
-                <div className="goal-subtitle">Ver los registros cargardos</div>
-              </div>
-  
-              {/* <div className="goal-icon" aria-hidden="true">
-                📌
-              </div> */}
-              <div className="goal-icon" aria-hidden="true">
-                ☰
-              </div>
-            </Link>
-
-{/*             Boton de Numero (2) */                                }
-
-            <button className="goal-home" type="button">
-              <div className="goal-text">
-                <div className="goal-title">Iniciar Regristros</div>
-                <div className="goal-subtitle">Iniciar nuevo dia de carga</div>
-              </div>
-  
-              {/* <div className="goal-icon" aria-hidden="true">
-                ☰
-              </div> */}
-              <div className="goal-icon" aria-hidden="true">
-                ☰
-              </div>
-            </button>
-
-{/*             Boton de Numero (3) */                                }
-
-            <button className="goal-home" type="button">
-              <div className="goal-text">
-                <div className="goal-title">Gain Muscle</div>
-                <div className="goal-subtitle">Build mass &amp; strength</div>
-              </div>
-  
-              {/* <div className="goal-icon" aria-hidden="true">
-                🏋️
-              </div> */}
-              <div className="goal-icon" aria-hidden="true">
-                ☰
-              </div>
-            </button>
-         </div>
-         <div className="container-options-home">
-            
-            {/* <button className="btn-home-next" type="button">
-               Ver Perfil
-            </button> */}
-         </div>
-      
+      {/* Resumen simple */}
+      <div className="summary-card">
+        <h3 className="summary-title">Resumen Rápido</h3>
+        <p className="summary-text">
+          Sistema de gestión de pilotos y registros. 
+          Utilice el menú o los accesos directos para navegar.
+        </p>
       </div>
     </div>
   );
 };
 
 export default HomePage;
-

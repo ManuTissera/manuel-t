@@ -46,6 +46,77 @@
 
 }
 
+
+
+.submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #3a9fd1;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.submit-btn:hover {
+  background-color: #2e8ab8;
+}
+
+.action-btn {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  padding: 0.75rem;
+  background-color: #1e1e1e;
+  border: 1px solid #3c3c3c;
+  border-radius: 6px;
+  color: #3a9fd1;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background-color: #2a2a2a;
+  border-color: #3a9fd1;
+}
+
+/* Botones estilo action-link */
+.btn-record-mobile {
+  background-color: var(--bg-02);
+  border: none;
+  border-radius: 5px;
+  padding: 0.8rem 0.85rem;
+  color: var(--text-value);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 2px solid transparent;
+}
+
+.btn-record-mobile:hover {
+  background-color: var(--bg-02);
+  border-left-color: var(--btn-blue);
+  padding-left: 1rem;
+}
+
+.btn-link{
+  width: 40%;
+  text-align: center;
+}
+
+/* ------------------------------------------------------------------------- */
+/* ================  otros */
+/* ------------------------------------------------------------------------- */
+
 .btn-search{
   background-color: var(--bg-btn-1);
   color: var(--text1);
@@ -65,18 +136,25 @@
 .btn-add-record {
   background: #4fc3c7;
   border-color: #4fc3c7;
-  
   color: #fff;
 }
 
 .btn-submit{
-  background-color: var(--bg-blue-1);
   background-color: var(--cl-black-4);
+  background-color: var(--btn-blue);
+  text-align: center;
+  color: #fff;
   width: 50%;
+  height: 40px;
+  line-height: 15px;
   padding: 5px 10px;
   border: none;
   border-radius: 50px;
 }
+
+
+
+
 
 .btn-head-form-records {
   background-color: var(--bg-blue-1);

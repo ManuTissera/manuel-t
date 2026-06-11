@@ -1,0 +1,195 @@
+
+
+
+/* Contenedor de tabla con scroll */
+
+
+.table-wrap {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 70vh;
+  scrollbar-width: thin;
+  border: 2px solid var(--cl-border-01);
+}
+
+/* Scrollbar personalizada */
+.table-wrap::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.table-wrap::-webkit-scrollbar-track {
+  background: var(--bg-03);
+  border-radius: 4px;
+}
+
+.table-wrap::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.table-wrap::-webkit-scrollbar-thumb:hover {
+  background: var(--btn-blue);
+}
+
+
+/* Toolbar dentro de table-wrap */
+.table-wrap .toolbar-first {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-01);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.toolbar-first{
+  display: flex;
+  justify-content: right;
+  border: 1px solid var(--border-color);
+  margin-top: 1rem;
+  padding: .4rem;
+  padding-right: 1rem;
+}
+
+/* Botones de íconos */
+.btn-icon {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.btn-icon:hover {
+  background-color: var(--bg-02);
+}
+
+.btn-icon:hover img {
+  opacity: 1;
+}
+
+.btn-icon:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-icon:disabled:hover {
+  background-color: transparent;
+}
+
+/* Tabla */
+.table-rec {
+  min-width: 900px;
+  font-size: 0.85rem;
+}
+
+/* Header de tabla */
+.thead-rec {
+  background-color: var(--bg-03);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.thead-rec-tr {
+  display: grid;
+  grid-template-columns: 40px 180px 200px 100px 90px 70px 55px 55px 55px 55px 55px 55px;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+
+.th-rec {
+  font-weight: 600;
+  color: var(--text-info);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.th-rec.th-tire {
+  text-align: center;
+}
+
+/* Cuerpo de tabla */
+.tbody-rec {
+  background-color: var(--bg-01);
+}
+
+.tbody-rec-tr {
+  display: grid;
+  grid-template-columns: 40px 180px 200px 100px 90px 70px 55px 55px 55px 55px 55px 55px;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+  align-items: center;
+}
+
+.tbody-rec-tr:hover {
+  background-color: var(--bg-02);
+}
+
+.tbody-rec-tr:last-child {
+  border-bottom: none;
+}
+
+/* Celdas */
+.td-rec {
+  color: var(--text-value);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.td-rec.td-tire {
+  text-align: center;
+  font-weight: 500;
+  color: var(--btn-blue);
+}
+
+/* Checkbox personalizado */
+.ms-td-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.td-rec input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--btn-blue);
+  margin: 0;
+}
+
+/* Columnas ocultas en mobile (respetando ms-none) */
+.ms-none {
+  display: block;
+}
+
+/* Columna fecha especial */
+.col-fecha {
+  font-weight: 500;
+  color: var(--text-info);
+}

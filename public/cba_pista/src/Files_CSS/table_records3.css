@@ -1,0 +1,243 @@
+
+
+
+/* Tolbar container bar */
+.container-table{
+   padding: .7rem;
+   background-color: var(--bg-01);       
+   border: 1px solid var(--border-color);
+   overflow: hidden;
+}
+/* Toolbar container principal */
+.contaienr-table-records{
+}
+.toolbar-container-rec {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  border: 1px solid var(--cl-border-01);
+  border-radius: var(--radius-small-card);
+  padding: 1rem;
+}
+
+.h3-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-value);
+  padding: .5rem 0rem 1rem 1rem;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Grupo de botones (Ver Todo, Filtrar) */
+.icon-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+
+/* Segunda línea del toolbar */
+.toolbar-second {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* Link Agregar Registro */
+.btn-add-rec-toolbar {
+  display: inline-block;
+  padding: 0.6rem 0.85rem;
+  background: none;
+  border: none;
+  border-left: 2px solid transparent;
+  color: var(--btn-blue);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-add-rec-toolbar:hover {
+  background-color: var(--bg-02);
+  border-left-color: var(--btn-blue);
+  padding-left: 1rem;
+}
+
+/* Child Second Bar */
+.container-search-tires{
+   display: flex;
+   gap: 10px;
+   margin-bottom: 6px;
+}
+
+.container-search-tires input{
+   flex: 2;
+}
+
+.container-search-tires button{
+   flex: 1;
+}
+
+/* ----------------------------------------------------- */
+/* Paginacion */
+/* ----------------------------------------------------- */
+
+/* Contenedor principal de paginación */
+.pagination-container {
+   background-color: var(--bg-01);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-between;
+   gap: 1rem;
+   /* margin-top: .5rem;
+   padding-top: .3rem; */
+   border-top: 1px solid var(--cl-border-01);
+}
+
+/* Grupo de botones Prev/Next */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: .5rem;
+}
+
+/* Botones de paginación */
+.btn-pagination {
+  background: none;
+  border: 1px solid var(--cl-border-01);
+  border-radius: var(--radius-small-card);
+  padding: 0.5rem 1rem;
+  color: var(--text-value);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-pagination:hover:not(:disabled) {
+  border-color: var(--btn-blue);
+  color: var(--btn-blue);
+  background-color: var(--bg-02);
+}
+
+.btn-pagination:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Texto de página */
+.span-pagination {
+  color: var(--text-info);
+  font-size: 1rem;
+}
+
+/* Contenedor de entradas por página */
+.entries {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-info);
+  font-size: 1rem;
+  flex-wrap: wrap;
+  padding-bottom: .5rem;
+}
+
+/* Selector de cantidad */
+.entries select {
+  background-color: var(--bg-02);
+  border: 1px solid var(--cl-border-01);
+  border-radius: var(--radius-small-card);
+  padding: 0.3rem 0.5rem;
+  color: var(--text-value);
+  font-size: 0.8rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.entries select:hover {
+  border-color: var(--btn-blue);
+}
+
+/* Responsive desktop */
+@media (min-width: 768px) {
+  .pagination-container {
+    flex-direction: row;
+  }
+}
+
+/* Responsive mobile */
+@media (max-width: 480px) {
+  .pagination {
+    gap: 0.5rem;
+  }
+  
+  .btn-pagination {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .span-pagination {
+    font-size: 0.9rem;
+  }
+  
+  .entries {
+    font-size: .9rem;
+  }
+}
+
+/* Fin Paginacion */
+/* ------------------------------------------------------ */
+
+
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .toolbar-first,
+  .icon-group {
+    width: 100%;
+  }
+
+  .toolbar-second {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-add-rec-toolbar {
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn-record-mobile {
+    flex: 1;
+    text-align: center;
+  }
+
+  .icon-group {
+    width: 100%;
+  }
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .h3-title {
+    font-size: 1.3rem;
+  }
+
+  .btn-record-mobile,
+  .btn-add-rec-toolbar,
+  .btn-search-rec {
+    font-size: 0.9rem;
+  }
+}
+
+
+
+
+

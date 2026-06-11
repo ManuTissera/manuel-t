@@ -3,3 +3,5 @@ node_modules
 public/other_files
 public/news-data/other_files
 
+# .env - Agregar esta línea
+JWT_SECRET=tu_clave_secreta_muy_larga_y_segura

@@ -1,98 +1,134 @@
-/* Estilos base - solo visible en mobile */
+/* Bottom Navigation Bar */
 .bottom-navbar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  background-color: var(--bg-01);
+  border-top: 1px solid var(--cl-border-01);
+  padding: 0.5rem 1rem;
+  z-index: 1000;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #ffffff;
-  background-color: var(--cl-black-3);
-  background-color: var(--cl-black-3);
-  background-color: var(--bg-black-2);
-  border-top: 1px solid #e0e0e0;
-  border-top: none;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
-  z-index: 1000;
-  height: 65px;
-  padding: 8px 0 12px 0;
-  /* Oculto por defecto en desktop */
-  display: none;
+  gap: 0.5rem;
 }
 
-.bar-home-icon{
-  width: 30px;
-}
-
-/* Visible en tablets y móviles */
-@media (max-width: 999px) {
-  .bottom-navbar {
-    display: flex;
-  }
-  
-  /* Ajustar padding inferior del contenido principal para que no quede tapado */
-  /* body {
-    padding-bottom: 65px;  } */
-}
-
+/* Items del bottom nav */
 .bottom-nav-item {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 0.25rem;
+  text-decoration: none;
+  padding: 0.3rem;
+  border-radius: var(--radius-small-card);
+  transition: all 0.2s ease;
+  flex: 1;
+  cursor: pointer;
   background: none;
   border: none;
-  cursor: pointer;
-  padding: 6px 0;
-  transition: all 0.2s ease;
-  font-family: inherit;
 }
 
+/* Iconos */
 .bottom-nav-icon {
-  font-size: 24px;
-  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.bottom-nav-icon img {
+  width: 27px;
+  height: 27px;
+  opacity: 0.6;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+/* Texto del item */
 .bottom-nav-label {
-  font-size: 12px;
-  color: #666666;
-  color: var(--muted);
+  font-size: 0.65rem;
+  color: var(--text-info);
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
-/* Estado activo */
-.bottom-nav-item.active .bottom-nav-icon {
-  transform: translateY(-2px);
+/* Hover */
+.bottom-nav-item:hover {
+  background-color: var(--bg-02);
+}
+
+.bottom-nav-item:hover .bottom-nav-icon img {
+  opacity: 1;
+}
+
+.bottom-nav-item:hover .bottom-nav-label {
+  color: var(--text-value);
+}
+
+/* Item activo (ruta actual) */
+.bottom-nav-item.active .bottom-nav-icon img {
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(57%) sepia(45%) saturate(700%) hue-rotate(165deg) brightness(95%) contrast(90%);
 }
 
 .bottom-nav-item.active .bottom-nav-label {
-  color: #007bff;
-  font-weight: 600;
+  color: var(--btn-blue);
 }
 
-/* Hover effect en dispositivos táctiles */
-.bottom-nav-item:active {
-  transform: scale(0.95);
+/* Ajuste para mobile (evitar que el contenido quede debajo del bottom bar) */
+body {
+  padding-bottom: 70px;
 }
 
-/* Para dispositivos muy pequeños */
-@media (max-width: 480px) {
-  .bottom-nav-label {
-    font-size: 10px;
-  }
-  
-  .bottom-nav-icon {
-    font-size: 20px;
-    height: 27px;
-  }
-  
+/* Desktop */
+@media (min-width: 768px) {
   .bottom-navbar {
-    height: 58px;
-    height: 63px;
-    padding: 6px 0 10px 0;
-    padding: 0px;
+    padding: 0.75rem 2rem;
+    gap: 1rem;
+  }
+  
+  .bottom-nav-icon img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .bottom-nav-label {
+    font-size: 0.7rem;
+  }
+  
+  body {
+    padding-bottom: 80px;
+  }
+}
+
+/* Mobile pequeño */
+@media (max-width: 480px) {
+  .bottom-navbar {
+    padding: 0.4rem 0.5rem;
+  }
+  
+  .bottom-nav-icon img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .bottom-nav-label {
+    font-size: 0.6rem;
+  }
+  
+  body {
+    padding-bottom: 60px;
+  }
+}
+
+/* Ajuste para el main content (Layout) */
+.layout .main-content {
+  margin-bottom: 65px;
+}
+
+@media (min-width: 768px) {
+  .layout .main-content {
+    margin-bottom: 75px;
   }
 }

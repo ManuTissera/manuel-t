@@ -35,6 +35,7 @@ const Sidebar = ({ isOpen, onClose }) => {
           <Link to="/add_pilot" onClick={onClose}>Nuevo Piloto</Link>
           <Link to="/new_admin" onClick={onClose}>Agregar Administrador</Link>
         </nav>
+          <Link to="/home" className="btn-logout" onClick={onClose}>Cerrar Sesion</Link>
       </aside>
     </>
   )

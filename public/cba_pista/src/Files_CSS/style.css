@@ -8,16 +8,29 @@
   --cl-black-3: #313134; /* bg inp */
   --cl-black-4: #76767c; /* bg btn sub */
   --cl-grey-01: #5b5b5e;
+  --bg-04: #111;
   
   --bg-01: #1e1e1e;
-  --bg-02: #282727;
-  --bg-01: #1e1e1e;
-  --bg-01: #1e1e1e;
+  --bg-02: #292929;
+  --bg-03: #222222;
 
   --text-info: #a0a0a0;
   --text-value: #E0E0E0;
 
   --btn-blue: #3A9FD1;
+
+  --cl-border-01: #3C3C3C;
+  --border-color: #3c3c3c;
+  --border-hover: #4a4a4a;
+  --checkbox-bg: #2e2e2e;
+
+  --radius-small-card: 8px;
+
+  --checkbox-checked: #3A9FD1;
+  --danger: #ef4444;
+  --success: #10b981;
+
+  
   --text1: #777;
   --text-light: #ccc;
   --bg-grey: #f4f5f9;

@@ -1,0 +1,319 @@
+/* Variables de color */
+
+
+/* Contenedor principal */
+.contaienr-table-records {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Toolbar principal */
+.toolbar-container-rec {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.toolbar-first {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.toolbar-first h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-value);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Botones de íconos en toolbar */
+.btn-icon {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-icon img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0.8) invert(0.8);
+  transition: filter 0.2s ease;
+}
+
+.btn-icon:hover {
+  background-color: var(--bg-02);
+}
+
+.btn-icon:hover img {
+  filter: brightness(1) invert(1);
+}
+
+.btn-icon:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Icon group (Ver Todo + Filtrar) */
+.icon-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Botones estilo action-link (como en Home) */
+.btn-record-mobile {
+  background: none;
+  border: none;
+  padding: 0.6rem 0.85rem;
+  color: var(--text-value);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 2px solid transparent;
+  background-color: transparent;
+}
+
+.btn-record-mobile:hover {
+  background-color: var(--bg-02);
+  border-left-color: var(--btn-blue);
+  padding-left: 1rem;
+}
+
+/* Toolbar segunda línea */
+.toolbar-second {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+
+/* Select personalizado */
+.toolbar-second select {
+  background-color: var(--bg-02);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  color: var(--text-value);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.toolbar-second select:hover {
+  border-color: var(--btn-blue);
+}
+
+.toolbar-second select:focus {
+  border-color: var(--btn-blue);
+}
+
+.btn-search-rec {
+  background: none;
+  border: none;
+  padding: 0.6rem 1rem;
+  color: var(--btn-blue);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 2px solid transparent;
+}
+
+.btn-search-rec:hover {
+  background-color: var(--bg-02);
+  border-left-color: var(--btn-blue);
+  padding-left: 1.2rem;
+}
+
+/* Paginación */
+.pagination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-pagination {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  color: var(--text-value);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-pagination:hover:not(:disabled) {
+  border-color: var(--btn-blue);
+  color: var(--btn-blue);
+  background-color: var(--bg-02);
+}
+
+.btn-pagination:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.span-pagination {
+  color: var(--text-info);
+  font-size: 0.85rem;
+}
+
+/* Selector de entradas por página */
+.entries {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-info);
+  font-size: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.entries select {
+  background-color: var(--bg-02);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.3rem 0.5rem;
+  color: var(--text-value);
+  font-size: 0.8rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.entries select:hover {
+  border-color: var(--btn-blue);
+}
+
+/* Botón flotante Agregar Registro (mobile) */
+.btn-add-rec {
+  display: none;
+}
+
+/* Responsive Desktop */
+@media (min-width: 768px) {
+  .contaienr-table-records {
+    padding: 1.5rem;
+  }
+
+  .toolbar-first h3 {
+    font-size: 1.3rem;
+  }
+
+  .btn-record-mobile,
+  .btn-add-rec-toolbar,
+  .btn-search-rec {
+    font-size: 0.9rem;
+  }
+
+  .pagination-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* Responsive Mobile pequeño */
+@media (max-width: 768px) {
+  .toolbar-first,
+  .icon-group {
+    width: 100%;
+  }
+
+  .toolbar-second {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbar-second select,
+  .btn-search-rec,
+  .btn-add-rec-toolbar {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Ocultar columnas específicas en mobile (ms-none) */
+  .ms-none {
+    display: none;
+  }
+
+  /* Ajustar grid para mobile */
+  .thead-rec-tr,
+  .tbody-rec-tr {
+    grid-template-columns: 40px 1fr 1.5fr 55px 55px 55px 55px 55px 55px;
+  }
+
+  /* Botón flotante para mobile */
+  .btn-add-rec {
+    display: flex;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: var(--btn-blue);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    transition: all 0.2s ease;
+  }
+
+  .btn-add-rec:hover {
+    background-color: #2e8ab8;
+    transform: translateY(-2px);
+  }
+}
+
+/* Ajustes para tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .thead-rec-tr,
+  .tbody-rec-tr {
+    grid-template-columns: 40px 160px 180px 90px 80px 60px 50px 50px 50px 50px 50px 50px;
+    gap: 0.4rem;
+  }
+}
+
+/* Animación suave para nuevos registros */
+@keyframes fadeInRow {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.tbody-rec-tr {
+  animation: fadeInRow 0.2s ease;
+}

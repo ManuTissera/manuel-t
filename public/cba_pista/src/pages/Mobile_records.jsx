@@ -2,7 +2,10 @@ import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 
 
-import "../Files_CSS/table_records.css";
+//import "../Files_CSS/table_records.css";
+//import "../Files_CSS/table_records2.css";
+import "../Files_CSS/table_records3.css";
+import "../Files_CSS/t-table.css"
 
 import { getRecordsTires, deleteRecordTires } from "../helpers/tires_registry.js";
 import { downloadXlsx } from "../helpers/download_files.js";
@@ -273,30 +276,9 @@ const MobileTable = () => {
 
       <div className="container-table">
 
+      <h3 className="h3-title" >Registros</h3>
       <div className="toolbar-container-rec">
-              <div className="toolbar-first">
-                <h3>Mobile Table</h3>
 
-
-
-                <button
-                  className="btn-icon btn-delete-rec"
-                  onClick={() => setShowDeleteModal(true)}
-                  disabled={!selected.length}
-                >
-                  <img src={deleteIcon} alt="Delete" />
-                </button>
-
-                <button
-                  className="btn-icon btn-download-rec"
-                  onClick={() => setShowDownloadModal(true)}
-                  // onClick={() => downloadCsv(pageRecords, "records.csv")}
-                >
-                  <img src={downloadIcon} alt="Download" />
-                </button>
-
-
-              </div>
 
               <div className="icon-group">
 
@@ -315,25 +297,46 @@ const MobileTable = () => {
 
 
         <div className="toolbar-second">
-          <Link to="/new_record" className="btn-add-rec-toolbar">
-            Agregar Registro
-          </Link>
-          <SelectTires
-            onChangeTires={onChangeTiresFn}
-            value={numTire}
-          />
-          {/* <input type="text" className="toolbar-search-tires input-tires"
-            placeholder="Buscar Cubierta"
-          /> */}
-          <button className="btn-search-rec" onClick={functionSearch} >Buscar</button>
+
+          <div className="container-search-tires">
+            <SelectTires
+              onChangeTires={onChangeTiresFn}
+              value={numTire}
+            />
+
+            <button className="action-btn" onClick={functionSearch} >Buscar</button>
+          </div>
+
         </div>
       </div>
+
+      <Link to="/new_record" className="action-btn">
+        Agregar Registro
+      </Link>
+
 
 {/* ---------------- aca comienza la tabla ---------------------------- */}
 
      
-      <div className="table-wrap">
 
+      <div className="toolbar-first">
+        <button
+          className="btn-icon btn-delete-rec"
+          onClick={() => setShowDeleteModal(true)}
+          disabled={!selected.length}
+        >
+          <img src={deleteIcon} alt="Delete" />
+        </button>
+        <button
+          className="btn-icon btn-download-rec"
+          onClick={() => setShowDownloadModal(true)}
+          // onClick={() => downloadCsv(pageRecords, "records.csv")}
+        >
+          <img src={downloadIcon} alt="Download" />
+        </button>
+      </div>
+
+      <div className="table-wrap">
 
             <div className="table-rec">
               <div className="thead-rec">
@@ -444,9 +447,6 @@ const MobileTable = () => {
             </div>
         </div>
 
-        <Link to="/new_record" className="btn-add-rec">
-          Agregar Registro
-        </Link>
 
       </div>
     </>

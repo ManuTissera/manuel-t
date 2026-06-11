@@ -15,15 +15,16 @@ const SelectTires = ({ onChangeTires, value  }) => {
       //       value={value}
       //    />
       // </label>
-
+      <>
          <input 
             onChange={(e) => onChangeTires(e.target.value)}
             placeholder="Ingresar Numero"
             //className="input input-N"
-            className="toolbar-search-tires input-tires"
+            className="toolbar-search-tires input-tires form-input"
             type="text"
             value={value}
          />
+      </>   
       
       // <label className="field field-N">
       //   <span className="label label-N"></span>

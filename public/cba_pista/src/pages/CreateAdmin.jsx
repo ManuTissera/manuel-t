@@ -12,7 +12,7 @@ const CreateNewAdmin = () => {
          <div className="container-form-all">
             <div className="header-card-form-second">
               <h2 className="header-h2-form">Nuevo Admin</h2>
-              <Link to="/" className="header-form-btn">Ver Admin</Link>
+              <Link to="/" className="action-btn btn-link">Ver Admin</Link>
             </div>
 
 
@@ -87,15 +87,18 @@ const CreateNewAdmin = () => {
                    />
                  </label>
 
-               <div className="actions">
-                  <label className='label-buttons'>
-                     <button
-                        className="btn-add btn-submit"
-                     >
-                     Agregar
-                     </button>
-                  </label>
-               </div>
+
+
+               <label className='label-buttons'>
+                  <button
+                     className="btn-add btn-submit"
+                     // onClick={() => uploadDataFn()}
+                     onClick={() => submitDataFn()}
+                  >
+                  Agregar
+                  </button>
+               </label>
+
             </div>
          </div>
       </>

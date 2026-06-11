@@ -34,8 +34,8 @@ import CreateNewAdmin from "./pages/CreateAdmin.jsx"
 import RecordTabel from "./pages/RecordsTable.jsx"
 import MobileTable from "./pages/Mobile_records.jsx"
 import HomePage from "./pages/Home.jsx"
-import HomePage2 from "./pages/home2.jsx";
-import HomePage3 from "./pages/home3.jsx";
+// import HomePage2 from "./pages/home2.jsx";
+// import HomePage3 from "./pages/home3.jsx";
 import NewRecordForm from "./pages/NewRecord.jsx"
 import AddPilotsElement from "./pages/AddPilots.jsx"
 import AddPilots2 from "./pages/AddPilots2.jsx"
@@ -63,8 +63,6 @@ export default function App() {
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/home2" element={<HomePage2 />} />
-        <Route path="/home3" element={<HomePage3 />} />
         <Route path="/pilots" element={<PilotsTable />} />
         <Route path="/new_admin" element={<CreateNewAdmin />} />
         <Route path="/records_table" element={<RecordTabel />} />

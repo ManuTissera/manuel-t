@@ -85,7 +85,7 @@ const AddPilotsElement = () => {
 
             <div className="header-card-form-second">
               <h2 className="header-h2-form">Agergar Piloto</h2>
-              <Link to="/pilots" className="header-form-btn">Ver Pilotos</Link>
+              <Link to="/pilots" className="action-btn btn-link">Ver Pilotos</Link>
               {/* <button className="header-form-btn">Ver Pilotos</button> */}
             </div>
             
@@ -108,28 +108,28 @@ const AddPilotsElement = () => {
 
 
 
-              <label className="form-group">
-                <span className="form-label">Nombre</span>
+              <div className="form-group">
+                <label className="form-label">Nombre</label>
                 <input 
                   className="form-input"
                   onChange={(e) => setNamePilot(e.target.value)}
                   placeholder="Ingresar Nombre"
                   type="text"
                 />
-              </label>
+              </div>
 
-              <label className="form-group">
-                <span className="form-label">Apellido</span>
+              <div className="form-group">
+                <label className="form-label">Apellido</label>
                 <input 
                   className="form-input"
                   placeholder="Ingresar Apellido"
                   type="text"
                   onChange={(e) => setSurname(e.target.value)}
                />
-              </label>
+              </div>
  
-               <label className="form-group">
-                 <span className="form-label">Categoria</span>
+               <div className="form-group">
+                 <label className="form-label">Categoria</label>
                  <select
                    className="form-input"
                    value={categorySelect}
@@ -142,7 +142,7 @@ const AddPilotsElement = () => {
                      </option>
                    ))}
                  </select>
-               </label>
+               </div>
                 
                <label className="form-group">
                  <span className="form-label">Numero Pilot</span>
