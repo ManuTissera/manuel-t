@@ -1,9 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import avatar from '../assets/avatar.svg'
 import arrowRight from '../assets/arrow-right-clean.svg'
 import '../Files_CSS/sidebar.css'
 
 const Sidebar = ({ isOpen, onClose }) => {
+
+  const navigate = useNavigate();
+
   return (
 
    <>
@@ -31,11 +34,20 @@ const Sidebar = ({ isOpen, onClose }) => {
           <Link to="/pilots" onClick={onClose}>Pilotos</Link>
           <Link to="/new_record" onClick={onClose}>Asignaciones</Link>
           <Link to="/records_tires" onClick={onClose}>Registros</Link>
+          <Link to="/current_record" onClick={onClose}>Registro Abierto</Link>
           {/* <Link to="/records_table" onClick={onClose}>Table</Link> */}
           <Link to="/add_pilot" onClick={onClose}>Nuevo Piloto</Link>
           <Link to="/new_admin" onClick={onClose}>Agregar Administrador</Link>
         </nav>
-          <Link to="/home" className="btn-logout" onClick={onClose}>Cerrar Sesion</Link>
+          <button 
+          className="btn-logout"
+          onClick={() => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('usuario');
+            navigate('/login');
+          }}>
+            Cerrar sesión
+          </button>
       </aside>
     </>
   )

@@ -4,7 +4,6 @@
 
 /* Overlay */
 .modal-overlay {
-
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.45);
@@ -20,12 +19,18 @@
   font-family: "Inter", sans-serif;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-style: normal;
-  background: #fff;
+  background: var(--bg-02);
   width: min-content;
+  width: 85%;
+  max-width: 450px;
   padding: 16px;
   border-radius: 4px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.25);
   position: relative;
+}
+
+.midium-modal{
+  border-radius: var(--radius-midium-card)
 }
 
 .container-modal h2{
@@ -40,9 +45,10 @@
 /* Header Modal */
 
 .modal-header{
-   height:70px;
+   height:max-content;
+   padding-bottom: .5rem;
    display: flex;
-   justify-content: center;
+   border-bottom: 2px solid var(--border-color);
 }
 
 .modal-header img{
@@ -50,9 +56,80 @@
    height: 50px;
 }
 
+.modal-header h4{
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 400;
+  color: var(--text-value);
+}
+
+.h4-modal{ /* ver de borrar */
+  color: var(--text-value);
+}
+
+.p-modal{ /* ver de borrar */
+  color: var(--text-value);
+}
+
+.content-info-modal{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: var(--bg-02);
+  width: 100%;
+  height: 11rem;
+  height: max-content;
+  margin: 1rem 0rem;
+  padding: .8rem;
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 400;
+  color: var(--text-value);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-small-card);
+}
+
+.info-modal-col:nth-child(odd){
+  font-family: "Poppins", sans-serif ;
+  font-weight: 400;
+  color: var(--text-info);
+}
+
+.info-modal-col:nth-child(even){
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 13.5px;
+  color: var(--text-value);
+  text-align: right;
+}
+
+/* Modal Editar Registros */
+.content-data-modal{
+  padding: 0rem 2rem;
+  margin-bottom: 1.1rem;
+}
+.content-modal-data-header{
+  color: var(--text-info);
+  gap: .4rem;
+}
+.content-modal-data-row,
+.content-modal-data-header{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr .2fr;
+  padding-top: .5rem;
+}
+.content-modal-data-row span{
+  color: var(--text-value);
+}
+.content-modal-data-row img{
+  width: 20px;
+  height: 20px;
+}
+.content-modal-data-row input{
+  width: 70px;
+}
 
 /* Text */
 .container-modal-delete h4 {
+  color: var(text-info);
+  color: red;
   margin: 0 0 8px;
   text-align: center;
   /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -65,6 +142,7 @@
   margin: 0 0 16px;
   margin: 0px;
   color: #555;
+  color: VAR(--text-value);
 }
 
 .container-modal-download input {
@@ -178,10 +256,10 @@
   font-size: 14px;
 } */
 
-.btn-cancel {
+/* .btn-cancel {
   background: #6b7f93;
   color: #fff;
-}
+} */
 
 .btn-delete {
   background: #e53935;

@@ -25,7 +25,7 @@ import SelectSarchCategory from "../components/SearchCategoryPilot.jsx";
 import SelectPilots from "../components/SelectPilots.jsx";
 import SelectEvetn from "../components/selectEvent.jsx";
 
-const MobileTable = () => {
+const CurrentRecord = () => {
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showModalFilter, setShowModalFilter] = useState(false);
@@ -297,7 +297,13 @@ const MobileTable = () => {
 
       <div className="container-table">
 
-      <h3 className="h3-title" >Registros</h3>
+      <div className="header-tables">
+        <h3 className="h3-title" >CARGA ABIERTA</h3>
+        <div className="header-tables-status">
+          <span>Fecha actual</span>
+          <p>Fecha 2 - Oscar Cabalen</p>
+        </div>
+      </div>
       <div className="toolbar-container-rec">
 
 
@@ -333,6 +339,9 @@ const MobileTable = () => {
 
       <Link to="/new_record" className="action-btn">
         Agregar Registro
+      </Link>
+      <Link to="/new_record" className="action-btn action-close">
+        Finalizar Carga
       </Link>
 
 
@@ -486,4 +495,4 @@ const MobileTable = () => {
   );
 };
 
-export default MobileTable;
+export default CurrentRecord;

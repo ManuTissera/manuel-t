@@ -16,17 +16,22 @@
 
   --text-info: #a0a0a0;
   --text-value: #E0E0E0;
+  --text-cancel: #944040;
+  --text-cancel: #942e2e;
 
   --btn-blue: #3A9FD1;
 
   --cl-border-01: #3C3C3C;
   --border-color: #3c3c3c;
   --border-hover: #4a4a4a;
+  --border-danger: #944040;
   --checkbox-bg: #2e2e2e;
 
   --radius-small-card: 8px;
+  --radius-midium-card: 15px;
 
   --checkbox-checked: #3A9FD1;
+  --incon-lightblue: #6dd3d2;
   --danger: #ef4444;
   --success: #10b981;
 

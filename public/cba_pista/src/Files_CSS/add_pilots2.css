@@ -1,4 +1,4 @@
-/* Container principal */
+/* Container principal
 .container-add-pilot {
   max-width: 800px;
   margin: 0 auto;
@@ -18,7 +18,7 @@
   }
 }
 
-/* Header del formulario */
+/=- Header del formulario  -=/
 .header-add-pilot {
   display: flex;
   flex-direction: column;
@@ -64,7 +64,7 @@
   font-size: 1.1rem;
 }
 
-/* Formulario */
+/=- Formulario  -=/
 .form-add-pilot {
   background-color: #1e1e1e;
   border-radius: 12px;
@@ -128,7 +128,7 @@
   color: #ffffff;
 }
 
-/* Botones de acción */
+/=- Botones de acción  -=/
 .form-actions {
   display: flex;
   flex-direction: column;
@@ -187,7 +187,7 @@
   font-size: 1.1rem;
 }
 
-/* Responsive Desktop */
+/=- Responsive Desktop  -=/
 @media (min-width: 768px) {
   .container-add-pilot {
     padding: 1.5rem;
@@ -226,7 +226,7 @@
   }
 }
 
-/* Mobile pequeño */
+/=- Mobile pequeño  -=/
 @media (max-width: 480px) {
   .container-add-pilot {
     padding: 0.75rem;
@@ -252,14 +252,14 @@
   }
 }
 
-/* Animación de carga y feedback */
+/=- Animación de carga y feedback  -=/
 .btn-submit:disabled,
 .btn-clear:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-/* Estilos para inputs number */
+/=- Estilos para inputs number  -=/
 input[type="number"] {
   -moz-appearance: textfield;
 }
@@ -268,4 +268,4 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
+} */

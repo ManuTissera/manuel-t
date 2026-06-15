@@ -1,4 +1,4 @@
-// middleware/roleCheck.js
+
 export const roleCheck = (rolesPermitidos) => {
   return (req, res, next) => {
     const { rol } = req.usuario;

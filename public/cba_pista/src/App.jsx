@@ -15,7 +15,7 @@ import "./Files_CSS/login.css"
 import "./Files_CSS/profile.css"
 // import "./Files_CSS/signup.css"
 import "./Files_CSS/home.css"
-import "./Files_CSS/home2.css"
+// import "./Files_CSS/home2.css"
 import "./Files_CSS/home3.css"
 import "./Files_CSS/new_admin.css"
 import "./Files_CSS/new_record.css"
@@ -27,21 +27,19 @@ import HeaderApp from "./components/header.jsx"
 import Sidebar from "./components/Sidebar.jsx"
 import BottomNavBar from "./components/BottomNavBar.jsx"
 
+import MobileTable from "./pages/Mobile_records.jsx"
+import CurrentRecord from "./pages/CurrentRecords.jsx";
 
 import ProfileUser from "./pages/Profile.jsx";
 import PilotsTable from "./pages/Pilots.jsx"
 import CreateNewAdmin from "./pages/CreateAdmin.jsx"
-import RecordTabel from "./pages/RecordsTable.jsx"
-import MobileTable from "./pages/Mobile_records.jsx"
 import HomePage from "./pages/Home.jsx"
-// import HomePage2 from "./pages/home2.jsx";
-// import HomePage3 from "./pages/home3.jsx";
 import NewRecordForm from "./pages/NewRecord.jsx"
 import AddPilotsElement from "./pages/AddPilots.jsx"
-import AddPilots2 from "./pages/AddPilots2.jsx"
 import LogIn from "./pages/LogIn.jsx"
 import Landing from "./pages/Landing.jsx"
 import SignUp from "./pages/Signup.jsx"
+
 
 export default function App() {
 
@@ -65,9 +63,8 @@ export default function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/pilots" element={<PilotsTable />} />
         <Route path="/new_admin" element={<CreateNewAdmin />} />
-        <Route path="/records_table" element={<RecordTabel />} />
         <Route path="/add_pilot" element={<AddPilotsElement />} />
-        <Route path="/add_pilot2" element={<AddPilots2 />} />
+        <Route path="/current_record" element={<CurrentRecord/>} />
         <Route path="/records_tires" element={<MobileTable />} />
         <Route path="/new_record" element={<NewRecordForm />} />
       </Routes>

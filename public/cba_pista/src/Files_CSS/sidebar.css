@@ -117,8 +117,13 @@
 }
 
 .btn-logout{
+  width: 100%;
+  font-size: 16.5px;
+  font-weight: 500;
   position: relative;
   bottom: 0px;
+  cursor: pointer;
+  border: 4px solid #444;
 }
 
 .sidebar-nav a:hover{

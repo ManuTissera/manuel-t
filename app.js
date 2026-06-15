@@ -16,11 +16,9 @@ const PORT = process.env.PORT || 3210;
 
 const __dirname = path.resolve();
 
-// Rutas de autenticación
-expressApp.use('/api/auth', authRoutes);
 
 /* =========================
-   MIDDLEWARE
+MIDDLEWARE
 ========================= */
 
 expressApp.use(express.json());
@@ -28,8 +26,12 @@ expressApp.use(express.text());
 expressApp.use(cors());
 
 /* =========================
-   API ROUTES
+API ROUTES
 ========================= */
+
+// Rutas de autenticación
+//expressApp.use('/api/auth', authRoutes);
+expressApp.use('/', authRoutes);
 
 expressApp.use("/", requestRouterCbaPista);
 expressApp.use("/", requestRouterData);

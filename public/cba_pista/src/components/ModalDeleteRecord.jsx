@@ -26,7 +26,7 @@ const ModalDeleteRecord = ({ ids = [], onConfirm, onCancel, dataDetail }) => {
        }
 
        setArrRecords(Array.isArray(data) ? data : []);
-       console.log(data)
+      //  console.log(data)
      };
 
      load();

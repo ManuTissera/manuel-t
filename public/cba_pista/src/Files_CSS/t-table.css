@@ -50,17 +50,23 @@
 .toolbar-first{
   display: flex;
   justify-content: right;
+  gap: 20px;
   border: 1px solid var(--border-color);
   margin-top: 1rem;
-  padding: .4rem;
+  padding: .7rem .4rem;
   padding-right: 1rem;
 }
 
 /* Botones de íconos */
 .btn-icon {
   background: none;
+  background-color: var(--bg-02);
   border: none;
-  padding: 0.5rem;
+  color: var(--text-value);
+  border: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  padding: 0.5rem 1.3rem;
   cursor: pointer;
   border-radius: 6px;
   transition: all 0.2s ease;

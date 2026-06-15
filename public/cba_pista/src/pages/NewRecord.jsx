@@ -140,8 +140,17 @@ export default function NewRecordForm() {
 
       <div className="container-form-all">
             <div className="header-card-form-second">
-              <h2 className="header-h2-form">Nuevo Admin</h2>
+                        <div className="header-tables">
+            <h3 className="h3-title" >CARGA ABIERTA</h3>
+            <div className="header-tables-status">
+              <span>Fecha actual</span>
+              <p>Fecha 2 - Oscar Cabalen</p>
             </div>
+          </div>
+            </div>
+
+
+
 
       {showModalUnload && (
         <ModalLoadRecord

@@ -6,8 +6,17 @@ import { DateTime } from 'luxon';
 
 const requestRouterCbaPista = express.Router();
 
+// requestRouterCbaPista.get('/usersadmin', async (req,res) => {
 
-
+//   try{
+//       const query = `SELECT * FROM users_admin;`;
+//       //const query = `SELECT * FROM tires_used;`;
+//       const data = await connection.query(query)
+//       res.send(data.rows)
+//    }catch(err){
+//       console.error(err)
+//    }
+// })
 
 requestRouterCbaPista.get('/category', async (req,res) => {
    
@@ -392,7 +401,50 @@ requestRouterCbaPista.post("/add_new_pilot", async (req, res) => {
 
 
 
-// DELETE REGISTRY
+// DELETE REGISTRY (Anulado por ahora en el param)
+requestRouterCbaPista.delete('/delete_register_tire_', async (req, res) => {
+  const { registry_ids } = req.body;
+  console.log(registry_ids)
+
+  if (!Array.isArray(registry_ids) || registry_ids.length === 0) {
+    res.status(400).json({ error: 'registry_ids inválido' });
+    return;
+  }
+
+  const ids = registry_ids.map(Number);
+  if (ids.some(Number.isNaN)) {
+    res.status(400).json({ error: 'IDs inválidos' });
+    return;
+  }
+
+  // ACA VERIFICAR CONDICION DEL REGISTRO
+
+  try {
+    await connection.query('BEGIN');
+
+   // borrar dependientes
+  await connection.query(
+    `DELETE FROM tires_used WHERE registry_id = ANY($1::int[])`,
+    [ids]
+  );
+  
+  // borrar principales
+  const result = await connection.query(
+    `DELETE FROM tires_registry WHERE id = ANY($1::int[])`,
+    [ids]
+  );
+
+    await connection.query('COMMIT');
+
+    res.json({ ok: true, deleted: result.rowCount });
+  } catch (err) {
+    try { await connection.query('ROLLBACK'); } catch (_) {}
+    console.error(err);
+    res.status(500).json({ error: 'Error eliminando registros' });
+  }
+});
+
+// DELETE REGISTRY WITH VERIFICATION
 requestRouterCbaPista.delete('/delete_register_tire', async (req, res) => {
   const { registry_ids } = req.body;
   console.log(registry_ids)
@@ -408,20 +460,38 @@ requestRouterCbaPista.delete('/delete_register_tire', async (req, res) => {
     return;
   }
 
+  // ACA VERIFICAR CONDICION DEL REGISTRO
+
+  // Verificar si algún registro pertenece a un evento bloqueado
+  const lockCheck = await connection.query(
+    `SELECT rs.is_locked
+     FROM tires_registry tr
+     INNER JOIN race_status rs ON tr.id_event = rs.id_event
+     WHERE tr.id = ANY($1::int[])`,
+    [ids]
+  );
+  
+  const hasLocked = lockCheck.rows.some(row => row.is_locked);
+  if (hasLocked) {
+    res.status(403).json({ error: 'Uno o más registros pertenecen a un evento finalizado' });
+    return;
+  }
+
+
   try {
     await connection.query('BEGIN');
 
-    // borrar dependientes
-    await connection.query(
-      `DELETE FROM tires_used WHERE registry_id = ANY($1)`,
-      [ids]
-    );
-
-    // borrar principales
-    const result = await connection.query(
-      `DELETE FROM tires_registry WHERE id = ANY($1)`,
-      [ids]
-    );
+   // borrar dependientes
+  await connection.query(
+    `DELETE FROM tires_used WHERE registry_id = ANY($1::int[])`,
+    [ids]
+  );
+  
+  // borrar principales
+  const result = await connection.query(
+    `DELETE FROM tires_registry WHERE id = ANY($1::int[])`,
+    [ids]
+  );
 
     await connection.query('COMMIT');
 

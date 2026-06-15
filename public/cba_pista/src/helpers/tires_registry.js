@@ -48,18 +48,24 @@ export const getRecordsTires = async (idPilot, idEvent, numTire) => {
 };
 
   
-  export const deleteRecordTires = async (arrIds) => {
-  console.log(arrIds,'<- Front')
-  const response = await fetch(
-    '/delete_register_tire',
-    {
+export const deleteRecordTires = async (arrIds) => {
+  const url = new URL('/delete_register_tire', getBaseUrl());
+  try {
+    const response = await fetch(url, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ registry_ids: arrIds })
+    });
+    
+    if (!response.ok) {
+      const error = await response.json();
+      return 'Hubo un error';
     }
-  );
-
-  return response.json();
+    
+    return response.json();
+  } catch(err) {
+    return err;
+  }
 };
 
 

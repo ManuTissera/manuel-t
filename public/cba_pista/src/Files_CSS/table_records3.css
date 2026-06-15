@@ -8,9 +8,31 @@
    border: 1px solid var(--border-color);
    overflow: hidden;
 }
-/* Toolbar container principal */
-.contaienr-table-records{
+
+
+.header-tables{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  /* border: 1px solid red; */
 }
+
+.header-tables-status span{
+  display: inline-block;
+  width: 100%;
+  color: var(--text-info);
+  text-align: right;
+  font-size: 13px;
+}
+
+.header-tables p{
+  color: var(--text-value);
+  text-align: right;
+  font-size: 12px;
+}
+
+/* Tool bar */
+
 .toolbar-container-rec {
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
@@ -21,7 +43,7 @@
 }
 
 .h3-title {
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--text-value);
   padding: .5rem 0rem 1rem 1rem;
@@ -227,7 +249,7 @@
 /* Desktop */
 @media (min-width: 768px) {
   .h3-title {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
 
   .btn-record-mobile,

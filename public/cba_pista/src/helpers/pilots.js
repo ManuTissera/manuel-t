@@ -10,6 +10,12 @@ const getBaseUrl = () => {
 };
 
 
+export const getUsuariosGet = async () => {
+  console.log('Usuarios get ejecutado')
+  const url = new URL("/usersadmin", getBaseUrl());
+  const response = await fetch(url);
+  return response.json();
+}
 
 
 export const getPilotsNum = async (category = "") => {

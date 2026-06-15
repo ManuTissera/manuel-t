@@ -113,44 +113,45 @@
   text-align: center;
 }
 
+
+.btn-cancel{
+  background-color: #2a2a2a;
+  border-color: #3a9fd1;
+  width: max-content;
+  height: max-content;
+  margin-top: 0.5rem;
+
+
+}
+
+/* Button Edit Modal */
+.btn-edit-modal{
+  width: max-content;
+  height: max-content;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  background: none;
+  color: red;
+}
+
+.btn-edit-modal img:hover {
+  filter: brightness(0) saturate(100%) invert(14%) sepia(100%) saturate(7316%) hue-rotate(246deg) brightness(95%) contrast(145%);
+  filter: brightness(0) invert(1);
+
+}
+
+.action-close{
+  font-weight: 700;
+  color: var(--text-cancel);
+  border-color: var(--text-cancel);
+  margin-top: 10px;
+}
+
+
 /* ------------------------------------------------------------------------- */
 /* ================  otros */
 /* ------------------------------------------------------------------------- */
-
-.btn-search{
-  background-color: var(--bg-btn-1);
-  color: var(--text1);
-  height: 27px;
-  line-height: 6px;
-}
-
-.btn-search:hover{
-  background-color: var(--bg-btn-dark-1);
-}
-
-.btn:hover{
-  background: var(--bg-btn-dark-1);
-  color: var(--text-light)
-}
-
-.btn-add-record {
-  background: #4fc3c7;
-  border-color: #4fc3c7;
-  color: #fff;
-}
-
-.btn-submit{
-  background-color: var(--cl-black-4);
-  background-color: var(--btn-blue);
-  text-align: center;
-  color: #fff;
-  width: 50%;
-  height: 40px;
-  line-height: 15px;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 50px;
-}
 
 
 
@@ -173,9 +174,7 @@
   padding-right: 18px;
 }
 
-.bnt-showall{
-  background-color:var(--bg-red-1);
-}
+
 
 .btn-pagination{
   background-color: var(--bg-blue-2);
