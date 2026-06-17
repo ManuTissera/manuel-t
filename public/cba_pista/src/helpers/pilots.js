@@ -80,9 +80,10 @@ console.log('Called','getCategories')
 
 export const getEvent = async () => {
 
-  console.log('Called','getEvent')
-     const response = await fetch(`/circuits_calendar`);
-      return response.json(); 
+  const url = new URL(`/circuits_calendar`,getBaseUrl())
+
+  const response = await fetch(url);
+  return response.json(); 
 
 }
 

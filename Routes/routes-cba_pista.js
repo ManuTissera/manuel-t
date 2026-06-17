@@ -178,6 +178,7 @@ requestRouterCbaPista.get('/info_pilot', async (req,res) => {
 
 requestRouterCbaPista.get('/circuits_calendar', async (req,res) => {
 
+  console.log('Circuit Calendar entro al back')
    try{
       const query = `SELECT * FROM circuits_calendar;`
       const data = await connection.query(query);
@@ -398,6 +399,41 @@ requestRouterCbaPista.post("/add_new_pilot", async (req, res) => {
     return res.status(500).json({ error: "Error interno del servidor" });
   }
 });
+
+
+
+// --------------------------------------
+// Validaciones
+// --------------------------------------
+
+requestRouterCbaPista.get('/check_load_status', async (req, res) => {
+  try{
+    const query = `SELECT * FROM race_status WHERE is_locked = false;`
+    const data = await connection.query(query);
+    res.send(data.rows);
+  }catch(err){
+    res.send(err);
+  }
+})
+
+requestRouterCbaPista.post('/start_load_records', async (req, res) => {
+
+  console.log('Entro en el Back')
+  try{
+    const query = `
+      INSERT INTO
+	    RACE_STATUS (ID_EVENT, ID_AUDITOR)
+      VALUES (2, 3)`;
+    const data = await connection.query(query);
+
+    res.send('Sesion Iniciada en Back')
+  }catch(err){
+    res.send(err)
+  }
+})
+
+
+
 
 
 

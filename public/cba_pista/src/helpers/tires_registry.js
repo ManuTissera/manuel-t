@@ -11,6 +11,38 @@ const getBaseUrl = () => {
 };
 
 
+//Iniciar sescion de carga 
+
+export const checkLoadStatus = async () => {
+  
+  const url = new URL('/check_load_status', getBaseUrl());
+  const response = await fetch(url);
+
+  // if(!Array.isArray(response)){
+  //   console.log('No es un array')
+  // }else{
+  //   console.log('Es un Array');
+  // }
+
+  return response.json();
+}
+
+export const startLoadRecord = async () => {
+  const url = new URL("/start_load_records", getBaseUrl());
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' }
+  });
+  
+  // Cambiado de .json() a .text() porque el back envía texto plano
+  return response.text(); 
+}
+
+
+
+
+
+
 
 export const getRecordsTires = async (idPilot, idEvent, numTire) => {
   const hasNumTire =
@@ -47,13 +79,44 @@ export const getRecordsTires = async (idPilot, idEvent, numTire) => {
   return response.json();
 };
 
+
+
+
   
+// export const deleteRecordTires = async (arrIds) => {
+//   const url = new URL('/delete_register_tire', getBaseUrl());
+//   try {
+//     const response = await fetch(url, {
+//       method: 'DELETE',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({ registry_ids: arrIds })
+//     });
+    
+//     if (!response.ok) {
+//       const error = await response.json();
+//       return 'Hubo un error';
+//     }
+    
+//     return response.json();
+//   } catch(err) {
+//     return err;
+//   }
+// };
+
+
+
+// Funcion Delete con validacion de usuario
 export const deleteRecordTires = async (arrIds) => {
   const url = new URL('/delete_register_tire', getBaseUrl());
+  const token = localStorage.getItem('token'); // ← AGREGAR
+  
   try {
     const response = await fetch(url, {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` // ← AGREGAR
+      },
       body: JSON.stringify({ registry_ids: arrIds })
     });
     

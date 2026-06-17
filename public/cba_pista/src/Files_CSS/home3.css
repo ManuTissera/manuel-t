@@ -53,6 +53,7 @@
   flex: 1;
   background-color: #1e1e1e;
   background-color: #282727;
+  background-color: var(--bg-02);
   border-radius: 8px;
   padding: 1.25rem;
   text-align: center;
@@ -60,15 +61,22 @@
 }
 
 .stat-item:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
 }
 
 .stat-number {
   display: block;
   font-size: 2rem;
   font-weight: 700;
-  color: #3a9fd1;
+  color: var(--text-blue);
   margin-bottom: 0.5rem;
+}
+
+.stat-span{
+  display: inline-block;
+  font-size: 16px;
+  width: 100%;
+  padding: 1.2rem 0rem;
 }
 
 .stat-label {
@@ -77,6 +85,15 @@
   color: #a0a0a0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.stat-button{
+  border: none;
+}
+
+.stat-button:hover{
+  border: none;
+  box-shadow: 0px 0px 3px #fff;
 }
 
 /* Acciones - solo 3 links sobrios */

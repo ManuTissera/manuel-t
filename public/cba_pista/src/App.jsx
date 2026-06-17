@@ -30,6 +30,7 @@ import BottomNavBar from "./components/BottomNavBar.jsx"
 import MobileTable from "./pages/Mobile_records.jsx"
 import CurrentRecord from "./pages/CurrentRecords.jsx";
 
+import ModalLoadRecord from "./components/ModalLoadRecord.jsx";
 import ProfileUser from "./pages/Profile.jsx";
 import PilotsTable from "./pages/Pilots.jsx"
 import CreateNewAdmin from "./pages/CreateAdmin.jsx"
@@ -67,6 +68,7 @@ export default function App() {
         <Route path="/current_record" element={<CurrentRecord/>} />
         <Route path="/records_tires" element={<MobileTable />} />
         <Route path="/new_record" element={<NewRecordForm />} />
+        <Route path="/modal_load_record" element={<ModalLoadRecord />} />
       </Routes>
       
       {showLayout && <BottomNavBar />}

@@ -1,21 +1,68 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react'; // Eliminado useEffect por desuso
+
+import { startLoadRecord, checkLoadStatus } from '../helpers/tires_registry.js'; // Corregido el punto
+
+import ModalLoadStartRecord from '../components/ModalStartLoad.jsx';
 
 const HomePage = () => {
-  const [stats, setStats] = useState({
-    totalPilots: 0,
-    totalRecords: 0
-  });
+  // Estados para deshabilitar botón y guardar el mensaje del back
+  const [loading, setLoading] = useState(false);
+  //const [message, setMessage] = useState('');
+  const [loadStatus, setloadStatus] = useState([]); 
+  const [showModalLoader, setShowModalLoader] = useState(false)
 
   useEffect(() => {
-    // Datos de ejemplo - luego conectar con API
-    setStats({
-      totalPilots: 24,
-      totalRecords: 156
-    });
+    const fetchStatus = async () => {
+      try {
+        const data = await checkLoadStatus(); // AGREGADO: await
+        // Ahora sí verás el array con las filas del SELECT
+        
+        setloadStatus(data); // Guardamos los datos en el estado
+
+      } catch (error) {
+        console.error("Error al obtener el status:", error);
+      }
+    };
+
+    fetchStatus();
   }, []);
 
+
+
+        
+
+  const handleClick = async (statusLoad) => {
+    console.log(statusLoad)
+    setShowModalLoader(true)
+    // setLoading(true);
+    // setMessage('');
+    
+    // try {
+    //   const responseText = await startLoadRecord(); 
+    //   setTimeout(() => {console.log(responseText); setLoading(false)},1700)
+      
+    // } catch (error) {      
+    //   setTimeout(()=>{console.error('Error al Iniciar Sesion');setLoading(false);},1000)
+    // }
+  };
+
+
+
   return (
+
+
+  <>
+
+
+      {showModalLoader && (
+        <ModalLoadStartRecord
+          // ifLoad={infoModalLoad}
+          onCancel={() =>setShowModalLoader(false)} 
+        />
+      )}
+
+
     <div className="home-container">
       {/* Header simple */}
       <div className="home-header">
@@ -34,15 +81,29 @@ const HomePage = () => {
 
       {/* Stats cards - solo 2 */}
       <div className="stats-row">
-        <div className="stat-item">
-          <span className="stat-label">Fecha Numero</span>
-          <span className="stat-number">{stats.totalPilots}</span>
+
+        <button 
+          className="stat-item stat-button" 
+          // onClick={handleClick}
+          disabled={loading} // Deshabilita el botón si loading es true
+        >
+          {loading ? <p>Iniciando...</p> 
+                   : (loadStatus.length == 0)
+                      // ?'Iniciar Carga'
+                      ? <span className="stat-span text-blue" 
+                          onClick={() => handleClick('to-start')}>Initialitanding</span>
+                      : <span className="stat-span text-red"
+                          onClick={() => handleClick('to-end')}>Finalizar Carga</span>}
           
-        </div>
-        <div className="stat-item">
-          <span className="stat-number">{stats.totalRecords}</span>
+        </button>
+
+          {/* Muestra el mensaje del backend si existe */}
+          {/* {message && <p className="backend-message">{message}</p>} */}
+
+        <button className="stat-item stat-button">
+          <span className="stat-number">245</span>
           <span className="stat-label">Registros Totales</span>
-        </div>
+        </button>
       </div>
 
       {/* Acciones principales - solo 3 botones */}
@@ -70,6 +131,11 @@ const HomePage = () => {
         </p>
       </div>
     </div>
+
+
+
+  </>
+
   );
 };
 
