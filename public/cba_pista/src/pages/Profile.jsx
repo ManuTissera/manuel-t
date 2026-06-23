@@ -1,3 +1,6 @@
+
+
+import { getActiveUsers } from '../helpers/pilots.js'
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -18,22 +21,51 @@ const ProfileUser = () => {
     confirmPassword: ''
   });
 
-  useEffect(() => {
-    // Simular carga de datos - luego conectar con API
-    setProfile({
-      name: 'Juan Administrador',
-      email: 'juan.admin@cbapista.com',
-      role: 'Administrador',
-      joinDate: '15 de enero, 2024'
-    });
+  console.log('Profile ==>>',profile)
 
-    setFormData(prev => ({
-      ...prev,
-      name: 'Juan Administrador',
-      email: 'juan.admin@cbapista.com'
-    }));
+  useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        const data = await getActiveUsers();
+
+          console.log('Datita Profile ==>>',data)
+
+        
+        // Verificar que data existe y es un array
+        if (data && data.id_admin) {
+          // Tomar el primer usuario (o el que corresponda)
+          const user = data;
+
+          console.log('Datita Profile ==>>',data)
+          
+          // Actualizar profile
+          setProfile({
+            name: `${user?.first_name} ${user?.second_name}`,
+            email: user?.email,
+            role: user?.user_rol,
+            joinDate: new Date().toLocaleDateString('es-AR', { 
+              day: 'numeric', 
+              month: 'long', 
+              year: 'numeric' 
+            })
+          });
+
+          // Actualizar formData
+          setFormData(prev => ({
+            ...prev,
+            name: `${user?.first_name} ${user?.second_name}`,
+            email: user?.email
+          }));
+        }
+      } catch (error) {
+        console.error('Error cargando perfil:', error);
+      }
+    }
+
+    loadProfile();
   }, []);
 
+  // Resto del componente...
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({

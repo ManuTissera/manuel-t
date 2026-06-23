@@ -17,6 +17,7 @@ import deleteIcon from "../assets/delete-icon-2.svg";
 import editIcon from "../assets/edit.svg";
 
 import SelectTires from "../components/SelectTires.jsx";
+import AlertBanner from "../components/AlertBanner.jsx";
 import ModalDeleteRecord from "../components/ModalDeleteRecord.jsx";
 import ModalDownloadsRecords from "../components/ModalDownload.jsx";
 import ModalEditRecords from "../components/ModalEditRecords.jsx";
@@ -26,17 +27,26 @@ import SelectPilots from "../components/SelectPilots.jsx";
 import SelectEvetn from "../components/selectEvent.jsx";
 
 const MobileTable = () => {
-  const [showModalEdit, setShowModalEdit] = useState(false);
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showModalFilter, setShowModalFilter] = useState(false);
-  const [showDownloadModal, setShowDownloadModal] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState(false);
+  const [showBanner, setShowBanner] = useState(false);
 
+  const [alertType, setAlertType] = useState(true);
+  const [alertTitle, setAlertTitle] = useState("")
+  const [alertMsg, setAlertMsg] = useState("")
+
+  const [deleteMessage, setDeleteMessage] = useState("")
+
+  const [categorySelcted, setCategorySelected] = useState("");
   const [recordsArr, setRecordsArr] = useState([]);
   const [pilotsArr, setPilotsArr] = useState("");
   const [eventArr, setEventArr] = useState("");
   const [selected, setSelected] = useState([]);
   const [numTire, setNumTire] = useState("");
-  const [categorySelcted, setCategorySelected] = useState("");
+
+  // console.log(recordsArr)
 
   // Pagination (front)
   const [pageSize, setPageSize] = useState(10);
@@ -55,6 +65,7 @@ const MobileTable = () => {
   const pageRecords = useMemo(() => {
     return recordsArr.slice(start, end);
   }, [recordsArr, start, end]);
+
 
   const onChangeFn = (val) => {
     setCategorySelected(val);
@@ -100,18 +111,38 @@ const MobileTable = () => {
 
   const deleteFunction = async () => {
     console.log(selected)
-    await deleteRecordTires(selected);
+    try{
+      const res = await deleteRecordTires(selected);
+       
+      if(res.ok){
+        console.log(res)
+        const data = await getRecordsTires("", "", "");
+        setRecordsArr(Array.isArray(data) ? data : []);
+        
+        setAlertMsg('Eliemento/s eliminado/s')
+        setAlertTitle('Operacion Exitosa!')
+        setAlertType(true);
+        setSelected([]);
+        setShowBanner(true);
+        setPage(1);
+        setTimeout(() => setShowDeleteModal(false),4000);
+      }else{
+        console.log(`${res.error} - ${selected[0]}`)
+        setAlertType(false);
+        setAlertMsg(`${res.error} - ${selected.join(' - ')}`)
+        setAlertTitle(`Error! - ${selected[0]}`)
+        setShowBanner(true);
+        setTimeout(() => setAlertMsg(""),3700)
+      }
+    }catch(err){
+      console.log(err)
 
-    const data = await getRecordsTires("", "", "");
-    setRecordsArr(Array.isArray(data) ? data : []);
-
-    setSelected([]);
-    setShowDeleteModal(false);
-    setPage(1);
+    }
   };
 
   const editFunction = async () => {
-    console.log('Edit selected',selected);
+    // console.log('Edit selected',selected[0]);
+    // const result = recordsArr.find(r => r.id === selected)
 
     setSelected([]);
     setShowModalEdit(false);
@@ -170,7 +201,7 @@ const MobileTable = () => {
           surname: r.surname,
           event: r.event,
           name_circuits: r.name_circuits,
-          category: r.category,
+          category: r.id_category,
           date: getDate(r.event_date),
           time: getTime(r.event_date),
           tire_n1: r.tire_n1,
@@ -207,6 +238,17 @@ const MobileTable = () => {
 
   return (
     <>
+
+
+      {showBanner && (
+        <AlertBanner 
+          titleAlert={alertTitle} 
+          messageAlert={alertMsg} 
+          classNN={alertType} 
+        />
+      )}
+
+
       {showDeleteModal && (
         <ModalDeleteRecord
           ids={selected}
@@ -229,12 +271,14 @@ const MobileTable = () => {
 
       {showModalEdit && (
         <ModalEditRecords
-          ids={selected}
+          recdEd={recordsArr.find(r => r.id === selected[0])}
           onCancel={() => setShowModalEdit(false)}
           //onCancel={() => console.log('Cerrado por ahora ')}
           onConfirm={editFunction}
         />
       )}
+
+
 
       {
         showModalFilter && ( 
@@ -243,6 +287,9 @@ const MobileTable = () => {
         // />
 
         <div className="modal-overlay" onClick={() => {setShowModalFilter(false); console.log('overlay apretado')}}>
+
+
+
         <div className="container-filter-tires" onClick={(e) => e.stopPropagation()}>
           <span 
             onClick={() => setShowModalFilter(false)}
@@ -294,6 +341,11 @@ const MobileTable = () => {
 
 
       <div className="contaienr-table-records">
+
+      {/* <div className="container-banner"> */}
+
+
+      {/* </div> */}
 
       <div className="container-table">
 
@@ -403,7 +455,7 @@ const MobileTable = () => {
                        </div>
                   
                        <div className="td-rec">
-                         {r.pilot_name} {r.surname}
+                         {r.pilot_name} {r.surname} {` - (${r.number_pilot})`}
                        </div>
                        <div className="td-rec col-fecha">
                          {r.event} - {r.name_circuits}

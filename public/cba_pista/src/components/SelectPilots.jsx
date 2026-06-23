@@ -38,7 +38,7 @@ const SelectPilots = ({ category,onChagePilot,nameClass, pilotNumber }) => {
             value={pilotNumber} onChange={(e) => onChagePilot(Number(e.target.value))}>
             <option>Numero</option>
             {pilotsArr.map((p) => (
-               <option value={p.id} key={p.id}>{p.number_pilot}</option>
+               <option value={p.number_pilot} key={p.id}>{p.number_pilot}</option>
             ))}
          </select>
       </label>

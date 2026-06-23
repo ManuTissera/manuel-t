@@ -38,12 +38,6 @@ export const startLoadRecord = async () => {
   return response.text(); 
 }
 
-
-
-
-
-
-
 export const getRecordsTires = async (idPilot, idEvent, numTire) => {
   const hasNumTire =
     numTire !== undefined &&
@@ -80,33 +74,35 @@ export const getRecordsTires = async (idPilot, idEvent, numTire) => {
 };
 
 
+export const editRecordTires = async (idRegistry, tires) => {
+  // tires: [{ position: 'N1', tire_number: 384 }, ...]
 
+  const url = new URL('/edit_register_tire', getBaseUrl());
+  const token = localStorage.getItem('token');
 
-  
-// export const deleteRecordTires = async (arrIds) => {
-//   const url = new URL('/delete_register_tire', getBaseUrl());
-//   try {
-//     const response = await fetch(url, {
-//       method: 'DELETE',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({ registry_ids: arrIds })
-//     });
-    
-//     if (!response.ok) {
-//       const error = await response.json();
-//       return 'Hubo un error';
-//     }
-    
-//     return response.json();
-//   } catch(err) {
-//     return err;
-//   }
-// };
+  try {
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ id_registry: idRegistry, tires })
+    });
 
+    const data = await response.json();
+    return data;
+
+  } catch(err) {
+    return err;
+  }
+};
 
 
 // Funcion Delete con validacion de usuario
 export const deleteRecordTires = async (arrIds) => {
+
+
   const url = new URL('/delete_register_tire', getBaseUrl());
   const token = localStorage.getItem('token'); // ← AGREGAR
   
@@ -122,7 +118,7 @@ export const deleteRecordTires = async (arrIds) => {
     
     if (!response.ok) {
       const error = await response.json();
-      return 'Hubo un error';
+      return error;
     }
     
     return response.json();

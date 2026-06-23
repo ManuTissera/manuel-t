@@ -1,11 +1,29 @@
+
+
+import { logout } from '../helpers/add_info.js'
+import { getActiveUsers } from '../helpers/pilots.js'
 import { Link, useNavigate } from 'react-router-dom'
 import avatar from '../assets/avatar.svg'
 import arrowRight from '../assets/arrow-right-clean.svg'
 import '../Files_CSS/sidebar.css'
+import { useState, useEffect } from 'react'
+
 
 const Sidebar = ({ isOpen, onClose }) => {
 
+  const [userActive, setUserActive] = useState([])
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const loadActiveUser = async () => {
+      const data = await getActiveUsers()
+      setUserActive(data);
+    };
+    loadActiveUser()
+  },[]);
+
+  // console.log('siderbar', userActive);
 
   return (
 
@@ -25,8 +43,8 @@ const Sidebar = ({ isOpen, onClose }) => {
           />
 
           <img src={avatar} alt="User avatar" />
-          <h4>Manuel Tissera</h4>
-          <p>Administrador</p>
+          <h4>{`${userActive?.first_name} - ${userActive?.second_name}`}</h4>
+          <p>{userActive?.user_rol}</p>
         </div>
 
         <nav className="sidebar-nav">
@@ -39,15 +57,25 @@ const Sidebar = ({ isOpen, onClose }) => {
           <Link to="/add_pilot" onClick={onClose}>Nuevo Piloto</Link>
           <Link to="/new_admin" onClick={onClose}>Agregar Administrador</Link>
         </nav>
-          <button 
-          className="btn-logout"
-          onClick={() => {
-            localStorage.removeItem('token');
-            localStorage.removeItem('usuario');
-            navigate('/login');
-          }}>
-            Cerrar sesión
-          </button>
+        {(userActive == 'Usuario no autenticado')
+                    ?
+                        <button 
+                          className="submit-btn btn-login"
+                          onClick={async () => {
+                            navigate('/login');
+                          }}>
+                          Iniciar Sesion
+                        </button>
+                    :
+                        <button 
+                          className="btn-logout"
+                          onClick={async () => {
+                            await logout();
+                            navigate('/login');
+                          }}>
+                          Cerrar sesión
+                        </button>
+                    }
       </aside>
     </>
   )

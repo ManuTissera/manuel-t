@@ -12,8 +12,8 @@ const ModalDeleteRecord = ({ ids = [], onConfirm, onCancel, dataDetail }) => {
 
    const [ arrRcords, setArrRecords ] = useState([])
 
-   console.log(dataDetail)
-   console.log('IDs selected:',ids)
+  //  console.log(dataDetail)
+  //  console.log('IDs selected:',ids)
    
    useEffect(() => {
      const load = async () => {
@@ -34,34 +34,43 @@ const ModalDeleteRecord = ({ ids = [], onConfirm, onCancel, dataDetail }) => {
 
 
   return (
-    <div className="modal-overlay" onClick={onCancel}>
-      <div className="container-modal container-modal-delete" onClick={(e) => e.stopPropagation()}>
+    <>
+    
+    
+        <div className="modal-overlay" onClick={onCancel}>
+      <div className="container-modal midium-modal" onClick={(e) => e.stopPropagation()}>
         {/* <button className="modal-close" onClick={onCancel}>
           <img src={equisDel} alt="Cerrar" />
         </button> */}
+
+            <div className="modal-img-container">
+              <img src={equisDel} alt="Equis" />
+            </div>
          <div className="modal-header">
-            <img src={equisDel} alt="Equis" />
+
          </div>
 
-        <h4>Eliminar Elementos</h4>
-        <p>Elementos a eliminar:</p>
-        <div className='list-elements-delete'>
-         {ids.length 
-            // ? ids.map(d => (<p key={d}> - {d}</p>))
-            ? ids.map(d => {
-               const user = arrRcords.find(u => u.id == d)
-               const user_name =
-                 dataDetail === "Records"
-                   ? [user?.pilot_name, user?.surname].filter(Boolean).join(" ")
-                   : [user?.name, user?.surname].filter(Boolean).join(" ");
-
-               const fecha = dataDetail === "Records" ? user?.event : "";
-               return(
-                  <p key={d}>{`${fecha} - ${user_name}`}</p>
-               )
-            })
-            : <p>No se agregaron registros</p>}
-        </div>
+        <h4 className="h4-modal">Eliminar Elementos</h4>
+          <div className="modal-text">
+            <p>Elementos a eliminar:</p>
+              <div className='list-elements-delete'>
+               {ids.length 
+                  // ? ids.map(d => (<p key={d}> - {d}</p>))
+                  ? ids.map(d => {
+                     const user = arrRcords.find(u => u.id == d)
+                     const user_name =
+                       dataDetail === "Records"
+                         ? [user?.pilot_name, user?.surname].filter(Boolean).join(" ")
+                         : [user?.name, user?.surname].filter(Boolean).join(" ");
+                  
+                     const fecha = dataDetail === "Records" ? user?.event : "";
+                     return(
+                        <p key={d}>{`${fecha} - ${user_name}`}</p>
+                     )
+                  })
+                  : <p>No se agregaron registros</p>}
+              </div>
+          </div>
 
         <div className="conteiner-modal-delete-btn">
           <button onClick={() => onConfirm(ids)}>Eliminar</button>
@@ -69,6 +78,8 @@ const ModalDeleteRecord = ({ ids = [], onConfirm, onCancel, dataDetail }) => {
         </div>
       </div>
     </div>
+    
+    </>
   );
 };
 

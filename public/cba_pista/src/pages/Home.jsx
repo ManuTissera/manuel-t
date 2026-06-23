@@ -9,46 +9,59 @@ const HomePage = () => {
   // Estados para deshabilitar botón y guardar el mensaje del back
   const [loading, setLoading] = useState(false);
   //const [message, setMessage] = useState('');
-  const [loadStatus, setloadStatus] = useState([]); 
+  const [loadStatus, setloadStatus] = useState([]);
+  const [refreshKey, setRefreshKey] = useState(true);
   const [showModalLoader, setShowModalLoader] = useState(false)
 
-  useEffect(() => {
-    const fetchStatus = async () => {
-      try {
-        const data = await checkLoadStatus(); // AGREGADO: await
-        // Ahora sí verás el array con las filas del SELECT
+        useEffect(() => {
+          const fetchStatus = async () => {
+            try {
+              const data = await checkLoadStatus(); // AGREGADO: await
+              // Ahora sí verás el array con las filas del SELECT
+              
+              setloadStatus(data); // Guardamos los datos en el estado
+            
+            } catch (error) {
+              console.error("Error al obtener el status:", error);
+            }
+          };
         
-        setloadStatus(data); // Guardamos los datos en el estado
-
-      } catch (error) {
-        console.error("Error al obtener el status:", error);
-      }
-    };
-
-    fetchStatus();
-  }, []);
-
-
-
-        
-
-  const handleClick = async (statusLoad) => {
-    console.log(statusLoad)
-    setShowModalLoader(true)
-    // setLoading(true);
-    // setMessage('');
-    
-    // try {
-    //   const responseText = await startLoadRecord(); 
-    //   setTimeout(() => {console.log(responseText); setLoading(false)},1700)
+          fetchStatus();
+        }, []);
       
-    // } catch (error) {      
-    //   setTimeout(()=>{console.error('Error al Iniciar Sesion');setLoading(false);},1000)
-    // }
-  };
+        useEffect(() => {
+          const fetchStatus = async () => {
+            try {
+              const data = await checkLoadStatus();
+              setloadStatus(data);
+            } catch (error) {
+              console.error("Error al obtener el status:", error);
+            }
+          };
+        
+          fetchStatus();
+      }, [refreshKey]);
 
 
+        
 
+            const handleClick = async (statusLoad) => {
+              console.log(statusLoad)
+              setShowModalLoader(true)
+              // setLoading(true);
+              // setMessage('');
+
+              // try {
+              //   const responseText = await startLoadRecord(); 
+              //   setTimeout(() => {console.log(responseText); setLoading(false)},1700)
+
+              // } catch (error) {      
+              //   setTimeout(()=>{console.error('Error al Iniciar Sesion');setLoading(false);},1000)
+              // }
+            };
+          
+          
+          
   return (
 
 
@@ -58,7 +71,11 @@ const HomePage = () => {
       {showModalLoader && (
         <ModalLoadStartRecord
           // ifLoad={infoModalLoad}
-          onCancel={() =>setShowModalLoader(false)} 
+          statusData={loadStatus}
+          onCancel={() => {
+            setShowModalLoader(false);
+            setRefreshKey(prev => !prev); // Cambia true->false o false->true
+          }}
         />
       )}
 
@@ -91,7 +108,7 @@ const HomePage = () => {
                    : (loadStatus.length == 0)
                       // ?'Iniciar Carga'
                       ? <span className="stat-span text-blue" 
-                          onClick={() => handleClick('to-start')}>Initialitanding</span>
+                          onClick={() => handleClick('to-start')}>Iniciar Ronda</span>
                       : <span className="stat-span text-red"
                           onClick={() => handleClick('to-end')}>Finalizar Carga</span>}
           

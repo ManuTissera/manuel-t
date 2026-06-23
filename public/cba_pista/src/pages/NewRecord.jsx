@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
-import { infoPilot, getEvent, getCategories } from "../helpers/pilots.js";
+import { infoPilot, getEvent, getCategories, getRunStatus } from "../helpers/pilots.js";
 import { addNewRecord } from "../helpers/add_info.js";
 
 import SelectPilots from "../components/SelectPilots.jsx";
+import AlertBanner from '../components/AlertBanner.jsx';
 import ModalLoadRecord from "../components/ModalLoadRecord.jsx";
 import ModalSuccesLoad from "../components/ModalSuccesLoad.jsx";
+import ModalLoadStartRecord from '../components/ModalStartLoad.jsx';
 import BarcodeScannerModal from "../components/BarcodeScannerModal.jsx";
 
 const WHEELS = ["N1", "N2", "N3", "N4", "N5", "N6"];
@@ -22,6 +24,12 @@ export default function NewRecordForm() {
   const [categories, setCateogries] = useState([]);
   const [eventData, setEventData] = useState("");
   const [category, setCategory] = useState("");
+  const [statusRun, setStatusRun] = useState([]); // 'statusRun' es 'loadStatus' en las otras
+  
+  const [showModalLoader, setShowModalLoader] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(true);
+
+
 
   const [dateTime, setDateTime] = useState(() => {
     const d = new Date();
@@ -35,25 +43,46 @@ export default function NewRecordForm() {
     WHEELS.reduce((acc, k) => ((acc[k] = ""), acc), {})
   );
 
-  useEffect(() => {
-    const loadInfo = async () => {
-      const dataCategories = await getCategories();
-      setCateogries(dataCategories);
-    };
-    loadInfo();
-  }, []);
+        useEffect(() => {
+          const loadInfo = async () => {
+            const dataCategories = await getCategories();
+            setCateogries(dataCategories);
 
-  useEffect(() => {
-    if (!category) return;
+          };
+          const loadStatus = async () => {
+            const data = await getRunStatus();
+            setStatusRun(data);
+            // setEventData(`${data[0]?.event} - ${data[0]?.name_circuits}`)
+            setEventData(Array.isArray(data)?data[0]:[])
+          }
+          loadInfo();
+          loadStatus();
 
-    const loadPilotInfo = async () => {
-      const data = await infoPilot(category, pilotNumber);
-      const dataCalendar = await getEvent();
-      setEventData(dataCalendar[1]);
-      setinfoPilotData(data?.[0] ?? {});
-    };
-    loadPilotInfo();
-  }, [pilotNumber, category]);
+        }, []);
+
+
+        useEffect(() => {
+                const loadStatus = async () => {
+                  const data = await getRunStatus();
+                  setStatusRun(data);
+                }
+                loadStatus();
+        }, [refreshKey]);
+  
+
+
+        useEffect(() => {
+          if (!category || category == 'select') return;
+
+          console.log('Info Piloto','category =',category,'Numero = ',pilotNumber)
+        
+          const loadPilotInfo = async () => {
+            const data = await infoPilot(category, pilotNumber);
+            const dataCalendar = await getEvent();
+            setinfoPilotData(data?.[0] ?? {});
+          };
+          loadPilotInfo();
+        }, [pilotNumber, category]);
 
   const onChangeTire = (key, value) => {
     setTires((prev) => ({ ...prev, [key]: value }));
@@ -75,14 +104,18 @@ export default function NewRecordForm() {
   // ============================================
 
   const onSubmit = async () => {
-    if (!category || !pilotNumber) return console.log('Falta categoria o piloto');
+
+    console.log('El eventData del submit',eventData.id_event)
+    console.log('Category',category,'piloto',infoPilotData?.id)
+
+    if (!category || !infoPilotData?.id) return console.log('Falta categoria o piloto');
     if (!eventData?.id_event) return console.log('No hay eventData');
 
     const tiresArr = WHEELS.map(k => tires[k]);
     if (tiresArr.some(v => v === "")) return console.log('Faltan cubiertas');
 
     const payload = {
-      id_pilot: Number(pilotNumber),
+      id_pilot: Number(infoPilotData?.id),
       id_event: Number(eventData.id_event),
       dateInp: dateTime,
       N1_tire: Number(tires.N1),
@@ -117,7 +150,6 @@ export default function NewRecordForm() {
       setCategory("select");
       setPilotNumber("");
       setinfoPilotData({});
-      setEventData("");
       setTires(WHEELS.reduce((acc, k) => ((acc[k] = ""), acc), {}));
 
       const d = new Date();
@@ -131,6 +163,21 @@ export default function NewRecordForm() {
 
   return (
     <>
+
+
+
+      {showModalLoader && (
+        <ModalLoadStartRecord
+          statusData={statusRun}
+          onCancel={() => {
+            setShowModalLoader(false);
+            setRefreshKey(prev => !prev); // Cambia true->false o false->true
+          }}
+        />
+      )}
+
+
+
       {/* <div className="header-card-form-nr">
         <h3 className="title-nr">Agregar Registro</h3>
         <Link to="/records_tires" className="btn-head-form-records">Ver Registros</Link>
@@ -141,10 +188,20 @@ export default function NewRecordForm() {
       <div className="container-form-all">
             <div className="header-card-form-second">
                         <div className="header-tables">
-            <h3 className="h3-title" >CARGA ABIERTA</h3>
+            <h3 className="h3-title" >Nuevo Registro</h3>
             <div className="header-tables-status">
-              <span>Fecha actual</span>
-              <p>Fecha 2 - Oscar Cabalen</p>
+            
+            <div className="header-tables-status">
+              {statusRun.length === 0 ? (
+                <button className="action-btn" onClick={() => setShowModalLoader(true)}>Iniciar Ronda Nueva</button>
+              ) : (
+                <>
+                  <span>Fecha actual</span>
+                  <p>{`${statusRun[0]?.event} - ${statusRun[0]?.name_circuits}`}</p>
+                </>
+              )}
+            </div>
+            
             </div>
           </div>
             </div>
@@ -176,8 +233,8 @@ export default function NewRecordForm() {
             >
               <option value="">Seleccionar Categoria</option>
               {categories.map((c) => (
-                <option key={c.category} value={c.category}>
-                  {c.category || "Seleccionar"}
+                <option key={c.id_category} value={c.id_category}>
+                  {c.category_name || "Seleccionar"}
                 </option>
               ))}
             </select>
@@ -225,7 +282,8 @@ export default function NewRecordForm() {
             <input
               className="input event_inp"
               type="text"
-              value={`${eventData?.event ?? ""} - ${eventData?.name_circuits ?? ""}`}
+              // value={`${eventData?.event ?? ""} - ${eventData?.name_circuits ?? ""}`}
+              value={`${statusRun[0]?.event} - ${statusRun[0]?.name_circuits}`}
               readOnly
             />
           </label>

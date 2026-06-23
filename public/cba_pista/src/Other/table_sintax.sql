@@ -25,6 +25,68 @@ CREATE TABLE events (
   locked_at   TIMESTAMP            -- cuando se finalizó
 );
 
+SELECT rs.is_locked
+FROM tires_registry tr
+INNER JOIN race_status rs ON tr.id_event = rs.id_event
+WHERE tr.id IN(560,561,564);  -- id del registro en tires_registry
+
+CREATE TABLE tires_used (
+    id            SERIAL PRIMARY KEY,
+    registry_id   INTEGER NOT NULL REFERENCES tires_registry(id) ON DELETE CASCADE,
+    id_event      INTEGER NOT NULL,
+    tire_number   INTEGER NOT NULL,
+    rim_size      INTEGER NOT NULL,
+    position      TEXT    NOT NULL,
+
+    CONSTRAINT tires_used_unique_tire_event UNIQUE (tire_number, rim_size, id_event)
+);
+
+
+--SELECT * FROM race_status WHERE is_locked = true;
+--INSERT INTO
+--	RACE_STATUS (ID_EVENT, ID_AUDITOR)
+--VALUES (2, 3);
+--	(2, 3),
+--	(3, 3);
+--UPDATE race_status 
+--SET is_locked = true, locked_at = NOW()
+--WHERE id_event IN (1);
+
+
+------------------------------------------------------------------
+------------------------------------------------------------------
+
+
+-- 1. Creamos un tipo ENUM para restringir las actividades a los valores de la imagen
+CREATE TYPE activity_type AS ENUM (
+    'Delete', 
+    'Edit', 
+    'Start Run', 
+    'End Run', 
+    'Log In', 
+    'Log Out'
+
+    'Password',
+    'New User'
+);
+
+-- 2. Creamos la tabla user_activity
+CREATE TABLE user_activity (
+    id_activity SERIAL PRIMARY KEY,
+    id_user INT NOT NULL, -- Reemplazar por UUID si usas ese estándar
+    activity activity_type NOT NULL,
+    date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    detail TEXT
+    id_event INT NULL
+);
+
+-- 3. INSERTAR DATOS 
+INSERT INTO user_activity (id_user, activity, detail) 
+VALUES ($1, $2, $3);
+
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
 
 
 1) Ejecutar script SQL en Postgres (crear tabla)
@@ -43,10 +105,49 @@ CREATE TABLE events (
 
 
 
+SELECT 
+  column_name, 
+  data_type, 
+  is_nullable,
+  column_default
+FROM information_schema.columns 
+WHERE table_name = 'tires_used'
+ORDER BY ordinal_position;
+
+
 Pages/AddPilots.jsx - importa la funcion NewPilot()
 helpers/pilots.js  - creo la funcion NewPilot()
 helpers/pilots.js le pega a Routes/routes-cba_pista.js donde se encuentra "requestRouter.post('/new_pilot', async (req,res) => {...})"
 Ene este ultimo es donde se encuetnra la sintaxis SQL 
 Decime si me entendes hasta aca
+
+
+
+CREATE TABLE category_table (
+    id_category   SERIAL PRIMARY KEY,
+    category_name VARCHAR(100) NOT NULL,
+    rim_size      NUMERIC(5,2)
+);
+
+
+CREATE TABLE tires_registry (
+    id          SERIAL PRIMARY KEY,
+    id_pilot    INTEGER NOT NULL REFERENCES users_pista(id),
+    id_event    INTEGER NOT NULL REFERENCES circuits_calendar(id_event),
+    event_date  DATE NOT NULL,
+    tire_n1     INTEGER NOT NULL,
+    tire_n2     INTEGER NOT NULL,
+    tire_n3     INTEGER NOT NULL,
+    tire_n4     INTEGER NOT NULL,
+    tire_n5     INTEGER NOT NULL,
+    tire_n6     INTEGER NOT NULL,
+    created_by  INTEGER NOT NULL REFERENCES users_admin(id_admin),
+
+    CONSTRAINT tires_registry_unique_pilot_day UNIQUE (id_pilot, event_date)
+);
+
+
+
+
 
 

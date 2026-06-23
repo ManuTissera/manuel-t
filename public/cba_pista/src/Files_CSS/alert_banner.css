@@ -1,0 +1,235 @@
+
+
+:root{
+
+   /* Escala Success - 6 Niveles (Fondo -> Texto Claro) */
+   
+   --cl-success-01: #03251a; /* Fondo principal */
+   --cl-success-02: #044432; /* Fondo del botón */
+   --cl-success-03: #00775a; /* NUEVO: Intermedio / Hover del botón */
+   --cl-success-04: #00b388; /* Línea de acento brillante */
+   --cl-success-05: #a1e3d3; /* Texto del botón */
+   --cl-success-06: #bcdddb; /* Texto del mensaje secundario */
+
+   /* Escala Error - 6 Niveles (Fondo -> Texto Claro) */
+
+  --cl-error-01: #4c0a0a;   /* Fondo principal */
+  --cl-error-02: #630f0f;   /* Fondo activo del botón */
+  --cl-error-03: #7a1515;   /* Fondo del botón */
+  --cl-error-04: #921c1c;   /* Hover del botón */
+  --cl-error-05: #ff3b30;   /* Línea de acento brillante */
+  --cl-error-06: #e0b0b0;   /* Texto del mensaje secundario */
+
+}
+
+.container-banner{
+  border: 1px solid red;
+  height: 60vh;
+  top: 20vh;
+  width: 70%;
+  position: absolute;
+  left: 15vw;
+  z-index:2000;
+
+}
+
+
+
+.alert-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--cl-error-01); /* Fondo rojo oscuro */
+  background-color: var(--cl-success-01); /* Fondo rojo oscuro */
+  border-radius: 6px;
+  padding: 16px 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  width: 80%;
+  max-width: 550px;
+  box-sizing: border-box;
+  z-index: 2000;
+
+  /* Ubicación final fija en la pantalla */
+  position: absolute;
+  bottom: 130px;
+  left: 20px;
+  /* left: -20px; */
+
+  /* ESTADO INICIAL: Oculto fuera de la pantalla a la izquierda (-450px) */
+  transform: translateX(-450px);
+  opacity: 1;
+  
+  /* Transición suave para el movimiento y la opacidad */
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+}
+
+
+
+/* ESTADO ACTIVO: Cuando React agrega la clase 'show', se desplaza a su posición original (left: -20px) */
+.alert-container.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Entrada: Animación automática al montarse */
+.alert-container.show {
+  animation: slideIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Salida: Transición suave cuando React quita la clase 'show' */
+.alert-container:not(.show) {
+  transform: translateX(-450px);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.4s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.alert-container-error{
+  background-color: var(--cl-error-01); /* Fondo rojo oscuro */
+}
+
+/* Línea brillante del extremo izquierdo */
+.alert-left-accent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: var(--cl-error-05); /* Rojo brillante */
+  background-color: var(--cl-success-05); /* Rojo brillante */
+}
+
+.alert-left-accent-error{
+  background-color: var(--cl-error-05); /* Rojo brillante */
+}
+
+.alert-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  flex: 1;
+}
+
+/* Contenedor del ícono circular */
+.alert-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  background-color: var(--cl-error-01);
+  background-color: var(--cl-success-01);
+  color: var(--cl-error-01);
+  color: var(--cl-success-01);
+  border-radius: 50%;
+  width: 40px;
+  height: 20px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.alert-icon-container-error{
+  background-color: var(--cl-error-01);
+  color: var(--cl-error-01);
+}
+
+
+.alert-icon {
+  width: 34px;
+  height: 34px;
+}
+
+.alert-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.alert-title {
+  color: #ffffff;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.alert-message {
+  color: var(--cl-error-06); /* Texto secundario ligeramente opaco */
+  color: var(--cl-success-06); /* Texto secundario ligeramente opaco */
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.alert-message-error{
+  color: var(--cl-error-06); /* Texto secundario ligeramente opaco */
+}
+
+/* Botón de reintento */
+.alert-button {
+  background-color: #7a1515; /* Fondo del botón ligeramente más claro */
+  background-color: var(--cl-error-03); /* Fondo del botón ligeramente más claro */
+  background-color: var(--cl-success-03); /* Fondo del botón ligeramente más claro */
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-left: 20px;
+  flex-shrink: 0;
+}
+
+
+.alert-button:hover {
+  background-color: var(--cl-success-04);
+}
+
+.alert-button:active {
+  background-color: var(--cl-success-02);
+}
+
+
+.alert-button-error{
+  background-color: var(--cl-error-03); /* Fondo del botón ligeramente más claro */
+}
+
+.alert-button-error:hover {
+  background-color: var(--cl-error-04);
+}
+
+.alert-button-error:active {
+  background-color: var(--cl-error-02);
+}
+
+
+/* Definición del movimiento de entrada */
+@keyframes slideIn {
+  from {
+    transform: translateX(-450px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+

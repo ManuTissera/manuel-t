@@ -51,7 +51,14 @@
    border-bottom: 2px solid var(--border-color);
 }
 
-.modal-header img{
+.modal-img-container{
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0rem;
+  padding-top: .5rem;
+}
+
+.modal-img-container img{
    width: 50px;
    height: 50px;
 }
@@ -60,10 +67,17 @@
   font-family: "Poppins", sans-serif !important;
   font-weight: 400;
   color: var(--text-value);
+  align-self: center;
 }
 
 .h4-modal{ /* ver de borrar */
   color: var(--text-value);
+}
+
+.h4-modal-header-error{
+  text-align: center;
+  width: 100%;
+  font-size: 20px;
 }
 
 .p-modal{ /* ver de borrar */
@@ -208,26 +222,32 @@
 }
 
 .modal-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  gap: 5px;
+  padding: 1rem;
   margin: 0 0 18px;
-  color: #555;
+  color: var(--text-value);
   line-height: 1.4;
 }
 
 .modal-warning {
   display: flex;
   gap: 12px;
+  width: 30px;
   background: #fde8dc;
   border-radius: 2px;
-  padding: 14px;
-  min-width: 440px;
+  padding: .7rem;
+  width: 100%;
   margin-bottom: 20px;
   border-left: 5px solid #fe603d;
   color: #a64000;
 }
 
 .warning-icon {
-  width: 32px;
-  height: 26px;
+  width: 30px;
+  height: 25px;
   border-radius: 50%;
   background: #ff8c42;
   color: #fff;
@@ -239,7 +259,7 @@
 
 .modal-warning p {
   margin: 0;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .modal-actions {
@@ -280,6 +300,7 @@
   overflow: hidden;
   position: relative;
   font-family: 'Inter', system-ui, sans-serif;
+  z-index: 2000;
 }
 
 /* BOTÓN CERRAR ARRIBA */

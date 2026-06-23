@@ -8,6 +8,8 @@ const ModalLoadRecord = ({ infoLoad = [], onCancel }) => {
   const errorNum = infoLoad?.[0]?.err_num;
   const errorCode = infoLoad?.[0]?.err_code;
 
+  console.log('errorCode',infoLoad)
+
   const numTire = useMemo(() => {
     if (errorNum === "81001") return infoLoad?.[0]?.used?.[0]?.tire ?? null;
     return null;
@@ -34,21 +36,25 @@ const ModalLoadRecord = ({ infoLoad = [], onCancel }) => {
   return (
     <div className="modal-overlay" onClick={onCancel}>
       <div
-        className="container-modal container-modal-load"
+        // className="container-modal container-modal-load"
+        className="container-modal midium-modal"
         onClick={(e) => e.stopPropagation()}
       >
-        <button className="modal-close" onClick={onCancel}>
-          ×
-        </button>
 
-        <div className="modal-header">
+        <div className="modal-img-container">
           <img src={rejectFile} alt="Reject File" />
         </div>
-
-        <h2>No se Cargo el Registro</h2>
-
+        <div className="modal-header">
+            <button className="modal-close" onClick={onCancel}>
+              ×
+            </button>
+      
+            <h4 className="h4-modal-header-error ">Registro no cargado!</h4>
+      
+        </div>
         {errorNum === "90091" ? (
-          <p className="modal-text">
+          <div className="modal-text">
+          <p>
             Error: {errorCode}
             <br />
             El piloto{" "}
@@ -59,22 +65,39 @@ const ModalLoadRecord = ({ infoLoad = [], onCancel }) => {
             <br />
             No puede cargar mas registros para esta fecha
           </p>
+          </div>
+        ) : errorNum === "81001"?(
+          <div className="modal-text">
+              <p>La cubierta - <strong>N° {numTire}</strong> - ya esta asignada.</p>
+            
+              <p>Piloto:{" "}
+                 <strong>{`${dataTire?.pilot_name ?? ""} ${dataTire?.surname ?? ""}`}</strong>  -  
+                  {dataTire?.category}  -  {`${dataTire?.event ?? ""}`}
+              </p>
+          </div>
         ) : (
-          <p className="modal-text">
-            La cubierta <strong>N° {numTire}</strong> ya esta asignada.
-            <br />
-            Piloto:{" "}
-            <strong>{`${dataTire?.pilot_name ?? ""} ${dataTire?.surname ?? ""}`}</strong>  -  
-             {dataTire?.category}  -  {`${dataTire?.event ?? ""}`}
-          </p>
-        )}
+            /* CASO GENÉRICO: Para todos los demás errores */
+            <div className="modal-text">
+              <p>Ocurrió un error inesperado al procesar la solicitud.</p>
+              {errorCode && <p>Código de error: <strong>{errorCode}</strong></p>}
+            </div>
+          )
+        
+        }
+
+
+
+
+
+
+
 
         <div className="modal-warning">
           <span className="warning-icon">!</span>
           <p>
             <strong>Warning</strong>
             <br />
-            {`${infoLoad?.[0]?.err_num} - ${infoLoad?.[0]?.error}`}
+            {`${infoLoad?.[0]?.error}`}
           </p>
         </div>
       </div>

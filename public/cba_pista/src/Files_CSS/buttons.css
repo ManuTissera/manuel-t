@@ -143,9 +143,19 @@
 
 .action-close{
   font-weight: 700;
-  color: var(--text-cancel);
-  border-color: var(--text-cancel);
+  color: var(--cl-error-05);
+  border-color: var(--cl-error-05);
   margin-top: 10px;
+}
+
+.submit-close {
+  background-color: var(--cl-error-04);
+  border-color: var(--cl-error-05);
+}
+
+.submit-close:hover{
+  background-color: var(--cl-error-03);
+  border-color: var(--cl-error-04);
 }
 
 
@@ -153,6 +163,14 @@
 /* ================  otros */
 /* ------------------------------------------------------------------------- */
 
+
+
+
+
+
+/* ------------------------------------------------------------------------- */
+/* ================  otros */
+/* ------------------------------------------------------------------------- */
 
 
 

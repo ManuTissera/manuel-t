@@ -29,7 +29,18 @@ export const login = async (req, res) => {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
     
-    const token = generarToken(usuario);
+    const token = generarToken({
+      id: usuario.id_admin,
+      email: usuario.email,
+      rol: usuario.user_rol
+    });
+
+    // ── Registrar actividad Log In ──────────────────────────────────────
+    await pool.query(
+      `INSERT INTO user_activity (id_user, activity, detail)
+       VALUES ($1, $2, $3)`,
+      [usuario.id_admin, 'Log In', `Login exitoso - email: ${usuario.email}`]
+    );
     
     res.json({
       message: 'Login exitoso',
@@ -40,6 +51,7 @@ export const login = async (req, res) => {
         rol: usuario.user_rol
       }
     });
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error en el servidor' });
@@ -67,5 +79,24 @@ export const registrar = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error al crear usuario' });
+  }
+};
+
+
+export const logout = async (req, res) => {
+  const userId = req.usuario.id;
+  const email = req.usuario.email;
+
+  try {
+    await pool.query(
+      `INSERT INTO user_activity (id_user, activity, detail)
+       VALUES ($1, $2, $3)`,
+      [userId, 'Log Out', `Logout - email: ${email}`]
+    );
+
+    res.json({ message: 'Logout exitoso' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error en el servidor' });
   }
 };

@@ -49,6 +49,24 @@ Profesional con trayectoria en administración y desarrollo de software, enfocad
 Con 9 años de experiencia en el ámbito administrativo, de los cuales 5 estuvieron orientados al desarrollo de software, me he enfocado en integrar procesos y tecnología para optimizar la gestión empresarial, especializándome en JavaScript, Node.js y bases de datos SQL.
 
 ---
+## Prompt para mejorar cubiertas
+
+
+Bien. Ahi esta. Con respecto a "tire_number" eso solo no sirve y es lo que quiero modificar. A "tires_used" le voy a agregr dos columnas una que se va a llamar "rim_size" y otra "id_evetn". Por que hago esto? Porque puede haber una cubierta rodado 16 con la nomenclatura 129 y puede haber una rodado 18 con la nomenclatura 129. Y porque "id_event" porque a alguien le va a tocar la cubioerta rodado 16 nomenclatura 129 en el evento 1 y a otro en el evento 2 la cubierta 16 con la nomenclatura 129. Entonces lo que quiero que haga el sistema es que antes de cargar un nuevo registro, vaya a la fecha (ej: "id_event = 2") y se fije en el rodado (ej: "rim_size  = 16") si ya hay registrada la cubierta con "tire_number = 129") 
+
+
+
+
+## otro
+
+
+
+
+
+
+
+
+
 
 
 
