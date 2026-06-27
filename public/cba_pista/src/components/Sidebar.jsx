@@ -25,6 +25,15 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   // console.log('siderbar', userActive);
 
+  const logOutFn = async () => {
+          const result = await logout();
+          if (result.success) {
+            navigate('/login');
+          } else {
+            console.error(result.error);
+          }
+  }
+
   return (
 
    <>
@@ -55,8 +64,12 @@ const Sidebar = ({ isOpen, onClose }) => {
           <Link to="/current_record" onClick={onClose}>Registro Abierto</Link>
           {/* <Link to="/records_table" onClick={onClose}>Table</Link> */}
           <Link to="/add_pilot" onClick={onClose}>Nuevo Piloto</Link>
-          <Link to="/new_admin" onClick={onClose}>Agregar Administrador</Link>
         </nav>
+          <Link 
+            to="/new_admin" 
+            onClick={onClose}
+            className='btn-siderbar'
+            >Agregar Administrador</Link>
         {(userActive == 'Usuario no autenticado')
                     ?
                         <button 
@@ -69,10 +82,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                     :
                         <button 
                           className="btn-logout"
-                          onClick={async () => {
-                            await logout();
-                            navigate('/login');
-                          }}>
+                          onClick={() => logOutFn()}>
                           Cerrar sesión
                         </button>
                     }

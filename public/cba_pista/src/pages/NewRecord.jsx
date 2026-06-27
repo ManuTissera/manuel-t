@@ -79,6 +79,7 @@ export default function NewRecordForm() {
           const loadPilotInfo = async () => {
             const data = await infoPilot(category, pilotNumber);
             const dataCalendar = await getEvent();
+            console.log('data ==> ', data)
             setinfoPilotData(data?.[0] ?? {});
           };
           loadPilotInfo();
@@ -161,6 +162,8 @@ export default function NewRecordForm() {
     }
   };
 
+    console.log('infoPilotData',infoPilotData)
+
   return (
     <>
 
@@ -187,7 +190,7 @@ export default function NewRecordForm() {
 
       <div className="container-form-all">
             <div className="header-card-form-second">
-                        <div className="header-tables">
+            <div className="header-tables">
             <h3 className="h3-title" >Nuevo Registro</h3>
             <div className="header-tables-status">
             

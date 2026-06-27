@@ -131,8 +131,9 @@ export const getUsersPilots = async () => {
 }
 
 export const infoPilot = async (category, numPilot) => {
+  console.log('getInfoPilot',category,numPilot)
 
-  const url = new URL("/info_pilot", getBaseUrl());
+  const url = new URL(`/info_pilot`, getBaseUrl());
 
   url.searchParams.set("category",category);
   url.searchParams.set("num_pilot",Number(numPilot));

@@ -24,7 +24,7 @@ const SelectPilots = ({ category,onChagePilot,nameClass, pilotNumber }) => {
       },[category])
 
       
-      //console.log(name_class)
+      console.log(pilotNumber)
 
     
 

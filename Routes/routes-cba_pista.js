@@ -207,6 +207,7 @@ requestRouterCbaPista.get('/view_num_pilots', async (req, res) => {
 requestRouterCbaPista.get('/info_pilot', async (req, res) => {
   
   const { category, num_pilot } = req.query;
+  
   console.log('/info_pilot  --> selected endpoint',category,num_pilot);
 
    if (!category || !num_pilot) {
@@ -226,7 +227,7 @@ requestRouterCbaPista.get('/info_pilot', async (req, res) => {
       //    WHERE ct.category_name = $1 
       //    AND up.id = $2;
       // `;
-      const query = `SELECT * FROM users_pista WHERE id_category = $1 AND number_pilot = $2;`
+      const query = `SELECT * FROM users_pista WHERE id_category = $1 AND id = $2;`
       const data = await connection.query(query, [category, numPilotInt]);
       res.send(data.rows);
    } catch (err) {

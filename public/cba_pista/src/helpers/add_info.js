@@ -106,16 +106,26 @@ export const finishRunRecord = async (payload) => {
 
 export const logout = async () => {
   const token = localStorage.getItem('token');
-  
-  const response = await fetch(new URL('/logout', getBaseUrl()), {
-    method: 'POST',
-    headers: { 'Authorization': `Bearer ${token}` }
-  });
 
-  localStorage.removeItem('token');
-  localStorage.removeItem('usuario');
+  try {
+    const response = await fetch(`${getBaseUrl()}/api/auth/logout`, {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
 
-  return await response.json()
-}
+    const data = await response.json();
 
+    if (!response.ok) {
+      return { success: false, error: data.error || 'Error al cerrar sesión' };
+    }
+
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+
+    return { success: true };
+
+  } catch {
+    return { success: false, error: 'Error de conexión con el servidor' };
+  }
+};
 
