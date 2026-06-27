@@ -34,7 +34,7 @@ import ModalLoadRecord from "./components/ModalLoadRecord.jsx";
 import ProfileUser from "./pages/Profile.jsx";
 import PilotsTable from "./pages/Pilots.jsx"
 import CreateNewAdmin from "./pages/CreateAdmin.jsx"
-import HomePage from "./pages/Home.jsx"
+import HomePage from "./pages/home.jsx"
 import NewRecordForm from "./pages/NewRecord.jsx"
 import AddPilotsElement from "./pages/AddPilots.jsx"
 
