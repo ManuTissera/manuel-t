@@ -18,21 +18,25 @@ const SelectSarchCategory = ({onChangeFn, value, nameClass}) => {
       loadCategories()
    },[])
 
+   
+
    return(
       <>
-         <label className={`label-select-${nameClass}`}>
-            <span className={`span-${nameClass}`}>Categorias:</span>
+         <div className="form-group">
+            <label className="form-label">Categoria</label>
+            {/* <span className={`span-${nameClass}`}>Categorias:</span> */}
             <select 
                value={value}
                onChange={(e) => onChangeFn(e.target.value)}
-               className={`select-${nameClass}`}
+               // className={`select-${nameClass}`}
+               className="form-input"
                >
                <option value="">Categoria</option>
                {categoriesArr.map((c) => (
-                  <option key={c.category}>{c.category}</option>
+                  <option key={c.id_category} value={c.id_category}>{c.category_name}</option>
                ))}
             </select>
-         </label>
+         </div>
       </>
    )
 }

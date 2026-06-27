@@ -21,14 +21,14 @@ const ProfileUser = () => {
     confirmPassword: ''
   });
 
-  console.log('Profile ==>>',profile)
+  // console.log('Profile ==>>',profile)
 
   useEffect(() => {
     const loadProfile = async () => {
       try {
         const data = await getActiveUsers();
 
-          console.log('Datita Profile ==>>',data)
+          // console.log('Datita Profile ==>>',data)
 
         
         // Verificar que data existe y es un array
@@ -36,7 +36,7 @@ const ProfileUser = () => {
           // Tomar el primer usuario (o el que corresponda)
           const user = data;
 
-          console.log('Datita Profile ==>>',data)
+          // console.log('Datita Profile ==>>',data)
           
           // Actualizar profile
           setProfile({

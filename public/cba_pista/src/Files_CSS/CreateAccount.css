@@ -1,0 +1,199 @@
+/* Files_CSS/CreateAccount.css */
+
+/* ── Tokens ─────────────────────────────────────────── */
+:root {
+  --ca-bg:         #0d0f14;
+  --ca-surface:    #161a22;
+  --ca-border:     #252b38;
+  --ca-accent:     #e8c14a;       /* pit-lane amber */
+  --ca-accent-dim: rgba(232,193,74,.12);
+  --ca-text:       #e8eaf0;
+  --ca-muted:      #6b7385;
+  --ca-error:      #e05555;
+  --ca-success:    #4caf7d;
+  --ca-radius:     10px;
+  --ca-font:       'Inter', system-ui, sans-serif;
+  --ca-mono:       'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ── Layout ──────────────────────────────────────────── */
+.ca-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ca-bg);
+  padding: 2rem 1rem;
+}
+
+.ca-card {
+  width: 100%;
+  max-width: 560px;
+  background: var(--ca-surface);
+  border: 1px solid var(--ca-border);
+  border-radius: var(--ca-radius);
+  padding: 2.5rem 2.5rem 2rem;
+}
+
+/* ── Header ──────────────────────────────────────────── */
+.ca-header {
+  margin-bottom: 2rem;
+}
+
+.ca-eyebrow {
+  display: inline-block;
+  font-family: var(--ca-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ca-accent);
+  background: var(--ca-accent-dim);
+  border: 1px solid rgba(232,193,74,.25);
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin-bottom: 0.75rem;
+}
+
+.ca-title {
+  font-family: var(--ca-font);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--ca-text);
+  margin: 0 0 0.3rem;
+  letter-spacing: -0.02em;
+}
+
+.ca-subtitle {
+  font-size: 0.875rem;
+  color: var(--ca-muted);
+  margin: 0;
+}
+
+/* ── Form grid ───────────────────────────────────────── */
+.ca-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.ca-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.25rem;
+}
+
+/* First name + Last name → 2 cols; rest full-width */
+.ca-field:nth-child(n+3) {
+  grid-column: 1 / -1;
+}
+
+/* ── Field ───────────────────────────────────────────── */
+.ca-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.ca-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--ca-muted);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.ca-input {
+  background: var(--ca-bg);
+  border: 1px solid var(--ca-border);
+  border-radius: 6px;
+  color: var(--ca-text);
+  font-family: var(--ca-font);
+  font-size: 0.925rem;
+  padding: 0.6rem 0.85rem;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ca-input::placeholder {
+  color: var(--ca-muted);
+  opacity: 0.55;
+}
+
+.ca-input:focus {
+  border-color: var(--ca-accent);
+  box-shadow: 0 0 0 3px var(--ca-accent-dim);
+}
+
+.ca-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7385' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  cursor: pointer;
+}
+
+/* ── Feedback ────────────────────────────────────────── */
+.ca-feedback {
+  font-size: 0.85rem;
+  border-radius: 6px;
+  padding: 0.6rem 0.9rem;
+  margin: 0;
+}
+
+.ca-feedback--error {
+  color: var(--ca-error);
+  background: rgba(224,85,85,.1);
+  border: 1px solid rgba(224,85,85,.25);
+}
+
+.ca-feedback--success {
+  color: var(--ca-success);
+  background: rgba(76,175,125,.1);
+  border: 1px solid rgba(76,175,125,.25);
+}
+
+/* ── Submit button ───────────────────────────────────── */
+.ca-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--ca-accent);
+  color: #0d0f14;
+  border: none;
+  border-radius: 6px;
+  font-family: var(--ca-font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.ca-btn:hover:not(:disabled) {
+  opacity: 0.88;
+}
+
+.ca-btn:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.ca-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 480px) {
+  .ca-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .ca-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ca-field:nth-child(n+3) {
+    grid-column: auto;
+  }
+}

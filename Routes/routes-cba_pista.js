@@ -36,7 +36,7 @@ requestRouterCbaPista.get('/get_user_active', authMiddleware, async (req, res) =
 
 });
 
-requestRouterCbaPista.get('/category', async (req,res) => {
+requestRouterCbaPista.get('/get_category', async (req,res) => {
    
   //  const query =  `
   //        SELECT DISTINCT ct.category_name AS category
@@ -44,11 +44,15 @@ requestRouterCbaPista.get('/category', async (req,res) => {
   //        JOIN category_table ct ON up.id_category = ct.id_category
   //        ORDER BY ct.category_name;
   //     `;;
-    const query = `SELECT * FROM category_table;`
-   const data = await connection.query(query)
+    try{
+      const query = `SELECT * FROM category_table;`
+      const data = await connection.query(query)
 
-   //console.log(data.rows)
-   res.send(data.rows)
+      //console.log(data.rows)
+      res.send(data.rows)
+    }catch(err){
+      console.log(err)
+    }
 })
 
 requestRouterCbaPista.get('/users_pista', async (req,res) => {
@@ -89,7 +93,7 @@ requestRouterCbaPista.get('/tires_registry', async (req, res) => {
       JOIN users_pista u ON u.id = t.id_pilot
       JOIN users_admin ua ON ua.id_admin = t.created_by
       JOIN category_table ct ON ct.id_category = u.id_category  -- 👈 JOIN con category_table
-      JOIN circuits_calendar c ON c.id_event = t.id_event;
+      JOIN circuits_calendar c ON c.id_event = t.id_event
     `;
 
     const params = [];
@@ -127,6 +131,9 @@ requestRouterCbaPista.get('/tires_registry', async (req, res) => {
       query += ` WHERE t.id_event = $1`;
       params.push(Number(id_Event));
     }
+
+    console.log(query)
+    console.log(params)
 
     const data = await connection.query(query, params);
     res.send(data.rows);
@@ -172,7 +179,8 @@ requestRouterCbaPista.get('/number_pilot', async (req,res) => {
 
 requestRouterCbaPista.get('/view_num_pilots', async (req, res) => {
 
-  console.log('/view_num_pilots  --> selected endpoint')
+  const { category } = req.query;
+  console.log('/view_num_pilots  --> selected endpoint',category)
 
   try {
     const { category } = req.query;
@@ -701,6 +709,8 @@ requestRouterCbaPista.post("/add_new_pilot", async (req, res) => {
 requestRouterCbaPista.put('/edit_register_tire', authMiddleware, async (req, res) => {
   console.log('edit_register_tire ejecutado');
 
+
+
   editRegisterLock = editRegisterLock
     .then(async () => {
       const { id_registry, tires } = req.body;
@@ -828,7 +838,7 @@ requestRouterCbaPista.put('/edit_register_tire', authMiddleware, async (req, res
         const toUpdate = toProcess.filter(t => !conflictSet.has(t.tire_number));
         const failed   = toProcess
           .filter(t => conflictSet.has(t.tire_number))
-          .map(t => ({ position: t.position, tire: t.tire_number, reason: 'Cubierta ya en uso en este evento' }));
+          .map(t => ({ position: t.position, tire: t.tire_number, reason: 'Cubiertas en uso!' }));
 
         const updated = [];
 

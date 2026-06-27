@@ -13,12 +13,14 @@ const SelectEvetn = ({ value, onChangeEvent, nameClass }) => {
   }, []);
 
   return (
-    <label className={`label-select-${nameClass}`}>
-      <span className={`span-${nameClass}`}>Fecha:</span>
+    // <label className={`label-select-${nameClass}`}>
+    <div className="form-group">
+      <label className="form-label">Fecha</label>
+      {/* <span className={`span-${nameClass}`}>Fecha:</span> */}
       <select 
         value={value}
         onChange={(e) => onChangeEvent(e.target.value)}
-        className={`select-${nameClass}`}
+        className="form-input"
         >
         <option value="">Fecha Evento</option>
         {eventArr.map((e) => (
@@ -28,7 +30,7 @@ const SelectEvetn = ({ value, onChangeEvent, nameClass }) => {
           </option>
         ))}
       </select>
-    </label>
+    </div>
   );
 };
 

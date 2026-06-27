@@ -18,6 +18,7 @@ import editIcon from "../assets/edit.svg";
 
 import SelectTires from "../components/SelectTires.jsx";
 import AlertBanner from "../components/AlertBanner.jsx";
+import AlertPopUp from "../components/AlertPopUp.jsx";
 import ModalDeleteRecord from "../components/ModalDeleteRecord.jsx";
 import ModalDownloadsRecords from "../components/ModalDownload.jsx";
 import ModalEditRecords from "../components/ModalEditRecords.jsx";
@@ -36,6 +37,11 @@ const MobileTable = () => {
   const [alertType, setAlertType] = useState(true);
   const [alertTitle, setAlertTitle] = useState("")
   const [alertMsg, setAlertMsg] = useState("")
+
+  const [showPopUpBanner, setShowPopUpBanner] = useState(false)
+  const [popUpType, setPopUpType] = useState(true)
+  const [popUpTitle, setPopUpTitle] = useState("")
+  const [popUpMsg, setPopUpMsg] = useState("")
 
   const [deleteMessage, setDeleteMessage] = useState("")
 
@@ -103,9 +109,17 @@ const MobileTable = () => {
   }, []);
 
   const functionSearch = async () => {
-    console.log(pilotsArr, eventArr, numTire)
+    console.log('Filter info =>',`Pilot:${pilotsArr}`, `Event: ${eventArr}`, numTire)
+    //console.log('Filter info =>',categorySelcted, pilotsArr, eventArr, numTire)
     const data = await getRecordsTires(pilotsArr, eventArr, numTire);
-    setRecordsArr(Array.isArray(data) ? data : []);
+    if(data.length == 0){
+        setPopUpTitle('No encontrado');
+        setPopUpMsg('No se encontro la busqueda ');
+        setPopUpType('warning');
+        setShowPopUpBanner(true);
+    }else{
+      setRecordsArr(Array.isArray(data) ? data : []);
+    }
     setPage(1);
   };
 
@@ -144,8 +158,12 @@ const MobileTable = () => {
     // console.log('Edit selected',selected[0]);
     // const result = recordsArr.find(r => r.id === selected)
 
-    setSelected([]);
-    setShowModalEdit(false);
+    
+    setTimeout(() => {
+      setShowModalEdit(false);
+      setSelected([]);
+    },7000);
+    //setShowModalEdit(false)
     setPage(1);
   }
 
@@ -248,6 +266,14 @@ const MobileTable = () => {
         />
       )}
 
+      {showPopUpBanner && (
+        <AlertPopUp
+        titleAlert={popUpTitle}
+        messageAlert={popUpMsg}
+        classNN={popUpType}
+        />
+      )}
+
 
       {showDeleteModal && (
         <ModalDeleteRecord
@@ -290,45 +316,49 @@ const MobileTable = () => {
 
 
 
-        <div className="container-filter-tires" onClick={(e) => e.stopPropagation()}>
+        <div className="container-modal midium-modal" onClick={(e) => e.stopPropagation()}>
           <span 
             onClick={() => setShowModalFilter(false)}
             className="x-close-filter">x</span>
-          <h4>Filter</h4>
+
+        <h3 className="password-title">Filtrar Registro</h3>
 
 
-                <SelectSarchCategory
-                  onChangeFn={onChangeFn}
-                  value={categorySelcted}
-                  nameClass={"rec"}
-                />
+            <div className="filter-section">
+                  <SelectSarchCategory  // SearchCategoryPilot.jsx
+                    // onChangeFn={onChangeFn}
+                    onChangeFn={onChangeFn}
+                    // value={categorySelcted}
+                    nameClass={"rec"}
+                  />
+                 
+                  <SelectPilots
+                    category={categorySelcted}
+                    onChagePilot={onChangePilot}
+                    nameClass={"rec"}
+                  />
+                
+                  <SelectEvetn
+                    onChangeEvent={onChangeEvent}
+                    value={eventArr}
+                    nameClass={"rec"}
+                  />
 
-                <SelectPilots
-                  category={categorySelcted}
-                  onChagePilot={onChangePilot}
-                  nameClass={"rec"}
-                />
 
-                <SelectEvetn
-                  onChangeEvent={onChangeEvent}
-                  value={eventArr}
-                  nameClass={"rec"}
-                />
-
-
-            {/* <div className="container-buttons-filter">
-              <button className="btn-fitler btn-aply">Aplicar</button>
-              <button className="btn-fitler btn-cancel">Cancelar</button>
-            </div> */}
-        <button 
-          className="btn-aply-filter"
-          onClick={() => {
-            functionSearch();
-            setShowModalFilter(false);
-          }}
-        >
-          Aplicar Filtro
-        </button>
+                  {/* <div className="container-buttons-filter">
+                    <button className="btn-fitler btn-aply">Aplicar</button>
+                    <button className="btn-fitler btn-cancel">Cancelar</button>
+                  </div> */}
+                  <button 
+                    className="submit-btn"
+                    onClick={() => {
+                      functionSearch();
+                      setShowModalFilter(false);
+                    }}
+                  >
+                    Aplicar Filtro
+                  </button>
+          </div>
         
 
         </div>

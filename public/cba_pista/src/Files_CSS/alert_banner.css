@@ -20,6 +20,13 @@
   --cl-error-05: #ff3b30;   /* Línea de acento brillante */
   --cl-error-06: #e0b0b0;   /* Texto del mensaje secundario */
 
+--cl-warning-01: #432004; /* Fondo principal (Oscuro de alto contraste) */
+--cl-warning-02: #4d2d00; /* Fondo activo del botón */
+--cl-warning-03: #7a4a02; /* Fondo del botón */
+--cl-warning-04: #b06e0b; /* Hover del botón */
+--cl-warning-05: #e69716; /* Línea de acento brillante (TU COLOR) */
+--cl-warning-06: #fcebd2; /* Texto del mensaje secundario */
+
 }
 
 .container-banner{
@@ -97,10 +104,12 @@
 
 
 
-
-
 .alert-container-error{
   background-color: var(--cl-error-01); /* Fondo rojo oscuro */
+}
+
+.alert-container-warning{
+  background-color: var(--cl-warning-01); /* Fondo rojo oscuro */
 }
 
 /* Línea brillante del extremo izquierdo */
@@ -116,6 +125,10 @@
 
 .alert-left-accent-error{
   background-color: var(--cl-error-05); /* Rojo brillante */
+}
+
+.alert-left-accent-warning{
+  background-color: var(--cl-warning-05); /* Amarillo brillante */
 }
 
 .alert-content {
@@ -147,6 +160,11 @@
   color: var(--cl-error-01);
 }
 
+.alert-icon-container-warning{
+  background-color: var(--cl-warning-01);
+  color: var(--cl-warning-01);
+}
+
 
 .alert-icon {
   width: 34px;
@@ -157,6 +175,11 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.alert-h5-warning{
+  color: var(--cl-warning-06);
+  font-weight: 400;
 }
 
 .alert-title {
@@ -177,6 +200,10 @@
 
 .alert-message-error{
   color: var(--cl-error-06); /* Texto secundario ligeramente opaco */
+}
+
+.alert-message-error{
+  color: var(--cl-warning-06);
 }
 
 /* Botón de reintento */
@@ -205,6 +232,7 @@
   background-color: var(--cl-success-02);
 }
 
+/*    ERRROR     */
 
 .alert-button-error{
   background-color: var(--cl-error-03); /* Fondo del botón ligeramente más claro */
@@ -216,6 +244,19 @@
 
 .alert-button-error:active {
   background-color: var(--cl-error-02);
+}
+  
+/*     WARNING     */
+.alert-button-warning{
+  background-color: var(--cl-warning-03); /* Fondo del botón ligeramente más claro */
+}
+
+.alert-button-warning:hover {
+  background-color: var(--cl-warning-04);
+}
+
+.alert-button-warning:active {
+  background-color: var(--cl-warning-02);
 }
 
 

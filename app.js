@@ -31,7 +31,7 @@ API ROUTES
 
 // Rutas de autenticación
 //expressApp.use('/api/auth', authRoutes);
-expressApp.use('/', authRoutes);
+expressApp.use('/api/auth', authRoutes);
 
 expressApp.use("/", requestRouterCbaPista);
 expressApp.use("/", requestRouterData);

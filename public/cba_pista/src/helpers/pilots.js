@@ -110,7 +110,7 @@ export const getPilots = async ({
 
 export const getCategories = async () => {
 console.log('Called','getCategories')
-   const url = new URL("/category", getBaseUrl());
+   const url = new URL("/get_category", getBaseUrl());
    const response = await fetch(url);
    return  response.json();
 }

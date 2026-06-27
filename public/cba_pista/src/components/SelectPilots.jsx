@@ -30,18 +30,22 @@ const SelectPilots = ({ category,onChagePilot,nameClass, pilotNumber }) => {
 
    return(
 
-      // <label className={`${name_class}-label`}>
-      <label className={`label-select-${nameClass}`}>
-         <span className={`span-${nameClass}`}>Numero Piloto:</span>
+      
+      //<label className={`label-select-${nameClass}`}>
+      <div className="form-group">
+         {/* <span className={`span-${nameClass}`}>Numero Piloto:</span> */}
+         <label className="form-label">Numero Piloto</label>
+
          <select
-            className={`select-${nameClass}`} 
+            // className={`select-${nameClass}`} 
+            className="form-input"
             value={pilotNumber} onChange={(e) => onChagePilot(Number(e.target.value))}>
             <option>Numero</option>
             {pilotsArr.map((p) => (
-               <option value={p.number_pilot} key={p.id}>{p.number_pilot}</option>
+               <option value={p.id} key={p.id}>{p.number_pilot}</option>
             ))}
          </select>
-      </label>
+      </div>
 
    )
 }

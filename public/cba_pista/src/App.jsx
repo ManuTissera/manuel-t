@@ -37,6 +37,8 @@ import CreateNewAdmin from "./pages/CreateAdmin.jsx"
 import HomePage from "./pages/Home.jsx"
 import NewRecordForm from "./pages/NewRecord.jsx"
 import AddPilotsElement from "./pages/AddPilots.jsx"
+
+import CreateAccount from "./pages/CreateAccount.jsx";
 import LogIn from "./pages/LogIn.jsx"
 import Landing from "./pages/Landing.jsx"
 import SignUp from "./pages/Signup.jsx"
@@ -60,6 +62,7 @@ export default function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/profile" element={<ProfileUser/>} />
         <Route path="/login" element={<LogIn />} />
+        <Route path="/sing_up" element={<CreateAccount />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/pilots" element={<PilotsTable />} />

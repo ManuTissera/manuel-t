@@ -94,7 +94,7 @@ export const editRecordTires = async (idRegistry, tires) => {
     return data;
 
   } catch(err) {
-    return err;
+    // return err;
   }
 };
 

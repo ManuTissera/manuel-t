@@ -55,6 +55,12 @@
   --cl-error-04: #921c1c;   /* Hover del botón */
   --cl-error-05: #ff3b30;   /* Línea de acento brillante */
   --cl-error-06: #e0b0b0;   /* Texto del mensaje secundario */
+
+  /* Escala Warning/Amarillo - 6 Niveles (Fondo -> Texto Claro) */
+
+
+
+
   
   --text1: #777;
   --text-light: #ccc;
@@ -97,6 +103,8 @@ body{
   font-family: 'Inter', 'Segoe UI', sans-serif;
 
   font-family: 'Baloo 2', cursive;
+  background-color: var(--bg-01);
+  min-height: 100vh;
 }
 
 h1{
