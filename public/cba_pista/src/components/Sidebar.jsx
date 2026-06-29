@@ -20,9 +20,11 @@ const Sidebar = ({ isOpen, onClose }) => {
       const data = await getActiveUsers()
       setUserActive(data);
     };
+    
     loadActiveUser()
   },[]);
-
+  
+  console.log(userActive)
   // console.log('siderbar', userActive);
 
   const logOutFn = async () => {
@@ -65,11 +67,14 @@ const Sidebar = ({ isOpen, onClose }) => {
           {/* <Link to="/records_table" onClick={onClose}>Table</Link> */}
           <Link to="/add_pilot" onClick={onClose}>Nuevo Piloto</Link>
         </nav>
-          <Link 
+        {(userActive.user_rol == 'Manager')
+          ?           <Link 
             to="/new_admin" 
             onClick={onClose}
             className='btn-siderbar'
-            >Agregar Administrador</Link>
+            >Agregar Administrador
+          </Link>
+          : <div></div>}
         {(userActive == 'Usuario no autenticado')
                     ?
                         <button 

@@ -47,6 +47,23 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 2.5rem;
+  margin-bottom: 1.4rem;
+}
+
+.container-status-fecha{
+  padding: 1rem;
+}
+
+.container-status-fecha b{
+  color: var(--text-info);
+}
+.container-status-fecha-detail{
+  /* border: 1px solid red; */
+  background-color: var(--cl-grey-01);
+  padding: .3rem .6rem;
+  margin: 1rem;
+  color: var(--text-info);
+  border-radius: 4px;
 }
 
 .stat-item {
@@ -56,6 +73,7 @@
   background-color: var(--bg-02);
   border-radius: 8px;
   padding: 1.25rem;
+  padding: .5rem;
   text-align: center;
   transition: transform 0.2s ease;
 }
@@ -132,12 +150,23 @@
   font-weight: 700;
 }
 
+.fecha-status{
+  border-bottom: .16rem solid var(--cl-grey-02);
+  color: var(--text-info);
+  margin: auto;
+  margin-bottom: .5rem;
+  width: 80%;
+
+}
+
 /* Summary card sobrio */
 .summary-card {
   background-color: #1e1e1e;
   border-radius: 8px;
   padding: 1.25rem;
   border: 1px solid #3c3c3c;
+
+  /* margin-bottom: 50px; */
 }
 
 .summary-title {
@@ -208,6 +237,7 @@
 
   .stat-item {
     padding: 1rem;
+    padding: .7rem 0rem;
   }
 
   .stat-number {

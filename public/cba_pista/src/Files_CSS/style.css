@@ -7,14 +7,15 @@
   --bg-black-3: #2e2e2e; /* bg login */
   --cl-black-3: #313134; /* bg inp */
   --cl-black-4: #76767c; /* bg btn sub */
-  --cl-grey-01: #5b5b5e;
+  --cl-grey-01: #383838;
+  --cl-grey-02: #5b5b5e;
   --bg-04: #111;
   
   --bg-01: #1e1e1e;
   --bg-02: #292929;
   --bg-03: #222222;
 
-  --text-info: #a0a0a0;
+  --text-info: #A0A0A0;
   --text-value: #E0E0E0;
   --text-blue: #3a9fd1;
   --text-red: #cc3a3a;

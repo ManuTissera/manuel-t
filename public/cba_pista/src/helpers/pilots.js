@@ -11,7 +11,7 @@ const getBaseUrl = () => {
 
 
 export const getActiveUsers = async () => {
-  console.log('Usuarios get ejecutado');
+  console.log('getActiveUsers Usuario activo ===>> ');
 
   try {
     const url = new URL("/get_user_active", getBaseUrl());

@@ -60,7 +60,7 @@ const HomePage = () => {
               // }
             };
           
-          
+          console.log('Load Status:',loadStatus)
           
   return (
 
@@ -96,6 +96,8 @@ const HomePage = () => {
         </div>
       </div>
 
+
+
       {/* Stats cards - solo 2 */}
       <div className="stats-row">
 
@@ -109,8 +111,12 @@ const HomePage = () => {
                       // ?'Iniciar Carga'
                       ? <span className="stat-span text-blue" 
                           onClick={() => handleClick('to-start')}>Iniciar Ronda</span>
-                      : <span className="stat-span text-red"
-                          onClick={() => handleClick('to-end')}>Finalizar Carga</span>}
+                      : <>
+                        {/* <span className="stat-number">245</span> */}
+                        <span className="stat-span text-red"
+                          onClick={() => handleClick('to-end')}>Finalizar Carga</span>
+                        </>
+          }
           
         </button>
 
@@ -118,13 +124,28 @@ const HomePage = () => {
           {/* {message && <p className="backend-message">{message}</p>} */}
 
         <button className="stat-item stat-button">
-          <span className="stat-number">245</span>
-          <span className="stat-label">Registros Totales</span>
+          <span className="stat-number">Fecha 3</span>
+          {/* <span className="stat-label">Registros Totales</span> */}
+          {/* <span className="stat-label">San Nicolas de los Arrollos</span> */}
         </button>
       </div>
 
+
+      {/* Header simple */}
+      {/* <div className="container-status-fecha">
+        <div>
+          <b>Fecha abierta:</b>
+          <span className="container-status-fecha-detail">San Nicolas de los Arrollos</span>
+        </div>
+      </div> */}
+
+
+
       {/* Acciones principales - solo 3 botones */}
       <div className="actions-section">
+        <Link to="/pilots" className="action-link fecha-status">
+          <span>Fecha abierta:</span>San Nicolas de los Arrollos
+        </Link>
         <Link to="/pilots" className="action-link">
           <span className="action-link-icon">→</span>
           Ver Pilotos
@@ -139,7 +160,8 @@ const HomePage = () => {
         </Link>
       </div>
 
-      {/* Resumen simple */}
+
+            {/* Resumen simple */}
       <div className="summary-card">
         <h3 className="summary-title">Resumen Rápido</h3>
         <p className="summary-text">
@@ -147,6 +169,9 @@ const HomePage = () => {
           Utilice el menú o los accesos directos para navegar.
         </p>
       </div>
+
+
+
     </div>
 
 
