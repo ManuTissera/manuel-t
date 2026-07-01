@@ -175,18 +175,18 @@ const ModalLoadStartRecord = ({ onCancel, statusData }) => {
                   {!statusLoader ? (
                     <>
                     
-                  <span className="label">Fecha Abierta</span>
-                    <input
-                      value={`${eventOpen?.event || ''} - ${eventOpen?.name_circuits || ''}`}
-                      type="text"
-                      disabled
-                      className="input category_select select_event"
-                    />
+                      <span className="span-modal">Fecha Abierta</span>
+                        <input
+                          value={`${eventOpen?.event || ''} - ${eventOpen?.name_circuits || ''}`}
+                          type="text"
+                          disabled
+                          className="input category_select select_event"
+                        />
                     
                     </>
                   ) : (
                     <>
-                      <span className="label">Seleccionar Fecha</span>
+                      <span className="span-modal">Seleccionar Fecha</span>
                       
                       <select
                         className="input category_select select_event"

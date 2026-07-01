@@ -114,6 +114,10 @@
   text-align: right;
 }
 
+.span-modal{
+  color: var(--text-value);
+}
+
 /* Modal Editar Registros */
 .content-data-modal{
   padding: 0rem 2rem;

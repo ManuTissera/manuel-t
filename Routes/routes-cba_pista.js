@@ -75,7 +75,7 @@ requestRouterCbaPista.get('/tires_registry', async (req, res) => {
       t.id,
       u.name AS pilot_name,
       u.surname,
-      ct.category_name AS category,  -- 👈 Trae el nombre desde category_table
+      ct.category_name AS category,
       ct.rim_size,
       u.number_pilot,
       c.name_circuits,
@@ -92,7 +92,7 @@ requestRouterCbaPista.get('/tires_registry', async (req, res) => {
       FROM tires_registry t
       JOIN users_pista u ON u.id = t.id_pilot
       JOIN users_admin ua ON ua.id_admin = t.created_by
-      JOIN category_table ct ON ct.id_category = u.id_category  -- 👈 JOIN con category_table
+      JOIN category_table ct ON ct.id_category = u.id_category
       JOIN circuits_calendar c ON c.id_event = t.id_event
     `;
 
@@ -113,29 +113,24 @@ requestRouterCbaPista.get('/tires_registry', async (req, res) => {
       String(id_Event).trim() !== "";
 
     if (hasTireParam) {
-      // 1) tire_param tiene prioridad y anula los demás
-      query += `
-        WHERE $1::int IN (t.tire_n1, t.tire_n2, t.tire_n3, t.tire_n4, t.tire_n5, t.tire_n6)
-      `;
+      query += `WHERE $1::int IN (t.tire_n1, t.tire_n2, t.tire_n3, t.tire_n4, t.tire_n5, t.tire_n6)`;
       params.push(Number(tire_param));
     } else if (hasIdPilot && hasIdEvent) {
-      // 2) id_Pilot + id_Event
       query += ` WHERE t.id_pilot = $1 AND t.id_event = $2`;
       params.push(Number(id_Pilot), Number(id_Event));
     } else if (hasIdPilot) {
-      // 3) solo id_Pilot
       query += ` WHERE t.id_pilot = $1`;
       params.push(Number(id_Pilot));
     } else if (hasIdEvent) {
-      // 4) solo id_Event
       query += ` WHERE t.id_event = $1`;
       params.push(Number(id_Event));
     }
 
-
+    query += ' ORDER BY t.id_event DESC';
 
     const data = await connection.query(query, params);
     res.send(data.rows);
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Server error" });
