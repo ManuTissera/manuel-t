@@ -7,6 +7,8 @@ import { getPilots, deletePilot } from "../helpers/pilots.js";
 import SelectSarchCategory from "../components/SearchCategoryPilot.jsx";
 import SelectPilots from "../components/SelectPilots.jsx";
 import ModalDeleteRecord from "../components/ModalDeleteRecord.jsx";
+import AlertPopUp from "../components/AlertPopUp.jsx";
+import AlertBanner from "../components/AlertBanner.jsx";
 
 import '../Files_CSS/tables.css'
 
@@ -27,6 +29,18 @@ const PilotsTable = () => {
   const [pilotsArr, setPilotsArr] = useState([]);
   const [idPilot, setIdPilot] = useState("");
 
+  const [showPopUpBanner, setShowPopUpBanner] = useState(false)
+  const [popUpType, setPopUpType] = useState(true)
+  const [popUpTitle, setPopUpTitle] = useState("")
+  const [popUpMsg, setPopUpMsg] = useState("")
+  const [popUpStatus, setPopUpStatus] = useState(false);
+
+  const [alertTitle, setAlertTitle] = useState('')
+  const [alertMsg, setAlertMsg] = useState('')
+  const [showModalSucces, setShowModalSucces] = useState(false); // Cambiado a false para que empiece oculto
+  const [alertType, setAlertType] = useState(true); 
+  const [bannerStatus, setBannerStatus] = useState(false)
+
 
    const onChangeCategory = (val) => {
       setCategorySelected(val)
@@ -37,34 +51,50 @@ const PilotsTable = () => {
    }
 
 
-   useEffect(() => {
-     const load = async () => {
-      console.log('Load Cargado')
-       const data = await getPilots({
-        category: categorySelcted,
-        id_pilot: idPilot,
-        name_pilot: namePilot,
-        surname: surnamePilot
-       });
-       console.log('Arr Cargado tambien')
-       const arr = Array.isArray(data) ? data : [];
-       setPilotsArr(arr);
-       console.log('Mostrar pilotos - cantidad', arr.length);
-     };
-   
-     load();
-   }, [showPilots]);
+    useEffect(() => {
+      const load = async () => {
 
-const toggleRow = (id) => {
-  setSelectCheck(prev =>
-    prev.includes(id)
-      ? prev.filter(x => x !== id)
-      : [...prev, id]
-  );
-};
+        console.log(`
+         category: ${categorySelcted},
+         id_pilot: ${idPilot},
+         name_pilot: ${namePilot},
+         surname: ${surnamePilot}
+          `)
+
+        const data = await getPilots({
+         category: categorySelcted,
+         id_pilot: idPilot,
+         name_pilot: namePilot,
+         surname: surnamePilot
+        });
+        const arr = Array.isArray(data) ? data : [];
+        if(arr.length == 0 ){
+
+            setPopUpTitle('No encontrado');
+            setPopUpMsg('No se encontro la busqueda ');
+            setPopUpType('warning');
+            setShowPopUpBanner(true);
+            setPopUpStatus(prev => !prev)
+          }else{
+          setPilotsArr(arr);
+        }
+        // console.log('Mostrar pilotos - cantidad', arr.length);
+      };
+
+      load();
+    }, [showPilots]);
+
+    const toggleRow = (id) => {
+      setSelectCheck(prev =>
+        prev.includes(id)
+          ? prev.filter(x => x !== id)
+          : [...prev, id]
+      );
+    };
 
 
    const functionSearch = async () => {
+    console.log('Category Selected',categorySelcted)
     //console.log('Piloto select',numPilot);
     //console.log('Category select',categorySelcted);
     //  console.log(pilotsArr, eventArr, numTire)
@@ -72,17 +102,35 @@ const toggleRow = (id) => {
     //  setRecordsArr(Array.isArray(data) ? data : []);
     //  setPage(1);
    };
-
-  const deleteFunction = async () => {
+const deleteFunction = async () => {
+  console.log('Delete selected', selectCheck);
+  
+  try {
     await deletePilot(selectCheck);
 
     const data = await getPilots({});
-    setPilotsArr(Array.isArray(data)?data : [])
-    
-    setShowDeleteModal(false)
-    setSelectCheck([])
+    setPilotsArr(Array.isArray(data) ? data : []);
 
+    setShowDeleteModal(false);
+    setSelectCheck([]);
+
+    setAlertType(true);
+    setShowModalSucces(true);
+    setAlertTitle('Confirm!');
+    setAlertMsg(`Piloto eliminado correctamente`);
+    setBannerStatus(prev => !prev)
+
+  } catch (err) {
+    setShowDeleteModal(false);
+    console.error(err);
+    // acá mostrás tu AlertBanner de error
+    setAlertType(false);
+    setShowModalSucces(true);
+    setAlertTitle('Error');
+    setAlertMsg(err.message || 'Error al eliminar el piloto');
+    setBannerStatus(prev => !prev)
   }
+};
 
    const showAllFn = () => {
     setCategorySelected(""),
@@ -90,7 +138,7 @@ const toggleRow = (id) => {
     setNamePilot(""),
     setSurnamePilot("")
    }
-   
+
 
    return (
       <>
@@ -104,16 +152,44 @@ const toggleRow = (id) => {
       )}
 
 
+      {showPopUpBanner && (
+        <AlertPopUp
+        titleAlert={popUpTitle}
+        messageAlert={popUpMsg}
+        classNN={popUpType}
+        statusPopUp = {popUpStatus}
+        />
+      )}
+
+
+      {/* Inserción del Banner con renderizado condicional */}
+       {showModalSucces && (
+         <AlertBanner 
+          titleAlert={alertTitle} 
+          messageAlert={alertMsg} 
+          classNN={alertType} 
+          statusBanner = {bannerStatus}
+
+         />
+       )}
+
+        {/* --- MODAL DE FILTER ---- */}
       {
-        showModalFilter && ( 
+        showModalFilter && (
 
         <div className="modal-overlay" onClick={() => {setShowModalFilter(false); console.log('overlay apretado')}}>
-        <div className="container-filter-tires" onClick={(e) => e.stopPropagation()}>
-          <span 
-            onClick={() => setShowModalFilter(false)}
-            className="x-close-filter">x</span>
-          <h4>Filter</h4>
 
+        <div className="container-modal midium-modal" onClick={(e) => e.stopPropagation()}>
+          <span
+            onClick={() => setShowModalFilter(false)}
+            className="x-close-filter">
+          x
+          </span>
+          <h3 className="password-title">Filtrar Registro</h3>
+
+        {/* <div className="container-filter-tires" onClick={(e) => e.stopPropagation()}> */}
+
+          <div className="filter-section">
 
                 <SelectSarchCategory
                   onChangeFn={onChangeCategory}
@@ -127,24 +203,26 @@ const toggleRow = (id) => {
                   nameClass={"rec"}
                 />
 
-        <button 
-          className="btn-aply-filter"
-          onClick={() => {
-            functionSearch();
-            setShowPilots(prev => !prev)
-            setShowModalFilter(false);
-          }}
-        >
-          Aplicar Filtro
-        </button>
-        
+                <button
+                  className="submit-btn"
+                  onClick={() => {
+                    functionSearch();
+                    setShowPilots(prev => !prev)
+                    setShowModalFilter(false);
+                  }}
+                >
+                  Aplicar Filtro
+                </button>
+
+          </div>
+
 
         </div>
       </div>
         )
       }
 
-      
+
 
 {/* ---------------- aca comienza la tabla ---------------------------- */}
 
@@ -167,7 +245,7 @@ const toggleRow = (id) => {
                   Ver Todo
                 </button>
 
-                <button 
+                <button
                   className="btn-record-mobile btn-filter-rec"
                   onClick={() => setShowModalFilter(true)}
                   >
@@ -182,12 +260,12 @@ const toggleRow = (id) => {
             placeholder="Ingresar Nombre"
             onChange={(e) => setNamePilot(e.target.value)}
           />
-          <button className="submit-btn" onClick={() =>{ 
+          <button className="submit-btn" onClick={() =>{
             console.log(namePilot)
             setCategorySelected("");
             setIdPilot("");
             setShowPilots(prev => !prev)
-          }} 
+          }}
           >Buscar</button>
         </div>
       </div>
@@ -198,7 +276,7 @@ const toggleRow = (id) => {
 
 {/* ---------------- aca comienza la tabla ---------------------------- */}
 
-     
+
       <div className="toolbar-first">
         <button
           className="btn-icon btn-delete-rec"
@@ -230,9 +308,9 @@ const toggleRow = (id) => {
                   <div className="th-rec " >Numero</div>
                 </div>
               </div>
-    
-          
-    
+
+
+
                <div className="tbody-rec" >
                    {pilotsArr.map((r) => (
                      <div className="tbody-rec-tr grt-pilots" key={r.id}>
@@ -243,18 +321,18 @@ const toggleRow = (id) => {
                           onChange={() => toggleRow(r.id)}
                          />
                        </div>
-                  
+
                        <div className="td-rec">{r.name}</div>
                        <div className="td-rec">{r.surname}</div>
                        <div className="td-rec">{r.car_model}</div>
-                       <div className="td-rec">{r.category}</div>
+                       <div className="td-rec">{r.category_name}</div>
                        <div className="td-rec">{r.number_pilot}</div>
-                  
+
 
                      </div>
                    ))}
                </div>
-            </div> 
+            </div>
 
       </div>
 
@@ -296,7 +374,7 @@ const toggleRow = (id) => {
 
 
 
-      </div>      
+      </div>
       </>
    )
 }

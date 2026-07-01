@@ -33,11 +33,17 @@ export const addNewRecord = async (payload) => {
 // add_info.js
 export const addNewPilot = async (payload) => {
 
-  const url = new URL('/add_new_pilot', window.location.origin)
+  console.log(payload)
+
+  const token = localStorage.getItem('token');
+  const url = `${getBaseUrl()}/add_new_pilot`;
 
   const res = await fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
     body: JSON.stringify(payload),
   });
 
@@ -55,7 +61,6 @@ export const addNewPilot = async (payload) => {
     data
   };
 };
-
 
 export const newActivity = async (payload) => {
 

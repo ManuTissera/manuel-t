@@ -151,12 +151,19 @@
 }
 
 .fecha-status{
+  
   border-bottom: .16rem solid var(--cl-grey-02);
   color: var(--text-info);
-  margin: auto;
-  margin-bottom: .5rem;
-  width: 80%;
+  margin: .9rem auto;
+  margin-bottom: 1.2rem;
+  width: 94%;
+  width: max-content;
+  min-width: 80%;
 
+}
+
+.fecha-status span{
+  font-size: 12px;
 }
 
 /* Summary card sobrio */
@@ -236,8 +243,9 @@
   }
 
   .stat-item {
-    padding: 1rem;
     padding: .7rem 0rem;
+    padding: 1rem;
+    
   }
 
   .stat-number {
@@ -251,6 +259,10 @@
   .action-link {
     padding: 0.7rem 0.85rem;
     font-size: 0.85rem;
+  }
+
+  .fecha-status{
+    padding: .7rem .5rem;
   }
 }
 

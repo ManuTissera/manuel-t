@@ -5,7 +5,7 @@ import alertError from '../assets/alert-fail.svg';
 import alertSuccess from '../assets/alert-success.svg';
 import alertWarning from '../assets/alert-warning.svg';
 
-const AlertPopUp = ({ titleAlert, messageAlert, classNN }) => {
+const AlertPopUp = ({ titleAlert, messageAlert, classNN, statusPopUp }) => {
   
 
 
@@ -31,10 +31,10 @@ const AlertPopUp = ({ titleAlert, messageAlert, classNN }) => {
     
       const timer = setTimeout(() => {
         setAnimate(false); 
-      }, 6600);
+      }, 4600);
     
       return () => clearTimeout(timer);
-    }, [messageAlert]);
+    }, [statusPopUp]);
 
     console.log("Animation Banner:",messageAlert)
 
@@ -73,7 +73,10 @@ const AlertPopUp = ({ titleAlert, messageAlert, classNN }) => {
       </div>
 
       {/* <button className="alert-retry-button" onClick={onRetry}> */}
-      <button className={"alert-button alert-button" + claseStyle}>
+      <button 
+        className={"alert-button alert-button" + claseStyle}
+        onClick={() => setAnimate(false)}
+        >
         Retry
       </button>
     </div>

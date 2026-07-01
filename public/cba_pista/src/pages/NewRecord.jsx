@@ -137,7 +137,7 @@ export default function NewRecordForm() {
 
     try {
       const data = await addNewRecord(payload);
-      console.log('RESP', data);
+      // console.log('RESP', data);
 
       if ("ok" in data) {
         setShowModalSucces(true);
@@ -162,7 +162,7 @@ export default function NewRecordForm() {
     }
   };
 
-    console.log('infoPilotData',infoPilotData)
+    // console.log('infoPilotData',infoPilotData)
 
   return (
     <>
@@ -189,24 +189,26 @@ export default function NewRecordForm() {
       <div className="back-ground-ui"></div>
 
       <div className="container-form-all">
+
             <div className="header-card-form-second">
-            <div className="header-tables">
-            <h3 className="h3-title" >Nuevo Registro</h3>
-            <div className="header-tables-status">
-            
-            <div className="header-tables-status">
-              {statusRun.length === 0 ? (
-                <button className="action-btn" onClick={() => setShowModalLoader(true)}>Iniciar Ronda Nueva</button>
-              ) : (
-                <>
-                  <span>Fecha actual</span>
-                  <p>{`${statusRun[0]?.event} - ${statusRun[0]?.name_circuits}`}</p>
-                </>
-              )}
-            </div>
-            
-            </div>
-          </div>
+              {/* <div className="header-tables"> */}
+                <div className="ca-header">
+                <h4 className="ca-title" >Nuevo Registro</h4>
+                {/* <div className="header-tables-status"> */}
+
+                  {/* <div className="header-tables-status"> */}
+                    {statusRun.length === 0 ? (
+                      <button className="action-btn" onClick={() => setShowModalLoader(true)}>Iniciar Ronda Nueva</button>
+                    ) : (
+                      <>
+                        <p className="ca-eyebrow ca-eyebrow-table ">Fecha actual</p>
+                        <p className="ca-subtitle">{`${statusRun[0]?.event} - ${statusRun[0]?.name_circuits}`}</p>
+                      </>
+                    )}
+                  {/* </div>
+                
+                </div> */}
+              </div>
             </div>
 
 
@@ -228,7 +230,7 @@ export default function NewRecordForm() {
       <form className="card-nr" autoComplete="off" onSubmit={(e) => e.preventDefault()}>
         <div className="grid">
           <label className="field">
-            <span className="label">Categoria</span>
+            <span className="ca-label">Categoria</span>
             <select
               className="input category_select"
               value={category}
@@ -251,7 +253,7 @@ export default function NewRecordForm() {
           />
 
           <label className="field">
-            <span className="label">Nombre</span>
+            <span className="ca-label">Nombre</span>
             <input
               className="input name_inp"
               type="text"
@@ -261,7 +263,7 @@ export default function NewRecordForm() {
           </label>
 
           <label className="field">
-            <span className="label">Auto</span>
+            <span className="ca-label">Auto</span>
             <input
               className="input car_inp"
               type="text"
@@ -271,7 +273,7 @@ export default function NewRecordForm() {
           </label>
 
           <label className="field">
-            <span className="label">Fecha</span>
+            <span className="ca-label">Fecha</span>
             <input
               className="input date_inp"
               type="datetime-local"
@@ -281,7 +283,7 @@ export default function NewRecordForm() {
           </label>
 
           <label className="field field--full">
-            <span className="label">Evento</span>
+            <span className="ca-label">Evento</span>
             <input
               className="input event_inp"
               type="text"
@@ -306,7 +308,7 @@ export default function NewRecordForm() {
 
                   <button
                     type="button"
-                    className="btn-scan"
+                    className="btn-scan action-btn"
                     onClick={() => openScan(k)}
                   >
                     Scan
@@ -318,7 +320,7 @@ export default function NewRecordForm() {
         </div>
 
         <div className="actions">
-          <button type="button" className="btn-add btn-submit" onClick={onSubmit}>
+          <button type="button" className="submit-btn" onClick={onSubmit}>
             Cargar
           </button>
         </div>

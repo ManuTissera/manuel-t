@@ -75,6 +75,7 @@
   padding: 0.75rem;
   background-color: #1e1e1e;
   border: 1px solid #3c3c3c;
+  border: 1px solid #3a9fd1;
   border-radius: 6px;
   color: #3a9fd1;
   font-size: 0.9rem;
@@ -253,14 +254,7 @@
   }
 }
 
-@media (max-width: 899px) {
-    .btn-submit{
-      padding: 13px 10px;
-      width: 100%;
-      border-radius: 10px;
-    }
 
-}
 
 
 

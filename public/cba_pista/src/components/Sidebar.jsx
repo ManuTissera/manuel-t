@@ -24,7 +24,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     loadActiveUser()
   },[]);
   
-  console.log(userActive)
+  
   // console.log('siderbar', userActive);
 
   const logOutFn = async () => {
@@ -69,7 +69,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         </nav>
         {(userActive.user_rol == 'Manager')
           ?           <Link 
-            to="/new_admin" 
+            to="/sing_up" 
             onClick={onClose}
             className='btn-siderbar'
             >Agregar Administrador

@@ -5,18 +5,17 @@ import { generarToken } from '../utils/jwt.js';
  
 // ── Login ────────────────────────────────────────────────────────────────────
 export const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
  
-  if (!email || !password) {
+  if (!username || !password) {
     return res.status(400).json({ error: 'Email y contraseña requeridos' });
   }
  
   try {
     const result = await pool.query(
-      'SELECT id_admin, email, password_hash, user_rol FROM users_admin WHERE email = $1',
-      [email]
+      'SELECT id_admin, email, password_hash, user_rol, users_name FROM users_admin WHERE users_name = $1',
+      [username]
     );
- 
     if (result.rows.length === 0) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }

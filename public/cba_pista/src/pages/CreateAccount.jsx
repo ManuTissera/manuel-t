@@ -1,6 +1,5 @@
 // pages/CreateAccount.jsx
 import { useState } from 'react';
-import '../Files_CSS/CreateAccount.css';
 
 const ROLES = ['Administrador', 'Auditor', 'Publico'];
 

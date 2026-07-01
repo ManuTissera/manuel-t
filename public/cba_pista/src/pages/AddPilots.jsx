@@ -8,25 +8,29 @@ import { addNewPilot } from "../helpers/add_info.js";
 
 import ModalLoadRecord from '../components/ModalLoadRecord.jsx';
 import ModalSuccesLoad from '../components/ModalSuccesLoad.jsx';
-import ToastSuccesPilot from '../components/ToastSuccesPilot.jsx';
-import ToastErrorPilot from '../components/ToastErrorPilot.jsx';
+import AlertBanner from '../components/AlertBanner.jsx';
 
 import '../Files_CSS/addPilots.css'
 
 const AddPilotsElement = () => {
+  const [showModalUnload, setShowModalUnload] = useState("");
+  const [showModalSucces, setShowModalSucces] = useState("");
 
    const today = new Date().toISOString().split("T")[0];
    const [date, setDate] = useState(today);
    
+
+   const [alertTitle, setAlertTitle] = useState('')
+   const [alertMsg, setAlertMsg] = useState('')
+   const [alertType, setAlertType] = useState(true); // Nuevo estado: true para success, false para error
+   const [bannerStatus, setBannerStatus] = useState(false)
+
+
    const [categorySelect, setCategorySelected] = useState("");
-   const [showModalUnload, setShowModalUnload] = useState("");
-   const [showModalSucces, setShowModalSucces] = useState("");
-   const [showToastSucces, setShowToastSucces] = useState(false);
-   const [showToastErrors, setShowToastErrors] = useState(false);
+   const [showToastErrors, setShowToastErrors] = useState(false); // Hay que cambiarlo
    const [isOpenClass, setIsOpenClass] = useState("");
    const [categories, setCategories] = useState([])
    const [namePilot, setNamePilot] = useState("");
-   const [errorComment, setErrorComment] = useState("")
    const [carModel, setCarModel] = useState("");
    const [numPilot, setNumPilot] = useState("");
    const [surname, setSurname] = useState("");
@@ -42,39 +46,69 @@ const AddPilotsElement = () => {
    },[] )
 
 
-    const submitDataFn = async () => {
-      try {
-        const payload = {
-          name: namePilot,
-          surname,
-          car_model: carModel,
-          category: categorySelect,
-          number_pilot: numPilot,
-          date,
-        };
-        
-        console.log('Agregado correctamente creo')
-        const response = await addNewPilot(payload);
-        console.log(response.status)
-        if(response.status == 201){
-          setShowToastSucces(true)
-        }
-      
-      } catch (err) {
-        if(err.status == 409){
-          setErrorComment(`El numero ${numPilot} ya esta asignado a otro piloto`)
-          setShowToastErrors(true)
-        }
-        console.log("status:", err.status);
-        console.log("message:", err.message);
-      }
+const submitDataFn = async () => {
+  try {
+    const payload = {
+      name: namePilot,
+      surname,
+      car_model: carModel,
+      category: categorySelect,
+      number_pilot: numPilot,
+      date,
     };
+    
+    console.log('Agregado correctamente creo')
+    const response = await addNewPilot(payload);
+    console.log(response.status)
+    if(response.status == 201){
+        setAlertType(true);
+        setShowModalSucces(true);
+        setAlertTitle('Piloto Agregado');
+        setAlertMsg('El piloto fue cargado correctamente');
+        setBannerStatus(prev => !prev);
 
+        setTimeout(() => window.location.reload(), 4500);
+    }
+  
+  } catch (err) {
+    if (err.status == 409) {
+
+        setAlertType(false);
+        setShowModalSucces(true);
+        setAlertTitle('Error');
+        setAlertMsg(err.message || `El numero ${numPilot} ya esta asignado a otro piloto`);
+        setBannerStatus(prev => !prev);
+
+
+    } else {
+
+        setAlertType(false);
+        setShowModalSucces(true);
+        setAlertTitle('Error');
+        setAlertMsg(err.message || 'Error al agregar el piloto');
+        setBannerStatus(prev => !prev);
+
+    }
+  }
+};
 
 
 
    return(
       <>
+
+               {/* Inserción del Banner con renderizado condicional */}
+               {showModalSucces && (
+                 <AlertBanner 
+                  titleAlert={alertTitle} 
+                  messageAlert={alertMsg} 
+                  classNN={alertType} 
+                  statusBanner = {bannerStatus}
+
+                 />
+               )}
+
+
           {/* <div className="back-ground-ui"></div> */}
           <div className="container-form-all">
           
@@ -90,22 +124,6 @@ const AddPilotsElement = () => {
             </div>
             
             <div className="form-pilot">
-
-              {showToastErrors && (
-                <ToastErrorPilot
-                  errorText={errorComment}
-                  isOpen={showToastErrors}
-                  onClose={() => setShowToastErrors(false)}
-                />
-              )}
-
-
-              {showToastSucces && <ToastSuccesPilot
-                pilotName={namePilot}
-                surnamePilot={surname}
-                onClose={() => setShowToastSucces(false)}
-              />}
-
 
 
               <div className="form-group">
@@ -137,8 +155,8 @@ const AddPilotsElement = () => {
                  >
                    <option value="">Seleccionar Categoria</option>
                    {categories.map((c) => (
-                     <option key={c.category} value={c.category}>
-                       {c.category || "Seleccionar"}
+                     <option key={c.id_category} value={c.id_category}>
+                       {c.category_name || "Seleccionar"}
                      </option>
                    ))}
                  </select>
@@ -177,7 +195,7 @@ const AddPilotsElement = () => {
 
                <label className='label-buttons'>
                   <button
-                     className="btn-add btn-submit"
+                     className="submit-btn"
                      // onClick={() => uploadDataFn()}
                      onClick={() => submitDataFn()}
                   >

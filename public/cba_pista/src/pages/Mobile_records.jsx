@@ -37,11 +37,15 @@ const MobileTable = () => {
   const [alertType, setAlertType] = useState(true);
   const [alertTitle, setAlertTitle] = useState("")
   const [alertMsg, setAlertMsg] = useState("")
+  const [bannerStatus, setBannerStatus] = useState(false)
+
 
   const [showPopUpBanner, setShowPopUpBanner] = useState(false)
   const [popUpType, setPopUpType] = useState(true)
   const [popUpTitle, setPopUpTitle] = useState("")
   const [popUpMsg, setPopUpMsg] = useState("")
+  const [popUpStatus, setPopUpStatus] = useState(false);
+
 
   const [deleteMessage, setDeleteMessage] = useState("")
 
@@ -117,6 +121,8 @@ const MobileTable = () => {
         setPopUpMsg('No se encontro la busqueda ');
         setPopUpType('warning');
         setShowPopUpBanner(true);
+        setPopUpStatus(prev => !prev);
+
     }else{
       setRecordsArr(Array.isArray(data) ? data : []);
     }
@@ -138,6 +144,7 @@ const MobileTable = () => {
         setAlertType(true);
         setSelected([]);
         setShowBanner(true);
+        setBannerStatus(prev => !prev);
         setPage(1);
         setTimeout(() => setShowDeleteModal(false),4000);
       }else{
@@ -146,6 +153,7 @@ const MobileTable = () => {
         setAlertMsg(`${res.error} - ${selected.join(' - ')}`)
         setAlertTitle(`Error! - ${selected[0]}`)
         setShowBanner(true);
+        setBannerStatus(prev => !prev);
         setTimeout(() => setAlertMsg(""),3700)
       }
     }catch(err){
@@ -162,7 +170,7 @@ const MobileTable = () => {
     setTimeout(() => {
       setShowModalEdit(false);
       setSelected([]);
-    },7000);
+    },5000);
     //setShowModalEdit(false)
     setPage(1);
   }
@@ -263,6 +271,8 @@ const MobileTable = () => {
           titleAlert={alertTitle} 
           messageAlert={alertMsg} 
           classNN={alertType} 
+          statusBanner = {bannerStatus}
+
         />
       )}
 
@@ -271,6 +281,8 @@ const MobileTable = () => {
         titleAlert={popUpTitle}
         messageAlert={popUpMsg}
         classNN={popUpType}
+        statusPopUp = {popUpStatus}
+
         />
       )}
 

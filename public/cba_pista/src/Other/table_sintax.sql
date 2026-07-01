@@ -64,7 +64,9 @@ CREATE TYPE activity_type AS ENUM (
     'Start Run', 
     'End Run', 
     'Log In', 
-    'Log Out'
+    'Log Out',
+    'Create Account',
+    'Add Pilot',
 
     'Password',
     'New User'

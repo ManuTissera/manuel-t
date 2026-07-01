@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react'; // Eliminado useEffect por desuso
 
 import { startLoadRecord, checkLoadStatus } from '../helpers/tires_registry.js'; // Corregido el punto
+import { getRunStatus } from '../helpers/pilots.js';
 
 import ModalLoadStartRecord from '../components/ModalStartLoad.jsx';
 
@@ -60,7 +61,7 @@ const HomePage = () => {
               // }
             };
           
-          console.log('Load Status:',loadStatus)
+          
           
   return (
 
@@ -124,8 +125,8 @@ const HomePage = () => {
           {/* {message && <p className="backend-message">{message}</p>} */}
 
         <button className="stat-item stat-button">
-          <span className="stat-number">Fecha 3</span>
-          {/* <span className="stat-label">Registros Totales</span> */}
+          <span className="stat-number">245</span>
+          <span className="stat-label">Registros Totales</span>
           {/* <span className="stat-label">San Nicolas de los Arrollos</span> */}
         </button>
       </div>
@@ -144,7 +145,9 @@ const HomePage = () => {
       {/* Acciones principales - solo 3 botones */}
       <div className="actions-section">
         <Link to="/pilots" className="action-link fecha-status">
-          <span>Fecha abierta:</span>San Nicolas de los Arrollos
+          <span>Fecha abierta:</span>
+          {(loadStatus.length == 0)? 'La ultima ronda fue...'
+          :<span>{`${loadStatus[0]?.event} - ${loadStatus[0]?.name_circuits}`}</span>}
         </Link>
         <Link to="/pilots" className="action-link">
           <span className="action-link-icon">→</span>

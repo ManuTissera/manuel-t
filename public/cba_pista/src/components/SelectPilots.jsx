@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 const SelectPilots = ({ category,onChagePilot,nameClass, pilotNumber }) => {
 
-   // const select_class = (nameClass == 'records_form')?'input':'label-select'
-   // const label_class = nameClass == 'records_form' ? 'field' : 'label-select'
+   //const label_class = (nameClass == 'records_form') ? 'label' : 'form-labe'
+   const select_class = (nameClass == 'records_form')?'input':'form-input'
 
    const [ pilotsArr, setPilotsArr ] = useState([])
 
@@ -24,7 +24,7 @@ const SelectPilots = ({ category,onChagePilot,nameClass, pilotNumber }) => {
       },[category])
 
       
-      console.log(pilotNumber)
+      console.log('Name Class Pilots Select',nameClass)
 
     
 
@@ -33,12 +33,13 @@ const SelectPilots = ({ category,onChagePilot,nameClass, pilotNumber }) => {
       
       //<label className={`label-select-${nameClass}`}>
       <div className="form-group">
-         {/* <span className={`span-${nameClass}`}>Numero Piloto:</span> */}
-         <label className="form-label">Numero Piloto</label>
+         {(nameClass == 'records_form')
+         ?<span className="ca-label">Numero Piloto</span>
+         :<label className="form-label">Numero Piloto</label>
+         }
 
          <select
-            // className={`select-${nameClass}`} 
-            className="form-input"
+            className={`${select_class}`} 
             value={pilotNumber} onChange={(e) => onChagePilot(Number(e.target.value))}>
             <option>Numero</option>
             {pilotsArr.map((p) => (

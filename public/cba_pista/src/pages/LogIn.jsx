@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Logo_cba_pista from '../assets/Logo_cba_pista_rend.png';
 
 const LogIn = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');  // email → username
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const LogIn = () => {
         const response = await fetch(`${getBaseUrl()}/api/auth/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password })
+          body: JSON.stringify({ username, password })
         });
 
       const data = await response.json();
@@ -55,14 +55,14 @@ const LogIn = () => {
       <form onSubmit={handleLogin}>   {/* ✅ conectado */}
         <div className="card-log-in">
           <div className="field-login">
-            <input
-              className="input-card-login"
-              type="email"
-              placeholder="User"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+<input
+  className="input-card-login"
+  type="text"            // ❌ era type="email"
+  placeholder="User"
+  value={username}       // ❌ era value={email}
+  onChange={(e) => setUsername(e.target.value)}  // ❌ era setEmail
+  required
+/>
           </div>
           <div className="field-login">
             <input
@@ -80,7 +80,8 @@ const LogIn = () => {
       </form>
 
       <Link to="/login" className="link-new-admin">Olvidaste la contraseña</Link>
-      <Link to="/signup" className="link-new-admin">Crear Cuenta</Link>
+      {/* <Link to="/signup" className="link-new-admin">Crear Cuenta</Link> */}
+      <p to="/signup" className="link-new-admin">Crear Cuenta</p>
     </div>
   );
 };

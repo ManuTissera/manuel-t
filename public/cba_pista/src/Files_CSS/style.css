@@ -62,6 +62,21 @@
 
 
 
+  --ca-bg:         #0d0f14;
+  --ca-surface:    #161a22;
+  --ca-border:     #252b38;
+  --ca-accent:     #e8c14a;       /* pit-lane amber */
+  --ca-accent-dim: rgba(232,193,74,.12);
+  --ca-text:       #e8eaf0;
+  --ca-muted:      #6b7385;
+  --ca-error:      #e05555;
+  --ca-success:    #4caf7d;
+  --ca-radius:     10px;
+  --ca-font:       'Inter', system-ui, sans-serif;
+  --ca-mono:       'JetBrains Mono', 'Fira Code', monospace;
+
+
+
   
   --text1: #777;
   --text-light: #ccc;
@@ -198,11 +213,11 @@ h1{
   grid-column: 1 / -1;
 }
 
-.label,
+/* .label,
 .span-records_form{
   font-size: 14px;
   color: var(--muted);
-}
+} */
 
 
 
@@ -254,6 +269,7 @@ h1{
 
 .input-N{
   background-color: #262b34;
+  background-color: var(--cl-black-3);
 
 }
 

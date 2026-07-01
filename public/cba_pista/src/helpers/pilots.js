@@ -71,6 +71,7 @@ export const getPilots = async ({
   surname = ""
 } = {}) => {
 
+    console.log('Helper getPilots called')
   // console.log('getPilots params:', {
   //   category,
   //   id_pilot,
@@ -99,17 +100,17 @@ export const getPilots = async ({
    url.searchParams.set("surname", surname.trim());
   }
 
-    console.log('getPilots params:', { category, id_pilot, name_pilot, surname });
-    console.log('getPilots URL:', url.toString());
+    // console.log('getPilots params:', { category, id_pilot, name_pilot, surname });
+    // console.log('getPilots URL:', url.toString());
 
 
   const response = await fetch(url);
-  console.log(response)
+  
   return response.json();
 };
 
 export const getCategories = async () => {
-console.log('Called','getCategories')
+console.log('helper getCategories() called')
    const url = new URL("/get_category", getBaseUrl());
    const response = await fetch(url);
    return  response.json();
@@ -150,14 +151,16 @@ export const infoPilot = async (category, numPilot) => {
 
 export const deletePilot = async (id) => {
 
-  const response = await fetch(
-    "/delete_pilot",
-    {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id })
-    }
-  );
+  // ✅
+  const token = localStorage.getItem('token');
+  const response = await fetch(`${getBaseUrl()}/delete_pilot`, {
+    method: "DELETE",
+    headers: { 
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({ id })
+  });
 
   const data = await response.json();
 

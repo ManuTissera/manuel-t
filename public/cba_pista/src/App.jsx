@@ -19,6 +19,8 @@ import "./Files_CSS/home.css"
 import "./Files_CSS/home3.css"
 import "./Files_CSS/new_admin.css"
 import "./Files_CSS/new_record.css"
+import './Files_CSS/CreateAccount.css';
+
 // import "./Files_CSS/add_pilots2.css"
 
 import Layout from "./components/Layout.jsx"
@@ -41,7 +43,6 @@ import AddPilotsElement from "./pages/AddPilots.jsx"
 import CreateAccount from "./pages/CreateAccount.jsx";
 import LogIn from "./pages/LogIn.jsx"
 import Landing from "./pages/Landing.jsx"
-import SignUp from "./pages/Signup.jsx"
 
 
 export default function App() {
@@ -63,7 +64,6 @@ export default function App() {
         <Route path="/profile" element={<ProfileUser/>} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/sing_up" element={<CreateAccount />} />
-        <Route path="/signup" element={<SignUp />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/pilots" element={<PilotsTable />} />
         <Route path="/new_admin" element={<CreateNewAdmin />} />

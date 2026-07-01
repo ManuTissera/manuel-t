@@ -48,7 +48,7 @@ requestRouterCbaPista.get('/get_category', async (req,res) => {
       const query = `SELECT * FROM category_table;`
       const data = await connection.query(query)
 
-      //console.log(data.rows)
+      
       res.send(data.rows)
     }catch(err){
       console.log(err)
@@ -132,8 +132,7 @@ requestRouterCbaPista.get('/tires_registry', async (req, res) => {
       params.push(Number(id_Event));
     }
 
-    console.log(query)
-    console.log(params)
+
 
     const data = await connection.query(query, params);
     res.send(data.rows);
@@ -162,7 +161,7 @@ requestRouterCbaPista.get('/run_status', async (req, res) => {
 })
 
 requestRouterCbaPista.get('/number_pilot', async (req,res) => {
-   console.log('/number_pilot  --> selected endpoint')
+  //  console.log('/number_pilot  --> selected endpoint')
 
    const { category } = req.query;
 
@@ -180,12 +179,12 @@ requestRouterCbaPista.get('/number_pilot', async (req,res) => {
 requestRouterCbaPista.get('/view_num_pilots', async (req, res) => {
 
   const { category } = req.query;
-  console.log('/view_num_pilots  --> selected endpoint',category)
+  // console.log('/view_num_pilots  --> selected endpoint',category)
 
   try {
     const { category } = req.query;
 
-  console.log('/view_num_pilots  --> ','value:',category)
+  // console.log('/view_num_pilots  --> ','value:',category)
 
 
     let query = 'SELECT * FROM users_pista';
@@ -208,7 +207,7 @@ requestRouterCbaPista.get('/info_pilot', async (req, res) => {
   
   const { category, num_pilot } = req.query;
   
-  console.log('/info_pilot  --> selected endpoint',category,num_pilot);
+  // console.log('/info_pilot  --> selected endpoint',category,num_pilot);
 
    if (!category || !num_pilot) {
       return res.status(400).json({ error: 'Categoria y numero son requeridos' });
@@ -238,7 +237,7 @@ requestRouterCbaPista.get('/info_pilot', async (req, res) => {
 
 requestRouterCbaPista.get('/circuits_calendar', async (req,res) => {
 
-  console.log('Circuit Calendar entro al back')
+  // console.log('Circuit Calendar entro al back')
    try{
       const query = `SELECT * FROM circuits_calendar;`
       const data = await connection.query(query);
@@ -251,36 +250,34 @@ requestRouterCbaPista.get('/circuits_calendar', async (req,res) => {
 
 requestRouterCbaPista.get('/view_pilots', async (req, res) => {
 
-  console.log('/view_pilots  --> selected endpoint')
+  // console.log('/view_pilots  --> selected endpoint')
 
   try {
     const { category, id_pilot, name, surname } = req.query;
 
-    let query = 'SELECT * FROM users_pista';
+    let query = `SELECT up.*, ct.category_name FROM users_pista up
+            JOIN category_table ct ON up.id_category = ct.id_category`
     const conditions = [];
     const params = [];
     let idx = 1;
 
     // Category
     if (category && category.trim() !== '') {
-      conditions.push(`category = $${idx++}`);
+      conditions.push(`up.id_category = $${idx++}`);
       params.push(category.trim());
     }
 
-    // Pilot ID (desde SelectPilots)
+    // Pilot ID
     if (id_pilot && String(id_pilot).trim() !== '') {
-      conditions.push(`id = $${idx++}`);
+      conditions.push(`up.id = $${idx++}`);
       params.push(Number(id_pilot));
     }
 
-    // Name (búsqueda parcial, case insensitive)
-    // Free text search (name + surname)
+    // Name
     if (name && name.trim() !== '') {
-    
       const words = name.trim().split(/\s+/);
-    
       words.forEach(word => {
-        conditions.push(`(name ILIKE $${idx} OR surname ILIKE $${idx})`);
+        conditions.push(`(up.name ILIKE $${idx} OR up.surname ILIKE $${idx})`);
         params.push(`%${word}%`);
         idx++;
       });
@@ -292,7 +289,7 @@ requestRouterCbaPista.get('/view_pilots', async (req, res) => {
       query += ' WHERE ' + conditions.join(' AND ');
     }
 
-    console.log(query)
+    // console.log('Query Back: ==>>',query)
 
     const data = await connection.query(query, params);
     res.json(data.rows);
@@ -460,7 +457,7 @@ let editRegisterLock = Promise.resolve();
 // });
 
 requestRouterCbaPista.post('/add_register_tire', authMiddleware, async (req, res) => {
-  console.log('add_register_tire ejecutado');
+  // console.log('add_register_tire ejecutado');
 
   addRegisterLock = addRegisterLock
     .then(async () => {
@@ -587,7 +584,7 @@ requestRouterCbaPista.post('/add_register_tire', authMiddleware, async (req, res
         registryId = insertRegistry.rows[0].id;
 
         // Insert tires_used con rim_size e id_event
-        console.log('Antes de la ejecucion ---=====-----')
+        // console.log('Antes de la ejecucion ---=====-----')
         await connection.query(
           `
           INSERT INTO tires_used (registry_id, id_event, tire_number, rim_size, position)
@@ -667,30 +664,39 @@ requestRouterCbaPista.post('/add_register_tire', authMiddleware, async (req, res
     });
 });
 
-requestRouterCbaPista.post("/add_new_pilot", async (req, res) => {
+requestRouterCbaPista.post("/add_new_pilot", authMiddleware, roleCheck(['Manager', 'Administrador']), async (req, res) => {
   try {
     const { name, surname, car_model, category, number_pilot } = req.body;
 
     const numberPilot = Number(number_pilot);
+    const idCategory = Number(category);
 
-    if (!name?.trim() || !surname?.trim() || !car_model?.trim() || !category?.trim() || Number.isNaN(numberPilot)) {
+    if (!name?.trim() || !surname?.trim() || !car_model?.trim() || !category?.trim() || Number.isNaN(numberPilot) || Number.isNaN(idCategory)) {
       return res.status(400).json({ error: "Datos inválidos" });
     }
 
     const query = `
-      INSERT INTO users_pista (name, surname, car_model, category, number_pilot)
+      INSERT INTO users_pista (name, surname, car_model, id_category, number_pilot)
       VALUES ($1, $2, $3, $4, $5)
       RETURNING *;
     `;
 
-    const values = [name.trim(), surname.trim(), car_model.trim(), category.trim(), numberPilot];
+    const values = [name.trim(), surname.trim(), car_model.trim(), idCategory, numberPilot];
 
     const data = await connection.query(query, values);
 
+    // Log actividad
+    await connection.query(
+      `INSERT INTO user_activity (id_user, activity, detail) VALUES ($1, $2, $3)`,
+      [
+        req.usuario.id,
+        'Add Pilot',
+        `${req.usuario.email} agregó al piloto ${name.trim()} ${surname.trim()} - categoría: ${idCategory} - número: ${numberPilot}`
+      ]
+    );
+
     return res.status(201).json('Cargado con exito');
-    //return res.status(201).json(data.rows[0]);
-    //return res.status(201);
-    //return res.json(data);
+
   } catch (err) {
     if (err.code === "23505") {
       return res.status(409).json({
@@ -708,7 +714,7 @@ requestRouterCbaPista.post("/add_new_pilot", async (req, res) => {
 //------------------------------------
 
 requestRouterCbaPista.put('/edit_register_tire', authMiddleware, async (req, res) => {
-  console.log('edit_register_tire ejecutado');
+  // console.log('edit_register_tire ejecutado');
 
 
 
@@ -906,7 +912,11 @@ requestRouterCbaPista.put('/edit_register_tire', authMiddleware, async (req, res
 
 requestRouterCbaPista.get('/check_load_status', async (req, res) => {
   try{
-    const query = `SELECT * FROM race_status WHERE is_locked = false;`
+    const query = `
+        SELECT rs.*, cc.name_circuits, cc.event
+        FROM race_status rs
+        JOIN circuits_calendar cc ON rs.id_event = cc.id_event
+        WHERE rs.is_locked = false;`
     const data = await connection.query(query);
     res.send(data.rows);
   }catch(err){
@@ -919,7 +929,7 @@ requestRouterCbaPista.post('/start_load_records', authMiddleware, async (req, re
   const { event_selected } = req.body;
   const assignee = req.usuario.id;
 
-  console.log('Back ==> ',assignee)
+  // console.log('Back ==> ',assignee)
 
   try {
     // INICIAR TRANSACCIÓN
@@ -1067,7 +1077,7 @@ requestRouterCbaPista.post('/finish_load_records', authMiddleware, async (req, r
 // DELETE REGISTRY (Anulado por ahora en el param)
 requestRouterCbaPista.delete('/delete_register_tire_', async (req, res) => {
   const { registry_ids } = req.body;
-  console.log(registry_ids)
+  // console.log(registry_ids)
 
   if (!Array.isArray(registry_ids) || registry_ids.length === 0) {
     res.status(400).json({ error: 'registry_ids inválido' });
@@ -1109,7 +1119,7 @@ requestRouterCbaPista.delete('/delete_register_tire_', async (req, res) => {
 
 // DELETE REGISTRY WITH VERIFICATION
 requestRouterCbaPista.delete('/delete_register_tire', async (req, res) => {
-  console.log('Delete Registry ====>>');
+  // console.log('Delete Registry ====>>');
   const { registry_ids } = req.body;
 
   if (!Array.isArray(registry_ids) || registry_ids.length === 0) {
@@ -1160,7 +1170,8 @@ requestRouterCbaPista.delete('/delete_register_tire', async (req, res) => {
   }
 });
 
-requestRouterCbaPista.delete("/delete_pilot", async (req, res) => {
+requestRouterCbaPista.delete("/delete_pilot", authMiddleware, roleCheck(['Manager', 'Administrador']), async (req, res) => {
+
   try {
     const { id } = req.body;
 
