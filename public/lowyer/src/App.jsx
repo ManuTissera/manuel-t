@@ -22,9 +22,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home_01" element={<HomeOne />} />
-        <Route path="/about_us" element={<AboutUs />} />
+        <Route path="/lawyer/" element={<Home />} />
+        <Route path="/lawyer/home_01" element={<HomeOne />} />
+        <Route path="/lawyer/about_us" element={<AboutUs />} />
         {/* <Route path="/orange_home" element={<HomeOrange />} /> */}
       </Routes>
     </>
