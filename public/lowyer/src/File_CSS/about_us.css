@@ -1,0 +1,185 @@
+/* ==========================================================================
+   Juristo - About Us (Lawyer sections)
+   ========================================================================== */
+
+.lawyer-section {
+  --navy-900: #0d1b2a;
+  --navy-800: #13273b;
+  --navy-700: #1b3349;
+  --gold: #c9a35f;
+  --white: #ffffff;
+  --gray-300: #c3ccd4;
+  --gray-500: #7c8fa0;
+
+  min-height: 100vh;
+  width: 70vw;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: stretch;
+  background: var(--navy-900);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.lawyer-section:nth-child(even) {
+  /* background: var(--navy-800); */
+}
+
+.lawyer-section--reverse {
+  flex-direction: row-reverse;
+}
+
+/* ===== IMAGE SIDE ===== */
+.lawyer-image {
+  position: relative;
+  flex: 0 0 30%;
+  max-width: 30%;
+  padding: 7rem 0rem;
+  overflow: hidden;
+}
+
+.lawyer-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lawyer-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 27, 42, 0) 60%,
+    rgba(13, 27, 42, 0.5) 100%
+  );
+}
+
+.lawyer-section:not(.lawyer-section--reverse) .lawyer-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(13, 27, 42, 0) 80%,
+    rgba(13, 27, 42, 0.9) 100%
+  );
+}
+
+.lawyer-section--reverse .lawyer-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    270deg,
+    rgba(13, 27, 42, 0) 30%,
+    rgba(13, 27, 42, 0.4) 50%,
+    rgba(13, 27, 42, 0.7) 80%,
+    rgba(13, 27, 42, 0.95) 90%,
+    rgba(13, 27, 42, 1) 100%
+  );
+}
+
+/* ===== CONTENT SIDE ===== */
+.lawyer-content {
+  flex: 0 0 70%;
+  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 90px;
+}
+
+.lawyer-eyebrow {
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 14px;
+}
+
+.lawyer-name {
+  color: var(--white);
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  line-height: 1.15;
+}
+
+.lawyer-title {
+  color: var(--gray-300);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.lawyer-underline {
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  margin: 24px 0 28px;
+}
+
+.lawyer-bio {
+  color: var(--gray-300);
+  font-size: 15px;
+  line-height: 1.85;
+  margin: 0 0 18px;
+  max-width: 520px;
+}
+
+.lawyer-bio:last-of-type {
+  margin-bottom: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .lawyer-section,
+  .lawyer-section--reverse {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .lawyer-image,
+  .lawyer-content {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .lawyer-image {
+    height: 50vh;
+  }
+
+  .lawyer-section:not(.lawyer-section--reverse) .lawyer-image::before,
+  .lawyer-section--reverse .lawyer-image::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(13, 27, 42, 0) 70%,
+      rgba(13, 27, 42, 0.95) 100%
+    );
+  }
+
+  .lawyer-content {
+    padding: 50px 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .lawyer-name {
+    font-size: 30px;
+  }
+
+  .lawyer-content {
+    padding: 40px 24px;
+  }
+
+  .lawyer-image {
+    height: 40vh;
+  }
+}
