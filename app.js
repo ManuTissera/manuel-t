@@ -50,7 +50,7 @@ const clientIndexPath = path.join(clientBuildPath, "index.html");
 if (fs.existsSync(clientIndexPath)) {
   expressApp.use(express.static(clientBuildPath));
   
-  // SPA fallback para cba_pista (captura TODO)
+  // SPA fallback para cba_pista
   expressApp.get("*", (req, res) => {
     res.sendFile(clientIndexPath);
   });
@@ -64,6 +64,7 @@ const lawyerBuildPath = path.join(__dirname, "public", "lawyer", "dist");
 const lawyerIndexPath = path.join(lawyerBuildPath, "index.html");
 
 if (fs.existsSync(lawyerIndexPath)) {
+  // Servir archivos estáticos de lawyer en /lawyer
   expressApp.use("/lawyer", express.static(lawyerBuildPath));
   
   // SPA fallback para lawyer (solo rutas que empiezan con /lawyer)

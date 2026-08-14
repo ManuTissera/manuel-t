@@ -1,10 +1,6 @@
-
-
-
 import { useState } from 'react'
 
 import { Routes, Route } from "react-router-dom"
-
 
 import Home from './pages/home'
 import HomeOne from './pages/HomeOne.jsx'
@@ -22,9 +18,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/lawyer/" element={<Home />} />
-        <Route path="/lawyer/home_01" element={<HomeOne />} />
-        <Route path="/lawyer/about_us" element={<AboutUs />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/home_01" element={<HomeOne />} />
+        <Route path="/about_us" element={<AboutUs />} />
         {/* <Route path="/orange_home" element={<HomeOrange />} /> */}
       </Routes>
     </>
