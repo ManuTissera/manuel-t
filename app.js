@@ -41,7 +41,22 @@ expressApp.use("/", routerApp);
 expressApp.use(express.static(path.join(__dirname, "public")));
 
 /* =========================
-   SERVE REACT BUILD (cba_pista) - PROYECTO PRINCIPAL
+   SERVE REACT BUILD (lawyer) - PRIMERO
+========================= */
+
+const lawyerBuildPath = path.join(__dirname, "public", "lawyer", "dist");
+const lawyerIndexPath = path.join(lawyerBuildPath, "index.html");
+
+if (fs.existsSync(lawyerIndexPath)) {
+  expressApp.use("/lawyer", express.static(lawyerBuildPath));
+  
+  expressApp.get("/lawyer*", (req, res) => {
+    res.sendFile(lawyerIndexPath);
+  });
+}
+
+/* =========================
+   SERVE REACT BUILD (cba_pista) - DESPUÉS
 ========================= */
 
 const clientBuildPath = path.join(__dirname, "public", "cba_pista", "dist");
@@ -50,26 +65,9 @@ const clientIndexPath = path.join(clientBuildPath, "index.html");
 if (fs.existsSync(clientIndexPath)) {
   expressApp.use(express.static(clientBuildPath));
   
-  // SPA fallback para cba_pista
+  // Este fallback SOLO se ejecuta si no coincidió /lawyer*
   expressApp.get("*", (req, res) => {
     res.sendFile(clientIndexPath);
-  });
-}
-
-/* =========================
-   SERVE REACT BUILD (lawyer) - PROYECTO SECUNDARIO
-========================= */
-
-const lawyerBuildPath = path.join(__dirname, "public", "lawyer", "dist");
-const lawyerIndexPath = path.join(lawyerBuildPath, "index.html");
-
-if (fs.existsSync(lawyerIndexPath)) {
-  // Servir archivos estáticos de lawyer en /lawyer
-  expressApp.use("/lawyer", express.static(lawyerBuildPath));
-  
-  // SPA fallback para lawyer (solo rutas que empiezan con /lawyer)
-  expressApp.get("/lawyer*", (req, res) => {
-    res.sendFile(lawyerIndexPath);
   });
 }
 
