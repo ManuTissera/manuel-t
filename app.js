@@ -44,20 +44,20 @@ expressApp.use(express.static(path.join(__dirname, "public")));
    SERVE REACT BUILDS
 ========================= */
 
-// 1. LAWYER (Abogados)
-const lawyerBuildPath = path.join(__dirname, "public", "lawyer", "dist");
-const lawyerIndexPath = path.join(lawyerBuildPath, "index.html");
-
-if (fs.existsSync(lawyerIndexPath)) {
-  expressApp.use("/lawyer", express.static(lawyerBuildPath));
-}
-
-// 2. CBA_PISTA (Tires Control)
+// 1. CBA_PISTA (Tires Control) - Proyecto principal
 const cbaPistaBuildPath = path.join(__dirname, "public", "cba_pista", "dist");
 const cbaPistaIndexPath = path.join(cbaPistaBuildPath, "index.html");
 
 if (fs.existsSync(cbaPistaIndexPath)) {
   expressApp.use("/cba_pista", express.static(cbaPistaBuildPath));
+}
+
+// 2. LAWYER (Abogados)
+const lawyerBuildPath = path.join(__dirname, "public", "lawyer", "dist");
+const lawyerIndexPath = path.join(lawyerBuildPath, "index.html");
+
+if (fs.existsSync(lawyerIndexPath)) {
+  expressApp.use("/lawyer", express.static(lawyerBuildPath));
 }
 
 // 3. NEWS-DATA
@@ -77,15 +77,21 @@ if (fs.existsSync(controlCommerceIndexPath)) {
 }
 
 /* =========================
-   SPA FALLBACK (para cba_pista como proyecto principal)
+   SPA FALLBACK
 ========================= */
 
-// Si ninguna ruta coincide, redirige a cba_pista (proyecto principal)
+// Solo para rutas que no sean archivos estáticos
 expressApp.get("*", (req, res) => {
+  // Si la ruta tiene extensión de archivo, ignorar
+  if (req.path.includes('.')) {
+    return res.status(404).send('Archivo no encontrado');
+  }
+  
+  // Redirigir al index de cba_pista (proyecto principal)
   if (fs.existsSync(cbaPistaIndexPath)) {
     res.sendFile(cbaPistaIndexPath);
   } else {
-    res.status(404).send("Proyecto no encontrado");
+    res.status(404).send('Proyecto no encontrado');
   }
 });
 
