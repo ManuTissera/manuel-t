@@ -48,9 +48,11 @@ const lawyerBuildPath = path.join(__dirname, "public", "lawyer", "dist");
 const lawyerIndexPath = path.join(lawyerBuildPath, "index.html");
 
 if (fs.existsSync(lawyerIndexPath)) {
-  expressApp.use("/lawyer", express.static(lawyerBuildPath));
+  // expressApp.use("/lawyer", express.static(lawyerBuildPath));
+  expressApp.use("/", express.static(lawyerBuildPath));
   
-  expressApp.get("/lawyer*", (req, res) => {
+  // expressApp.get("/lawyer*", (req, res) => {
+  expressApp.get("*", (req, res) => {
     res.sendFile(lawyerIndexPath);
   });
 }
