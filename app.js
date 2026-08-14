@@ -61,17 +61,17 @@ if (fs.existsSync(lawyerIndexPath)) {
    SERVE REACT BUILD (cba_pista) - DESPUÉS
 ========================= */
 
-const clientBuildPath = path.join(__dirname, "public", "cba_pista", "dist");
-const clientIndexPath = path.join(clientBuildPath, "index.html");
+// const clientBuildPath = path.join(__dirname, "public", "cba_pista", "dist");
+// const clientIndexPath = path.join(clientBuildPath, "index.html");
 
-if (fs.existsSync(clientIndexPath)) {
-  expressApp.use(express.static(clientBuildPath));
+// if (fs.existsSync(clientIndexPath)) {
+//   expressApp.use(express.static(clientBuildPath));
   
-  // Este fallback SOLO se ejecuta si no coincidió /lawyer*
-  expressApp.get("*", (req, res) => {
-    res.sendFile(clientIndexPath);
-  });
-}
+//   // Este fallback SOLO se ejecuta si no coincidió /lawyer*
+//   expressApp.get("*", (req, res) => {
+//     res.sendFile(clientIndexPath);
+//   });
+// }
 
 /* =========================
    START SERVER
