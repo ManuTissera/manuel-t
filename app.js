@@ -2,7 +2,7 @@ console.clear();
 
 import express from "express";
 import routerRequest from "./Routes/routes.js";
-import authRoutes from './Routes/auth.js';
+import authRoutes from './Routes/auth.js';  // ✅ AGREGAR ESTA LÍNEA
 import routerApp from "./Routes/routes-anthropometry.js";
 import requestRouterData from "./Routes/routes-news-data.js";
 import requestRouterCbaPista from "./Routes/routes-cba_pista.js";
@@ -16,6 +16,10 @@ const PORT = process.env.PORT || 3210;
 
 const __dirname = path.resolve();
 
+
+
+
+
 /* =========================
 MIDDLEWARE
 ========================= */
@@ -28,7 +32,10 @@ expressApp.use(cors());
 API ROUTES
 ========================= */
 
+// Rutas de autenticación
+//expressApp.use('/api/auth', authRoutes);
 expressApp.use('/api/auth', authRoutes);
+
 expressApp.use("/", requestRouterCbaPista);
 expressApp.use("/", requestRouterData);
 expressApp.use("/", routerRequest);
@@ -41,59 +48,24 @@ expressApp.use("/", routerApp);
 expressApp.use(express.static(path.join(__dirname, "public")));
 
 /* =========================
-   SERVE REACT BUILDS
+   SERVE REACT BUILD (cba_pista)
 ========================= */
 
-// 1. CBA_PISTA (Tires Control) - Proyecto principal
-const cbaPistaBuildPath = path.join(__dirname, "public", "cba_pista", "dist");
-const cbaPistaIndexPath = path.join(cbaPistaBuildPath, "index.html");
+const clientBuildPath = path.join(__dirname, "public", "cba_pista", "dist");
+const clientIndexPath = path.join(clientBuildPath, "index.html");
 
-if (fs.existsSync(cbaPistaIndexPath)) {
-  expressApp.use("/cba_pista", express.static(cbaPistaBuildPath));
+// Only activate if build exists
+if (fs.existsSync(clientIndexPath)) {
+
+  // Serve built React files
+  expressApp.use(express.static(clientBuildPath));
+
+  // SPA fallback (React Router support)
+  expressApp.get("*", (req, res) => {
+    res.sendFile(clientIndexPath);
+  });
+
 }
-
-// 2. LAWYER (Abogados)
-const lawyerBuildPath = path.join(__dirname, "public", "lawyer", "dist");
-const lawyerIndexPath = path.join(lawyerBuildPath, "index.html");
-
-if (fs.existsSync(lawyerIndexPath)) {
-  expressApp.use("/lawyer", express.static(lawyerBuildPath));
-}
-
-// 3. NEWS-DATA
-const newsDataBuildPath = path.join(__dirname, "public", "news-data", "dist");
-const newsDataIndexPath = path.join(newsDataBuildPath, "index.html");
-
-if (fs.existsSync(newsDataIndexPath)) {
-  expressApp.use("/news-data", express.static(newsDataBuildPath));
-}
-
-// 4. CONTROL-COMMERCE
-const controlCommerceBuildPath = path.join(__dirname, "public", "control-commerce", "dist");
-const controlCommerceIndexPath = path.join(controlCommerceBuildPath, "index.html");
-
-if (fs.existsSync(controlCommerceIndexPath)) {
-  expressApp.use("/control-commerce", express.static(controlCommerceBuildPath));
-}
-
-/* =========================
-   SPA FALLBACK
-========================= */
-
-// Solo para rutas que no sean archivos estáticos
-expressApp.get("*", (req, res) => {
-  // Si la ruta tiene extensión de archivo, ignorar
-  if (req.path.includes('.')) {
-    return res.status(404).send('Archivo no encontrado');
-  }
-  
-  // Redirigir al index de cba_pista (proyecto principal)
-  if (fs.existsSync(cbaPistaIndexPath)) {
-    res.sendFile(cbaPistaIndexPath);
-  } else {
-    res.status(404).send('Proyecto no encontrado');
-  }
-});
 
 /* =========================
    START SERVER
