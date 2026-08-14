@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "nodemon ./app.js",
     "start": "node app.js",
-    "heroku-postbuild": "npm install --include=dev --prefix public/cba_pista && npm run build --prefix public/cba_pista"
+    "heroku-postbuild": "npm install --include=dev --prefix public/cba_pista && npm run build --prefix public/cba_pista && npm install --include=dev --prefix public/lawyer && npm run build --prefix public/lawyer"
   },
   "keywords": [],
   "author": "",
