@@ -55,25 +55,25 @@ const AboutUs = () => {
           <nav className="main-nav">
             <ul>
               <li className="active">
-                <a href="/home_01">Inicio</a>
+                <a href="/lawyer/home_01">Inicio</a>
               </li>
               <li>
-                <a href="/about_us">Sobre Nosotros</a>
+                <a href="/lawyer/about_us">Sobre Nosotros</a>
               </li>
               <li>
-                <a href="/home_01">Practicas</a>
+                <a href="/lawyer/home_01">Practicas</a>
               </li>
               {/* <li>
                 <a href="/shop">Shop</a>
               </li> */}
               <li>
-                <a href="/home_01">Pages</a>
+                <a href="/lawyer/home_01">Pages</a>
               </li>
               {/* <li>
                 <a href="/blog">Blog</a>
               </li> */}
               <li>
-                <a href="/home_01#contact-id" >Contacto</a>
+                <a href="/lawyer/home_01#contact-id" >Contacto</a>
               </li>
             </ul>
           </nav>
